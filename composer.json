@@ -1,0 +1,32 @@
+{
+  "description": "Provides the Haxe standard library as a reusable package.",
+  "homepage": "https://docs.belin.io/haxe.php",
+  "license": "MIT",
+  "name": "cedx/haxe",
+  "type": "library",
+  "authors": [
+    {"email": "contact@haxe.org", "homepage": "https://haxe.org", "name": "Haxe Foundation"},
+    {"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
+  ],
+  "autoload": {
+    "psr-4": {"\\": "src/"}
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "keywords": [
+    "haxe",
+    "php",
+    "standard-library"
+  ],
+  "require": {
+    "php": ">=7.4.0"
+  },
+  "require-dev": {
+    "consolidation/robo": "^2.0.3"
+  },
+  "support": {
+    "docs": "https://api.belin.io/haxe.php",
+    "issues": "https://git.belin.io/cedx/haxe.php/issues"
+  }
+}
