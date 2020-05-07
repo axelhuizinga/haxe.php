@@ -22,9 +22,7 @@ class HashMapData {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:108: characters 3-22
 		$this->keys = new IntMap();
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:109: characters 3-24
 		$this->values = new IntMap();
 	}
 }

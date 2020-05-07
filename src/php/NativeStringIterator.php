@@ -22,9 +22,7 @@ class NativeStringIterator {
 	 * @return void
 	 */
 	public function __construct ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:44: characters 14-15
 		$this->i = 0;
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:47: characters 3-13
 		$this->s = $s;
 	}
 
@@ -32,7 +30,6 @@ class NativeStringIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:51: characters 3-30
 		return $this->i < strlen($this->s);
 	}
 
@@ -40,7 +37,6 @@ class NativeStringIterator {
 	 * @return string
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:55: characters 3-16
 		return $this->s[$this->i++];
 	}
 }

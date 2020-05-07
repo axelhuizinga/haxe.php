@@ -13,7 +13,6 @@ final class NativeArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeArray.hx:33: character 2
 		$this1 = [];
 		return $this1;
 	}
@@ -56,7 +55,6 @@ final class NativeArray_Impl_ {
 	 * @return NativeIndexedArrayIterator
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeArray.hx:53: characters 10-46
 		return new NativeIndexedArrayIterator(array_values($this1));
 	}
 
@@ -66,7 +64,6 @@ final class NativeArray_Impl_ {
 	 * @return NativeArrayKeyValueIterator
 	 */
 	public static function keyValueIterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeArray.hx:56: characters 3-47
 		return new NativeArrayKeyValueIterator($this1);
 	}
 

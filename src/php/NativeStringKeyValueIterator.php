@@ -23,9 +23,7 @@ class NativeStringKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:61: characters 14-15
 		$this->i = 0;
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:64: characters 3-13
 		$this->s = $s;
 	}
 
@@ -33,7 +31,6 @@ class NativeStringKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:68: characters 3-30
 		return $this->i < strlen($this->s);
 	}
 
@@ -41,9 +38,7 @@ class NativeStringKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:72: characters 16-17
 		$tmp = $this->i;
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:72: characters 3-33
 		return new HxAnon([
 			"key" => $tmp,
 			"value" => $this->s[$this->i++],

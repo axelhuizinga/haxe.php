@@ -13,7 +13,6 @@ final class NativeAssocArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:28: character 2
 		$this1 = [];
 		return $this1;
 	}
@@ -25,7 +24,6 @@ final class NativeAssocArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function get ($this1, $key) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:33: characters 3-19
 		return $this1[$key];
 	}
 
@@ -35,7 +33,6 @@ final class NativeAssocArray_Impl_ {
 	 * @return NativeIndexedArrayIterator
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:40: characters 10-77
 		return new NativeIndexedArrayIterator(array_values($this1));
 	}
 
@@ -45,7 +42,6 @@ final class NativeAssocArray_Impl_ {
 	 * @return NativeAssocArrayKeyValueIterator
 	 */
 	public static function keyValueIterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:43: characters 3-52
 		return new NativeAssocArrayKeyValueIterator($this1);
 	}
 
@@ -57,7 +53,6 @@ final class NativeAssocArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function set ($this1, $key, $val) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:37: characters 3-25
 		return $this1[$key] = $val;
 	}
 }

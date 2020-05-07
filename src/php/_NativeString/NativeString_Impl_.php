@@ -24,7 +24,6 @@ final class NativeString_Impl_ {
 	 * @return NativeStringIterator
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:34: characters 3-40
 		return new NativeStringIterator($this1);
 	}
 
@@ -34,7 +33,6 @@ final class NativeString_Impl_ {
 	 * @return NativeStringKeyValueIterator
 	 */
 	public static function keyValueIterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeString.hx:38: characters 3-48
 		return new NativeStringKeyValueIterator($this1);
 	}
 

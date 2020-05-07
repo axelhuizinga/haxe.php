@@ -33,13 +33,9 @@ class ObjectMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:33: characters 11-33
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:33: characters 3-33
 		$this->_keys = $this1;
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:34: characters 13-35
 		$this2 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:34: characters 3-35
 		$this->_values = $this2;
 	}
 
@@ -49,13 +45,9 @@ class ObjectMap implements IMap {
 	 * @return void
 	 */
 	public function clear () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:94: characters 11-33
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:94: characters 3-33
 		$this->_keys = $this1;
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:95: characters 13-35
 		$this2 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:95: characters 3-35
 		$this->_values = $this2;
 	}
 
@@ -65,7 +57,6 @@ class ObjectMap implements IMap {
 	 * @return ObjectMap
 	 */
 	public function copy () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:77: characters 3-28
 		return (clone $this);
 	}
 
@@ -77,7 +68,6 @@ class ObjectMap implements IMap {
 	 * @return bool
 	 */
 	public function exists ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:49: characters 3-71
 		return array_key_exists(spl_object_hash($key), $this->_values);
 	}
 
@@ -89,14 +79,10 @@ class ObjectMap implements IMap {
 	 * @return mixed
 	 */
 	public function get ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:44: characters 3-40
 		$id = spl_object_hash($key);
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:45: characters 10-56
 		if (isset($this->_values[$id])) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:45: characters 38-49
 			return $this->_values[$id];
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:45: characters 52-56
 			return null;
 		}
 	}
@@ -109,7 +95,6 @@ class ObjectMap implements IMap {
 	 * @return object
 	 */
 	public function iterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:68: characters 10-28
 		return new NativeIndexedArrayIterator(array_values($this->_values));
 	}
 
@@ -119,7 +104,6 @@ class ObjectMap implements IMap {
 	 * @return object
 	 */
 	public function keyValueIterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:73: characters 3-54
 		return new MapKeyValueIterator($this);
 	}
 
@@ -131,7 +115,6 @@ class ObjectMap implements IMap {
 	 * @return object
 	 */
 	public function keys () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:63: characters 10-26
 		return new NativeIndexedArrayIterator(array_values($this->_keys));
 	}
 
@@ -143,16 +126,11 @@ class ObjectMap implements IMap {
 	 * @return bool
 	 */
 	public function remove ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:53: characters 3-40
 		$id = spl_object_hash($key);
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:54: lines 54-59
 		if (array_key_exists($id, $this->_values)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:55: characters 4-40
 			unset($this->_keys[$id], $this->_values[$id]);
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:56: characters 4-15
 			return true;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:58: characters 4-16
 			return false;
 		}
 	}
@@ -166,11 +144,8 @@ class ObjectMap implements IMap {
 	 * @return void
 	 */
 	public function set ($key, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:38: characters 3-40
 		$id = spl_object_hash($key);
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:39: characters 3-18
 		$this->_keys[$id] = $key;
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:40: characters 3-22
 		$this->_values[$id] = $value;
 	}
 
@@ -180,29 +155,19 @@ class ObjectMap implements IMap {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:81: characters 3-15
 		$s = "{";
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:82: characters 3-19
 		$it = new NativeIndexedArrayIterator(array_values($this->_keys));
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:83: characters 13-15
 		$i = $it;
 		while ($i->hasNext()) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:83: lines 83-89
 			$i1 = $i->next();
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:84: characters 4-22
 			$s = ($s??'null') . (\Std::string($i1)??'null');
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:85: characters 4-15
 			$s = ($s??'null') . " => ";
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:86: characters 4-27
 			$s = ($s??'null') . (\Std::string($this->get($i1))??'null');
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:87: lines 87-88
 			if ($it->hasNext()) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:88: characters 5-14
 				$s = ($s??'null') . ", ";
 			}
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/ObjectMap.hx:90: characters 3-17
 		return ($s??'null') . "}";
 	}
 

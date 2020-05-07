@@ -27,7 +27,6 @@ class StringBuf {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:32: characters 3-9
 		$this->b = "";
 	}
 
@@ -43,20 +42,14 @@ class StringBuf {
 	 * @return void
 	 */
 	public function add ($x) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:40: lines 40-48
 		if ($x === null) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:41: characters 4-32
 			$this->b = ($this->b . "null");
 		} else if (is_bool($x)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:43: characters 4-60
 			$this->b = ($this->b . ($x ? "true" : "false"));
 		} else if (is_string($x)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:45: characters 4-32
 			$this->b = ($this->b . $x);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:47: characters 4-5
 			$tmp = $this;
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:47: characters 4-10
 			$tmp->b = ($tmp->b??'null') . (\Std::string($x)??'null');
 		}
 	}
@@ -71,9 +64,7 @@ class StringBuf {
 	 * @return void
 	 */
 	public function addChar ($c) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:56: characters 3-4
 		$tmp = $this;
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:56: characters 3-30
 		$tmp->b = ($tmp->b??'null') . (mb_chr($c)??'null');
 	}
 
@@ -93,9 +84,7 @@ class StringBuf {
 	 * @return void
 	 */
 	public function addSub ($s, $pos, $len = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:52: characters 3-4
 		$tmp = $this;
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:52: characters 3-26
 		$tmp->b = ($tmp->b??'null') . (mb_substr($s, $pos, $len)??'null');
 	}
 
@@ -103,7 +92,6 @@ class StringBuf {
 	 * @return int
 	 */
 	public function get_length () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:36: characters 3-18
 		return mb_strlen($this->b);
 	}
 
@@ -114,7 +102,6 @@ class StringBuf {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringBuf.hx:60: characters 3-11
 		return $this->b;
 	}
 

@@ -26,9 +26,7 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public static function invoke ($str, $method, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:876: characters 3-34
 		array_unshift($args, $str);
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:877: characters 3-69
 		return call_user_func_array((HxDynamicStr::$hxString??'null') . "::" . ($method??'null'), $args);
 	}
 
@@ -41,12 +39,9 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public static function wrap ($value) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:868: lines 868-872
 		if (is_string($value)) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:869: characters 4-34
 			return new HxDynamicStr($value);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:871: characters 4-16
 			return $value;
 		}
 	}
@@ -57,7 +52,6 @@ class HxDynamicStr extends HxClosure {
 	 * @return void
 	 */
 	public function __construct ($str) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:881: characters 3-19
 		parent::__construct($str, null);
 	}
 
@@ -68,7 +62,6 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public function __call ($method, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:897: characters 10-38
 		array_unshift($args, $this->target);
 		return call_user_func_array((HxDynamicStr::$hxString??'null') . "::" . ($method??'null'), $args);
 	}
@@ -79,14 +72,10 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public function __get ($field) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:886: lines 886-892
 		if ($field === "length") {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:888: characters 5-36
 			return mb_strlen($this->target);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:890: characters 5-17
 			$this->func = $field;
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:891: characters 5-16
 			return $this;
 		}
 	}
@@ -97,7 +86,6 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public function __invoke () {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:905: characters 10-54
 		$str = $this->target;
 		$method = $this->func;
 		$args = func_get_args();
@@ -114,12 +102,9 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public function callWith ($newThis, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:922: lines 922-924
 		if ($newThis === null) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:923: characters 4-20
 			$newThis = $this->target;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:925: characters 10-37
 		$method = $this->func;
 		array_unshift($args, $newThis);
 		return call_user_func_array((HxDynamicStr::$hxString??'null') . "::" . ($method??'null'), $args);
@@ -133,12 +118,9 @@ class HxDynamicStr extends HxClosure {
 	 * @return mixed
 	 */
 	public function getCallback ($eThis = null) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:912: lines 912-914
 		if ($eThis === null) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:913: characters 4-51
 			return [$this, $this->func];
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:915: characters 3-69
 		return [new HxDynamicStr($eThis), $this->func];
 	}
 

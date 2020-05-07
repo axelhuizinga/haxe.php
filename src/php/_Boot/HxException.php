@@ -22,9 +22,7 @@ class HxException extends \Exception {
 	 * @return void
 	 */
 	public function __construct ($e) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1023: characters 3-13
 		$this->e = $e;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1024: characters 3-27
 		parent::__construct(Boot::stringify($e));
 	}
 }

@@ -30,11 +30,8 @@ class DynamicAccessIterator {
 	 * @return void
 	 */
 	public function __construct ($access) {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessIterator.hx:34: characters 3-23
 		$this->access = $access;
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessIterator.hx:35: characters 3-28
 		$this->keys = \Reflect::fields($access);
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessIterator.hx:36: characters 3-12
 		$this->index = 0;
 	}
 
@@ -44,7 +41,6 @@ class DynamicAccessIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessIterator.hx:43: characters 3-29
 		return $this->index < $this->keys->length;
 	}
 
@@ -54,7 +50,6 @@ class DynamicAccessIterator {
 	 * @return mixed
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessIterator.hx:50: characters 10-31
 		return \Reflect::field($this->access, ($this->keys->arr[$this->index++] ?? null));
 	}
 }

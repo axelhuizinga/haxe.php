@@ -17,17 +17,11 @@ class HxAnon extends \StdClass {
 	 * @return void
 	 */
 	public function __construct ($fields = null) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:935: lines 935-940
 		$_gthis = $this;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:936: characters 3-10
 		;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:937: lines 937-939
 		if ($fields !== null) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:938: characters 4-84
 			foreach ($fields as $key => $value) {
-				#C:\Program Files\Haxe\haxe\std/php/Boot.hx:938: characters 65-69
 				$tmp = $_gthis;
-				#C:\Program Files\Haxe\haxe\std/php/Boot.hx:938: characters 49-83
 				$tmp->{$key} = $value;
 			}
 		}
@@ -40,7 +34,6 @@ class HxAnon extends \StdClass {
 	 * @return mixed
 	 */
 	public function __call ($name, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:949: characters 3-57
 		return ($this->$name)(...$args);
 	}
 
@@ -50,7 +43,6 @@ class HxAnon extends \StdClass {
 	 * @return mixed
 	 */
 	public function __get ($name) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:944: characters 3-14
 		return null;
 	}
 }

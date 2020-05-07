@@ -35,9 +35,7 @@ class IntIterator {
 	 * @return void
 	 */
 	public function __construct ($min, $max) {
-		#C:\Program Files\Haxe\haxe\std/IntIterator.hx:46: characters 3-17
 		$this->min = $min;
-		#C:\Program Files\Haxe\haxe\std/IntIterator.hx:47: characters 3-17
 		$this->max = $max;
 	}
 
@@ -47,7 +45,6 @@ class IntIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/IntIterator.hx:54: characters 3-19
 		return $this->min < $this->max;
 	}
 
@@ -58,7 +55,6 @@ class IntIterator {
 	 * @return int
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/IntIterator.hx:63: characters 3-15
 		return $this->min++;
 	}
 }

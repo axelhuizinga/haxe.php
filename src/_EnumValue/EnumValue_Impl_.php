@@ -37,7 +37,6 @@ final class EnumValue_Impl_ {
 	 * @return bool
 	 */
 	public static function match ($this1, $pattern) {
-		#C:\Program Files\Haxe\haxe\std/EnumValue.hx:59: characters 3-15
 		return false;
 	}
 }

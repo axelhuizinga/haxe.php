@@ -17,7 +17,6 @@ final class DynamicAccess_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:40: character 2
 		$this1 = new HxAnon();
 		return $this1;
 	}
@@ -30,7 +29,6 @@ final class DynamicAccess_Impl_ {
 	 * @return mixed
 	 */
 	public static function copy ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:106: characters 3-28
 		return \Reflect::copy($this1);
 	}
 
@@ -44,7 +42,6 @@ final class DynamicAccess_Impl_ {
 	 * @return bool
 	 */
 	public static function exists ($this1, $key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:84: characters 3-37
 		return \Reflect::hasField($this1, $key);
 	}
 
@@ -59,7 +56,6 @@ final class DynamicAccess_Impl_ {
 	 * @return mixed
 	 */
 	public static function get ($this1, $key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:55: characters 3-34
 		return \Reflect::field($this1, $key);
 	}
 
@@ -72,7 +68,6 @@ final class DynamicAccess_Impl_ {
 	 * @return DynamicAccessIterator
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:114: characters 3-41
 		return new DynamicAccessIterator($this1);
 	}
 
@@ -85,7 +80,6 @@ final class DynamicAccess_Impl_ {
 	 * @return DynamicAccessKeyValueIterator
 	 */
 	public static function keyValueIterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:123: characters 3-49
 		return new DynamicAccessKeyValueIterator($this1);
 	}
 
@@ -97,7 +91,6 @@ final class DynamicAccess_Impl_ {
 	 * @return \Array_hx
 	 */
 	public static function keys ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:100: characters 3-30
 		return \Reflect::fields($this1);
 	}
 
@@ -112,7 +105,6 @@ final class DynamicAccess_Impl_ {
 	 * @return bool
 	 */
 	public static function remove ($this1, $key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:94: characters 3-40
 		return \Reflect::deleteField($this1, $key);
 	}
 
@@ -129,9 +121,7 @@ final class DynamicAccess_Impl_ {
 	 * @return mixed
 	 */
 	public static function set ($this1, $key, $value) {
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:73: characters 3-37
 		\Reflect::setField($this1, $key, $value);
-		#C:\Program Files\Haxe\haxe\std/haxe/DynamicAccess.hx:74: characters 3-15
 		return $value;
 	}
 }

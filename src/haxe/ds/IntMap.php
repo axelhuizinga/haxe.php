@@ -27,9 +27,7 @@ class IntMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:34: characters 10-34
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:34: characters 3-34
 		$this->data = $this1;
 	}
 
@@ -39,9 +37,7 @@ class IntMap implements IMap {
 	 * @return void
 	 */
 	public function clear () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:86: characters 10-34
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:86: characters 3-34
 		$this->data = $this1;
 	}
 
@@ -51,7 +47,6 @@ class IntMap implements IMap {
 	 * @return IntMap
 	 */
 	public function copy () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:73: characters 3-28
 		return (clone $this);
 	}
 
@@ -63,7 +58,6 @@ class IntMap implements IMap {
 	 * @return bool
 	 */
 	public function exists ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:46: characters 3-44
 		return array_key_exists($key, $this->data);
 	}
 
@@ -75,7 +69,6 @@ class IntMap implements IMap {
 	 * @return mixed
 	 */
 	public function get ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:42: characters 3-42
 		return ($this->data[$key] ?? null);
 	}
 
@@ -87,7 +80,6 @@ class IntMap implements IMap {
 	 * @return object
 	 */
 	public function iterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:64: characters 10-46
 		return new NativeIndexedArrayIterator(array_values($this->data));
 	}
 
@@ -97,7 +89,6 @@ class IntMap implements IMap {
 	 * @return object
 	 */
 	public function keyValueIterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:69: characters 3-54
 		return new MapKeyValueIterator($this);
 	}
 
@@ -109,7 +100,6 @@ class IntMap implements IMap {
 	 * @return object
 	 */
 	public function keys () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:59: characters 10-44
 		return new NativeIndexedArrayIterator(array_keys($this->data));
 	}
 
@@ -121,14 +111,10 @@ class IntMap implements IMap {
 	 * @return bool
 	 */
 	public function remove ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:50: lines 50-53
 		if (array_key_exists($key, $this->data)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:51: characters 4-27
 			unset($this->data[$key]);
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:52: characters 4-15
 			return true;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:55: characters 3-15
 		return false;
 	}
 
@@ -141,7 +127,6 @@ class IntMap implements IMap {
 	 * @return void
 	 */
 	public function set ($key, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:38: characters 3-20
 		$this->data[$key] = $value;
 	}
 
@@ -151,20 +136,14 @@ class IntMap implements IMap {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:77: characters 15-32
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:77: characters 3-33
 		$parts = $this1;
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:78: lines 78-80
 		$collection = $this->data;
 		foreach ($collection as $key => $value) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:79: characters 29-59
 			$tmp = "" . ($key??'null') . " => " . (\Std::string($value)??'null');
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:79: characters 4-60
 			array_push($parts, $tmp);
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/IntMap.hx:82: characters 3-49
 		return "{" . (implode(", ", $parts)??'null') . "}";
 	}
 

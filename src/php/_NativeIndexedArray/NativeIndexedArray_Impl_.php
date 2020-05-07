@@ -12,7 +12,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:28: character 2
 		$this1 = [];
 		return $this1;
 	}
@@ -23,7 +22,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function fromHaxeArray ($a) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:54: characters 3-31
 		return $a->arr;
 	}
 
@@ -34,7 +32,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function get ($this1, $idx) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:33: characters 3-19
 		return $this1[$idx];
 	}
 
@@ -44,7 +41,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return NativeIndexedArrayIterator
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:43: characters 3-46
 		return new NativeIndexedArrayIterator($this1);
 	}
 
@@ -54,7 +50,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return NativeIndexedArrayKeyValueIterator
 	 */
 	public static function keyValueIterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:46: characters 3-54
 		return new NativeIndexedArrayKeyValueIterator($this1);
 	}
 
@@ -65,7 +60,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return void
 	 */
 	public static function push ($this1, $val) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:40: characters 3-40
 		$this1[] = $val;
 	}
 
@@ -77,7 +71,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function set ($this1, $idx, $val) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:37: characters 3-25
 		return $this1[$idx] = $val;
 	}
 
@@ -87,7 +80,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return \Array_hx
 	 */
 	public static function toHaxeArray ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:50: characters 3-42
 		return \Array_hx::wrap($this1);
 	}
 
@@ -97,7 +89,6 @@ final class NativeIndexedArray_Impl_ {
 	 * @return string
 	 */
 	public static function toString ($this1) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:57: characters 3-48
 		return Boot::stringifyNativeIndexedArray($this1);
 	}
 }

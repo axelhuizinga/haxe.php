@@ -16,7 +16,6 @@ final class ReadOnlyArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function get ($this1, $i) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/ReadOnlyArray.hx:44: characters 3-17
 		return ($this1->arr[$i] ?? null);
 	}
 
@@ -26,7 +25,6 @@ final class ReadOnlyArray_Impl_ {
 	 * @return int
 	 */
 	public static function get_length ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/ReadOnlyArray.hx:41: characters 3-21
 		return $this1->length;
 	}
 }

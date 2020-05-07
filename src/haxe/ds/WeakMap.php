@@ -22,7 +22,6 @@ class WeakMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:39: characters 3-8
 		throw new HxException("Not implemented for this platform");
 	}
 
@@ -40,7 +39,6 @@ class WeakMap implements IMap {
 	 * @return WeakMap
 	 */
 	public function copy () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:93: characters 3-14
 		return null;
 	}
 
@@ -52,7 +50,6 @@ class WeakMap implements IMap {
 	 * @return bool
 	 */
 	public function exists ($key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:58: characters 3-15
 		return false;
 	}
 
@@ -64,7 +61,6 @@ class WeakMap implements IMap {
 	 * @return mixed
 	 */
 	public function get ($key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:51: characters 3-14
 		return null;
 	}
 
@@ -74,7 +70,6 @@ class WeakMap implements IMap {
 	 * @return object
 	 */
 	public function iterator () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:79: characters 3-14
 		return null;
 	}
 
@@ -84,7 +79,6 @@ class WeakMap implements IMap {
 	 * @return object
 	 */
 	public function keyValueIterator () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:86: characters 3-14
 		return null;
 	}
 
@@ -94,7 +88,6 @@ class WeakMap implements IMap {
 	 * @return object
 	 */
 	public function keys () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:72: characters 3-14
 		return null;
 	}
 
@@ -106,7 +99,6 @@ class WeakMap implements IMap {
 	 * @return bool
 	 */
 	public function remove ($key) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:65: characters 3-15
 		return false;
 	}
 
@@ -127,7 +119,6 @@ class WeakMap implements IMap {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/WeakMap.hx:100: characters 3-14
 		return null;
 	}
 

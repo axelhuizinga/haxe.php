@@ -34,26 +34,18 @@ class HxClosure {
 	 * @return void
 	 */
 	public function __construct ($target, $func) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:969: characters 3-23
 		$this->target = $target;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:970: characters 3-19
 		$this->func = $func;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:972: lines 972-974
 		if (is_null($target)) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:973: characters 4-9
 			throw new HxException("Unable to create closure on `null`");
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:975: characters 14-98
 		$tmp = null;
 		if (($target instanceof HxAnon)) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:975: characters 52-58
 			$tmp1 = $target;
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:975: characters 14-98
 			$tmp = $tmp1->{$func};
 		} else {
 			$tmp = [$target, $func];
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:975: characters 3-98
 		$this->callable = $tmp;
 	}
 
@@ -63,7 +55,6 @@ class HxClosure {
 	 * @return mixed
 	 */
 	public function __invoke () {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:983: characters 3-71
 		return call_user_func_array($this->callable, func_get_args());
 	}
 
@@ -76,7 +67,6 @@ class HxClosure {
 	 * @return mixed
 	 */
 	public function callWith ($newThis, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1010: characters 3-65
 		return call_user_func_array($this->getCallback($newThis), $args);
 	}
 
@@ -88,12 +78,9 @@ class HxClosure {
 	 * @return bool
 	 */
 	public function equals ($closure) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1003: characters 10-60
 		if (Boot::equal($this->target, $closure->target)) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1003: characters 39-59
 			return $this->func === $closure->func;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:1003: characters 10-60
 			return false;
 		}
 	}
@@ -106,19 +93,13 @@ class HxClosure {
 	 * @return mixed
 	 */
 	public function getCallback ($eThis = null) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:990: lines 990-992
 		if ($eThis === null) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:991: characters 4-18
 			$eThis = $this->target;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:993: lines 993-995
 		if (($eThis instanceof HxAnon)) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:994: characters 24-29
 			$tmp = $eThis;
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:994: characters 4-36
 			return $tmp->{$this->func};
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:996: characters 3-39
 		return [$eThis, $this->func];
 	}
 }

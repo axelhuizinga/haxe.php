@@ -28,9 +28,7 @@ class MapKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($map) {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/MapKeyValueIterator.hx:36: characters 3-17
 		$this->map = $map;
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/MapKeyValueIterator.hx:37: characters 3-25
 		$this->keys = $map->keys();
 	}
 
@@ -40,7 +38,6 @@ class MapKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/MapKeyValueIterator.hx:44: characters 3-24
 		return $this->keys->hasNext();
 	}
 
@@ -50,9 +47,7 @@ class MapKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/MapKeyValueIterator.hx:51: characters 3-25
 		$key = $this->keys->next();
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/MapKeyValueIterator.hx:52: characters 3-41
 		return new HxAnon([
 			"value" => $this->map->get($key),
 			"key" => $key,

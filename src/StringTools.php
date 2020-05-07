@@ -33,7 +33,6 @@ class StringTools {
 	 * @return bool
 	 */
 	public static function contains ($s, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:45: characters 3-32
 		return HxString::indexOf($s, $value) !== -1;
 	}
 
@@ -48,12 +47,9 @@ class StringTools {
 	 * @return bool
 	 */
 	public static function endsWith ($s, $end) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:53: characters 10-67
 		if ($end !== "") {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:53: characters 23-67
 			return substr($s, -strlen($end)) === $end;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:53: characters 10-67
 			return true;
 		}
 	}
@@ -75,14 +71,10 @@ class StringTools {
 	 * @return int
 	 */
 	public static function fastCodeAt ($s, $index) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:121: characters 3-76
 		$char = ($index === 0 ? $s : mb_substr($s, $index, 1));
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:122: lines 122-123
 		if ($char === "") {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:123: characters 4-12
 			return 0;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:124: characters 10-30
 		$code = ord($char[0]);
 		if ($code < 192) {
 			return $code;
@@ -106,31 +98,21 @@ class StringTools {
 	 * @return string
 	 */
 	public static function hex ($n, $digits = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:111: characters 3-28
 		$s = dechex($n);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:112: characters 3-15
 		$len = 8;
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:113: characters 7-23
 		$tmp = strlen($s);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:113: characters 26-86
 		$tmp1 = null;
 		if (null === $digits) {
 			$tmp1 = $len;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:113: characters 72-78
 			$len = ($digits > $len ? $digits : $len);
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:113: characters 26-86
 			$tmp1 = $len;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:113: lines 113-116
 		if ($tmp > $tmp1) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:114: characters 8-22
 			$s = mb_substr($s, -$len, null);
 		} else if ($digits !== null) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:116: characters 4-28
 			$s = StringTools::lpad($s, "0", $digits);
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:117: characters 3-25
 		return mb_strtoupper($s);
 	}
 
@@ -150,7 +132,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function htmlEscape ($s, $quotes = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:37: characters 3-106
 		return htmlspecialchars($s, ($quotes ? ENT_QUOTES | ENT_HTML401 : ENT_NOQUOTES));
 	}
 
@@ -170,7 +151,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function htmlUnescape ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:41: characters 3-61
 		return htmlspecialchars_decode($s, ENT_QUOTES);
 	}
 
@@ -182,7 +162,6 @@ class StringTools {
 	 * @return bool
 	 */
 	public static function isEof ($c) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:136: characters 3-16
 		return $c === 0;
 	}
 
@@ -199,14 +178,10 @@ class StringTools {
 	 * @return bool
 	 */
 	public static function isSpace ($s, $pos) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:57: characters 3-29
 		$c = HxString::charCodeAt($s, $pos);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:58: characters 10-40
 		if (!(($c >= 9) && ($c <= 13))) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:58: characters 33-40
 			return $c === 32;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:58: characters 10-40
 			return true;
 		}
 	}
@@ -222,7 +197,6 @@ class StringTools {
 	 * @return StringIterator
 	 */
 	public static function iterator ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:128: characters 3-31
 		return new StringIterator($s);
 	}
 
@@ -237,7 +211,6 @@ class StringTools {
 	 * @return StringKeyValueIterator
 	 */
 	public static function keyValueIterator ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:132: characters 3-39
 		return new StringKeyValueIterator($s);
 	}
 
@@ -256,33 +229,21 @@ class StringTools {
 	 * @return string
 	 */
 	public static function lpad ($s, $c, $l) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:89: characters 3-26
 		$cLength = mb_strlen($c);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:90: characters 3-26
 		$sLength = mb_strlen($s);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:91: lines 91-92
 		if (($cLength === 0) || ($sLength >= $l)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:92: characters 4-12
 			return $s;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:93: characters 3-31
 		$padLength = $l - $sLength;
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:94: characters 3-50
 		$padCount = (int)(($padLength / $cLength));
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:95: lines 95-100
 		if ($padCount > 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:96: characters 4-106
 			$result = str_pad($s, strlen($s) + $padCount * strlen($c), $c, STR_PAD_LEFT);
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:97: characters 11-80
 			if (($padCount * $cLength) >= $padLength) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:97: characters 47-53
 				return $result;
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:97: characters 56-80
 				return ($c . $result);
 			}
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:99: characters 4-30
 			return ($c . $s);
 		}
 	}
@@ -299,7 +260,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function ltrim ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:62: characters 3-25
 		return ltrim($s);
 	}
 
@@ -313,14 +273,11 @@ class StringTools {
 	 * @return string
 	 */
 	public static function quoteUnixArg ($argument) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:142: characters 10-53
 		if ($argument === "") {
 			return "''";
 		} else if (!(new \EReg("[^a-zA-Z0-9_@%+=:,./-]", ""))->match($argument)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:142: characters 44-52
 			return $argument;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:142: characters 10-53
 			return "'" . (StringTools::replace($argument, "'", "'\"'\"'")??'null') . "'";
 		}
 	}
@@ -343,7 +300,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function quoteWinArg ($argument, $escapeMetaCharacters) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:152: characters 10-74
 		$argument1 = $argument;
 		if (!(new \EReg("^[^ \x09\\\\\"]+\$", ""))->match($argument1)) {
 			$result = new \StringBuf();
@@ -432,12 +388,9 @@ class StringTools {
 	 * @return string
 	 */
 	public static function replace ($s, $sub, $by) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:104: lines 104-106
 		if ($sub === "") {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:105: characters 4-89
 			return implode($by, preg_split("//u", $s, -1, PREG_SPLIT_NO_EMPTY));
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:107: characters 3-40
 		return str_replace($sub, $by, $s);
 	}
 
@@ -456,33 +409,21 @@ class StringTools {
 	 * @return string
 	 */
 	public static function rpad ($s, $c, $l) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:74: characters 3-26
 		$cLength = mb_strlen($c);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:75: characters 3-26
 		$sLength = mb_strlen($s);
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:76: lines 76-77
 		if (($cLength === 0) || ($sLength >= $l)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:77: characters 4-12
 			return $s;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:78: characters 3-31
 		$padLength = $l - $sLength;
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:79: characters 3-50
 		$padCount = (int)(($padLength / $cLength));
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:80: lines 80-85
 		if ($padCount > 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:81: characters 4-107
 			$result = str_pad($s, strlen($s) + $padCount * strlen($c), $c, STR_PAD_RIGHT);
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:82: characters 11-80
 			if (($padCount * $cLength) >= $padLength) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:82: characters 47-53
 				return $result;
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:82: characters 56-80
 				return ($result . $c);
 			}
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:84: characters 4-30
 			return ($s . $c);
 		}
 	}
@@ -499,7 +440,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function rtrim ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:66: characters 3-25
 		return rtrim($s);
 	}
 
@@ -514,12 +454,9 @@ class StringTools {
 	 * @return bool
 	 */
 	public static function startsWith ($s, $start) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:49: characters 10-75
 		if ($start !== "") {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:49: characters 25-75
 			return substr($s, 0, strlen($start)) === $start;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:49: characters 10-75
 			return true;
 		}
 	}
@@ -533,7 +470,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function trim ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:70: characters 3-24
 		return trim($s);
 	}
 
@@ -545,7 +481,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function urlDecode ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:33: characters 3-29
 		return urldecode($s);
 	}
 
@@ -557,7 +492,6 @@ class StringTools {
 	 * @return string
 	 */
 	public static function urlEncode ($s) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/StringTools.hx:29: characters 3-32
 		return rawurlencode($s);
 	}
 

@@ -28,11 +28,8 @@ class NativeIndexedArrayKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($data) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:82: characters 20-21
 		$this->current = 0;
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:86: characters 3-30
 		$this->length = count($data);
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:87: characters 3-19
 		$this->data = $data;
 	}
 
@@ -40,7 +37,6 @@ class NativeIndexedArrayKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:91: characters 3-26
 		return $this->current < $this->length;
 	}
 
@@ -48,9 +44,7 @@ class NativeIndexedArrayKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:95: characters 16-23
 		$tmp = $this->current;
-		#C:\Program Files\Haxe\haxe\std/php/NativeIndexedArray.hx:95: characters 3-48
 		return new HxAnon([
 			"key" => $tmp,
 			"value" => $this->data[$this->current++],

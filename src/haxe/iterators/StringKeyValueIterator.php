@@ -31,9 +31,7 @@ class StringKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($s) {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/StringKeyValueIterator.hx:32: characters 15-16
 		$this->offset = 0;
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/StringKeyValueIterator.hx:39: characters 3-13
 		$this->s = $s;
 	}
 
@@ -43,7 +41,6 @@ class StringKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/StringKeyValueIterator.hx:46: characters 3-27
 		return $this->offset < mb_strlen($this->s);
 	}
 
@@ -53,9 +50,7 @@ class StringKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/StringKeyValueIterator.hx:53: characters 16-22
 		$tmp = $this->offset;
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/StringKeyValueIterator.hx:53: characters 3-67
 		return new HxAnon([
 			"key" => $tmp,
 			"value" => \StringTools::fastCodeAt($this->s, $this->offset++),

@@ -32,21 +32,15 @@ class HxEnum {
 	 * @return void
 	 */
 	public function __construct ($tag, $index, $arguments = null) {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:705: characters 3-17
 		$this->tag = $tag;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:706: characters 3-21
 		$this->index = $index;
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:707: characters 12-63
 		$tmp = null;
 		if ($arguments === null) {
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:707: characters 33-50
 			$this1 = [];
-			#C:\Program Files\Haxe\haxe\std/php/Boot.hx:707: characters 12-63
 			$tmp = $this1;
 		} else {
 			$tmp = $arguments;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:707: characters 3-63
 		$this->params = $tmp;
 	}
 
@@ -56,7 +50,6 @@ class HxEnum {
 	 * @return string
 	 */
 	public function __toString () {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:722: characters 3-30
 		return Boot::stringify($this);
 	}
 
@@ -66,7 +59,6 @@ class HxEnum {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/Boot.hx:714: characters 3-22
 		return $this->__toString();
 	}
 }

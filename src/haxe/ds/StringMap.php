@@ -27,9 +27,7 @@ class StringMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:35: characters 10-32
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:35: characters 3-32
 		$this->data = $this1;
 	}
 
@@ -39,9 +37,7 @@ class StringMap implements IMap {
 	 * @return void
 	 */
 	public function clear () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:87: characters 10-32
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:87: characters 3-32
 		$this->data = $this1;
 	}
 
@@ -51,7 +47,6 @@ class StringMap implements IMap {
 	 * @return StringMap
 	 */
 	public function copy () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:74: characters 3-28
 		return (clone $this);
 	}
 
@@ -63,7 +58,6 @@ class StringMap implements IMap {
 	 * @return bool
 	 */
 	public function exists ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:47: characters 3-44
 		return array_key_exists($key, $this->data);
 	}
 
@@ -75,7 +69,6 @@ class StringMap implements IMap {
 	 * @return mixed
 	 */
 	public function get ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:43: characters 3-42
 		return ($this->data[$key] ?? null);
 	}
 
@@ -87,7 +80,6 @@ class StringMap implements IMap {
 	 * @return object
 	 */
 	public function iterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:65: characters 10-25
 		return new NativeIndexedArrayIterator(array_values($this->data));
 	}
 
@@ -97,7 +89,6 @@ class StringMap implements IMap {
 	 * @return object
 	 */
 	public function keyValueIterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:70: characters 3-54
 		return new MapKeyValueIterator($this);
 	}
 
@@ -109,7 +100,6 @@ class StringMap implements IMap {
 	 * @return object
 	 */
 	public function keys () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:60: characters 10-72
 		return new NativeIndexedArrayIterator(array_values(array_map("strval", array_keys($this->data))));
 	}
 
@@ -121,14 +111,10 @@ class StringMap implements IMap {
 	 * @return bool
 	 */
 	public function remove ($key) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:51: lines 51-56
 		if (array_key_exists($key, $this->data)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:52: characters 4-27
 			unset($this->data[$key]);
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:53: characters 4-15
 			return true;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:55: characters 4-16
 			return false;
 		}
 	}
@@ -142,7 +128,6 @@ class StringMap implements IMap {
 	 * @return void
 	 */
 	public function set ($key, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:39: characters 3-20
 		$this->data[$key] = $value;
 	}
 
@@ -152,20 +137,14 @@ class StringMap implements IMap {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:78: characters 15-32
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:78: characters 3-33
 		$parts = $this1;
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:79: lines 79-81
 		$collection = $this->data;
 		foreach ($collection as $key => $value) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:80: characters 29-59
 			$tmp = "" . ($key??'null') . " => " . (\Std::string($value)??'null');
-			#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:80: characters 4-60
 			array_push($parts, $tmp);
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/haxe/ds/StringMap.hx:83: characters 3-49
 		return "{" . (implode(", ", $parts)??'null') . "}";
 	}
 

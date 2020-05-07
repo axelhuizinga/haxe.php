@@ -32,13 +32,9 @@ class NativeAssocArrayKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($data) {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:48: characters 20-21
 		$this->current = 0;
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:53: characters 3-30
 		$this->length = count($data);
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:54: characters 3-38
 		$this->keys = array_keys($data);
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:55: characters 3-47
 		$this->values = array_values($data);
 	}
 
@@ -46,7 +42,6 @@ class NativeAssocArrayKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:59: characters 3-26
 		return $this->current < $this->length;
 	}
 
@@ -54,9 +49,7 @@ class NativeAssocArrayKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:63: characters 16-29
 		$tmp = $this->keys[$this->current];
-		#C:\Program Files\Haxe\haxe\std/php/NativeAssocArray.hx:63: characters 3-56
 		return new HxAnon([
 			"key" => $tmp,
 			"value" => $this->values[$this->current++],

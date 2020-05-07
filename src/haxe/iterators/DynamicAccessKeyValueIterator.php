@@ -31,11 +31,8 @@ class DynamicAccessKeyValueIterator {
 	 * @return void
 	 */
 	public function __construct ($access) {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:34: characters 3-23
 		$this->access = $access;
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:35: characters 3-28
 		$this->keys = \Reflect::fields($access);
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:36: characters 3-12
 		$this->index = 0;
 	}
 
@@ -45,7 +42,6 @@ class DynamicAccessKeyValueIterator {
 	 * @return bool
 	 */
 	public function hasNext () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:43: characters 3-29
 		return $this->index < $this->keys->length;
 	}
 
@@ -55,9 +51,7 @@ class DynamicAccessKeyValueIterator {
 	 * @return object
 	 */
 	public function next () {
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:50: characters 3-27
 		$key = ($this->keys->arr[$this->index++] ?? null);
-		#C:\Program Files\Haxe\haxe\std/haxe/iterators/DynamicAccessKeyValueIterator.hx:51: characters 3-40
 		return new HxAnon([
 			"value" => \Reflect::field($this->access, $key),
 			"key" => $key,

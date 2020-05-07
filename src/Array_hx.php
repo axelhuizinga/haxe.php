@@ -31,13 +31,9 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public static function wrap ($arr) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:232: characters 3-23
 		$a = new Array_hx();
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:233: characters 3-14
 		$a->arr = $arr;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:234: characters 3-31
 		$a->length = count($arr);
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:235: characters 3-11
 		return $a;
 	}
 
@@ -47,11 +43,8 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function __construct () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:34: characters 9-36
 		$this1 = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:34: characters 3-36
 		$this->arr = $this1;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:35: characters 3-13
 		$this->length = 0;
 	}
 
@@ -69,7 +62,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function concat ($a) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:39: characters 3-46
 		return Array_hx::wrap(array_merge($this->arr, $a->arr));
 	}
 
@@ -82,7 +74,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function copy () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:43: characters 3-28
 		return (clone $this);
 	}
 
@@ -97,24 +88,18 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function filter ($f) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:47: characters 3-35
 		$result = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:48: characters 15-18
 		$data = $this->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
 		$_g_data = $data;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:48: lines 48-52
 		while ($_g_current < $_g_length) {
 			$item = $_g_data[$_g_current++];
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:49: lines 49-51
 			if ($f($item)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:50: characters 5-22
 				$result[] = $item;
 			}
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:53: characters 3-22
 		return Array_hx::wrap($result);
 	}
 
@@ -134,56 +119,37 @@ final class Array_hx implements \ArrayAccess {
 	 * @return int
 	 */
 	public function indexOf ($x, $fromIndex = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:57: characters 7-69
 		$tmp = null;
 		if (($fromIndex === null) && !($x instanceof HxClosure)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:57: characters 53-69
 			$value = $x;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:57: characters 7-69
 			$tmp = !(is_int($value) || is_float($value));
 		} else {
 			$tmp = false;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:57: lines 57-64
 		if ($tmp) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:58: characters 4-50
 			$index = array_search($x, $this->arr, true);
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:59: lines 59-63
 			if ($index === false) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:60: characters 5-14
 				return -1;
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:62: characters 5-17
 				return $index;
 			}
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:65: lines 65-72
 		if ($fromIndex === null) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:66: characters 4-17
 			$fromIndex = 0;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:68: lines 68-69
 			if ($fromIndex < 0) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:69: characters 5-24
 				$fromIndex += $this->length;
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:70: lines 70-71
 			if ($fromIndex < 0) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:71: characters 5-18
 				$fromIndex = 0;
 			}
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:73: lines 73-77
 		while ($fromIndex < $this->length) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:74: lines 74-75
 			if (Boot::equal($this->arr[$fromIndex], $x)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:75: characters 5-21
 				return $fromIndex;
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:76: characters 4-15
 			++$fromIndex;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:78: characters 3-12
 		return -1;
 	}
 
@@ -206,9 +172,7 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function insert ($pos, $x) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:82: characters 3-11
 		$this->length++;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:83: characters 3-56
 		array_splice($this->arr, $pos, 0, [$x]);
 	}
 
@@ -218,7 +182,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return object
 	 */
 	public function iterator () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:88: characters 3-33
 		return new ArrayIterator($this);
 	}
 
@@ -237,7 +200,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return string
 	 */
 	public function join ($sep) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:92: characters 3-98
 		return implode($sep, array_map((Boot::class??'null') . "::stringify", $this->arr));
 	}
 
@@ -257,27 +219,18 @@ final class Array_hx implements \ArrayAccess {
 	 * @return int
 	 */
 	public function lastIndexOf ($x, $fromIndex = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:96: lines 96-97
 		if (($fromIndex === null) || ($fromIndex >= $this->length)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:97: characters 4-26
 			$fromIndex = $this->length - 1;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:98: lines 98-99
 		if ($fromIndex < 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:99: characters 4-23
 			$fromIndex += $this->length;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:100: lines 100-104
 		while ($fromIndex >= 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:101: lines 101-102
 			if (Boot::equal($this->arr[$fromIndex], $x)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:102: characters 5-21
 				return $fromIndex;
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:103: characters 4-15
 			--$fromIndex;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:105: characters 3-12
 		return -1;
 	}
 
@@ -291,21 +244,16 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function map ($f) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:109: characters 3-35
 		$result = [];
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:110: characters 15-18
 		$data = $this->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
 		$_g_data = $data;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:110: lines 110-112
 		while ($_g_current < $_g_length) {
 			$item = $_g_data[$_g_current++];
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:111: characters 4-24
 			$result[] = $f($item);
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:113: characters 3-22
 		return Array_hx::wrap($result);
 	}
 
@@ -315,7 +263,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return bool
 	 */
 	public function offsetExists ($offset) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:199: characters 3-25
 		return $offset < $this->length;
 	}
 
@@ -325,14 +272,11 @@ final class Array_hx implements \ArrayAccess {
 	 * @return mixed
 	 */
 	public function &offsetGet ($offset) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:204: lines 204-208
 		try {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:205: characters 4-22
 			return $this->arr[$offset];
 		} catch (\Throwable $__hx__caught_e) {
 			$__hx__real_e = ($__hx__caught_e instanceof HxException ? $__hx__caught_e->e : $__hx__caught_e);
 			$e = $__hx__real_e;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:207: characters 4-15
 			return null;
 		}
 	}
@@ -344,23 +288,17 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function offsetSet ($offset, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:213: lines 213-218
 		if ($this->length <= $offset) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:214: lines 214-216
 			$_g = $this->length;
 			$_g1 = $offset + 1;
 			while ($_g < $_g1) {
 				$i = $_g++;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:215: characters 5-18
 				$this->arr[$i] = null;
 			}
 
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:217: characters 4-23
 			$this->length = $offset + 1;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:219: characters 3-22
 		$this->arr[$offset] = $value;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:220: characters 3-35
 		return $value;
 	}
 
@@ -370,11 +308,8 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function offsetUnset ($offset) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:225: lines 225-228
 		if (($offset >= 0) && ($offset < $this->length)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:226: characters 4-39
 			array_splice($this->arr, $offset, 1);
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:227: characters 4-12
 			--$this->length;
 		}
 	}
@@ -389,12 +324,9 @@ final class Array_hx implements \ArrayAccess {
 	 * @return mixed
 	 */
 	public function pop () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:117: lines 117-118
 		if ($this->length > 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:118: characters 4-12
 			$this->length--;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:119: characters 3-31
 		return array_pop($this->arr);
 	}
 
@@ -409,9 +341,7 @@ final class Array_hx implements \ArrayAccess {
 	 * @return int
 	 */
 	public function push ($x) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:123: characters 3-18
 		$this->arr[$this->length] = $x;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:124: characters 3-18
 		return ++$this->length;
 	}
 
@@ -429,27 +359,18 @@ final class Array_hx implements \ArrayAccess {
 	 * @return bool
 	 */
 	public function remove ($x) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:127: lines 127-138
 		$_gthis = $this;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:128: characters 3-22
 		$result = false;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:129: lines 129-136
 		$collection = $this->arr;
 		foreach ($collection as $key => $value) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:130: lines 130-135
 			if (Boot::equal($value, $x)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:131: characters 5-39
 				array_splice($_gthis->arr, $key, 1);
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:132: characters 5-13
 				$_gthis->length--;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:133: characters 5-18
 				$result = true;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:134: characters 5-25
 				break;
 			}
 		}
 
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:137: characters 3-16
 		return $result;
 	}
 
@@ -468,15 +389,11 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function resize ($len) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:189: lines 189-193
 		if ($this->length < $len) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:190: characters 4-42
 			$this->arr = array_pad($this->arr, $len, null);
 		} else if ($this->length > $len) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:192: characters 4-47
 			array_splice($this->arr, $len, $this->length - $len);
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:194: characters 3-15
 		$this->length = $len;
 	}
 
@@ -488,7 +405,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function reverse () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:141: characters 3-34
 		$this->arr = array_reverse($this->arr);
 	}
 
@@ -503,12 +419,9 @@ final class Array_hx implements \ArrayAccess {
 	 * @return mixed
 	 */
 	public function shift () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:145: lines 145-146
 		if ($this->length > 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:146: characters 4-12
 			$this->length--;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:147: characters 3-33
 		return array_shift($this->arr);
 	}
 
@@ -531,32 +444,21 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function slice ($pos, $end = null) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:151: lines 151-152
 		if ($pos < 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:152: characters 4-17
 			$pos += $this->length;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:153: lines 153-154
 		if ($pos < 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:154: characters 4-11
 			$pos = 0;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:155: lines 155-165
 		if ($end === null) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:156: characters 4-45
 			return Array_hx::wrap(array_slice($this->arr, $pos));
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:158: lines 158-159
 			if ($end < 0) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:159: characters 5-18
 				$end += $this->length;
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:160: lines 160-164
 			if ($end <= $pos) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:161: characters 5-14
 				return new Array_hx();
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:163: characters 5-57
 				return Array_hx::wrap(array_slice($this->arr, $pos, $end - $pos));
 			}
 		}
@@ -577,7 +479,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function sort ($f) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:169: characters 3-15
 		usort($this->arr, $f);
 	}
 
@@ -604,16 +505,11 @@ final class Array_hx implements \ArrayAccess {
 	 * @return Array_hx
 	 */
 	public function splice ($pos, $len) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:173: lines 173-174
 		if ($len < 0) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:174: characters 4-13
 			return new Array_hx();
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:175: characters 3-57
 		$result = Array_hx::wrap(array_splice($this->arr, $pos, $len));
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:176: characters 3-26
 		$this->length -= $result->length;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:177: characters 3-16
 		return $result;
 	}
 
@@ -627,7 +523,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return string
 	 */
 	public function toString () {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:185: characters 10-54
 		$arr = $this->arr;
 		$strings = [];
 		foreach ($arr as $key => $value) {
@@ -646,7 +541,6 @@ final class Array_hx implements \ArrayAccess {
 	 * @return void
 	 */
 	public function unshift ($x) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Array.hx:181: characters 3-40
 		$this->length = array_unshift($this->arr, $x);
 	}
 

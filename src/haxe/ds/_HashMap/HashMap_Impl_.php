@@ -15,7 +15,6 @@ final class HashMap_Impl_ {
 	 * @return HashMapData
 	 */
 	public static function _new () {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:36: character 2
 		$this1 = new HashMapData();
 		return $this1;
 	}
@@ -28,12 +27,10 @@ final class HashMap_Impl_ {
 	 * @return void
 	 */
 	public static function clear ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:98: characters 3-20
 		$_this = $this1->keys;
 		$this2 = [];
 		$_this->data = $this2;
 
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:99: characters 3-22
 		$_this1 = $this1->values;
 		$this3 = [];
 		$_this1->data = $this3;
@@ -48,13 +45,9 @@ final class HashMap_Impl_ {
 	 * @return HashMapData
 	 */
 	public static function copy ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:81: characters 3-34
 		$copied = new HashMapData();
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:82: characters 3-33
 		$copied->keys = (clone $this1->keys);
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:83: characters 3-37
 		$copied->values = (clone $this1->values);
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:84: characters 3-21
 		return $copied;
 	}
 
@@ -67,7 +60,6 @@ final class HashMap_Impl_ {
 	 * @return bool
 	 */
 	public static function exists ($this1, $k) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:59: characters 10-42
 		$_this = $this1->values;
 		return array_key_exists($k->hashCode(), $_this->data);
 	}
@@ -81,7 +73,6 @@ final class HashMap_Impl_ {
 	 * @return mixed
 	 */
 	public static function get ($this1, $k) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:52: characters 10-39
 		$_this = $this1->values;
 		$key = $k->hashCode();
 		return ($_this->data[$key] ?? null);
@@ -95,7 +86,6 @@ final class HashMap_Impl_ {
 	 * @return object
 	 */
 	public static function iterator ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:91: characters 10-32
 		return new NativeIndexedArrayIterator(array_values($this1->values->data));
 	}
 
@@ -107,7 +97,6 @@ final class HashMap_Impl_ {
 	 * @return object
 	 */
 	public static function keys ($this1) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:74: characters 10-30
 		return new NativeIndexedArrayIterator(array_values($this1->keys->data));
 	}
 
@@ -120,9 +109,7 @@ final class HashMap_Impl_ {
 	 * @return bool
 	 */
 	public static function remove ($this1, $k) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:66: characters 3-35
 		$this1->values->remove($k->hashCode());
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:67: characters 3-40
 		return $this1->keys->remove($k->hashCode());
 	}
 
@@ -136,12 +123,10 @@ final class HashMap_Impl_ {
 	 * @return void
 	 */
 	public static function set ($this1, $k, $v) {
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:44: characters 3-33
 		$_this = $this1->keys;
 		$key = $k->hashCode();
 		$_this->data[$key] = $k;
 
-		#C:\Program Files\Haxe\haxe\std/haxe/ds/HashMap.hx:45: characters 3-35
 		$_this1 = $this1->values;
 		$key1 = $k->hashCode();
 		$_this1->data[$key1] = $v;

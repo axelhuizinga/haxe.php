@@ -33,7 +33,6 @@ class Reflect {
 	 * @return mixed
 	 */
 	public static function callMethod ($o, $func, $args) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:113: characters 3-69
 		return call_user_func_array($func, $args->arr);
 	}
 
@@ -58,20 +57,14 @@ class Reflect {
 	 * @return int
 	 */
 	public static function compare ($a, $b) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:128: lines 128-129
 		if (Boot::equal($a, $b)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:129: characters 4-12
 			return 0;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:130: lines 130-134
 		if (is_string($a)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:131: characters 4-40
 			return strcmp($a, $b);
 		} else if ($a > $b) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:133: characters 34-35
 			return 1;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:133: characters 38-40
 			return -1;
 		}
 	}
@@ -91,12 +84,9 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function compareMethods ($f1, $f2) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:138: lines 138-142
 		if (($f1 instanceof HxClosure) && ($f2 instanceof HxClosure)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:139: characters 4-24
 			return $f1->equals($f2);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:141: characters 4-19
 			return Boot::equal($f1, $f2);
 		}
 	}
@@ -111,12 +101,9 @@ class Reflect {
 	 * @return mixed
 	 */
 	public static function copy ($o) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:167: lines 167-171
 		if (($o instanceof HxAnon)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:168: characters 4-26
 			return (clone $o);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:170: characters 4-15
 			return null;
 		}
 	}
@@ -132,16 +119,11 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function deleteField ($o, $field) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:158: lines 158-163
 		if (Reflect::hasField($o, $field)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:159: characters 30-31
 			$tmp = $o;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:159: characters 4-40
 			unset($tmp->{$field});
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:160: characters 4-15
 			return true;
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:162: characters 4-16
 			return false;
 		}
 	}
@@ -162,58 +144,36 @@ class Reflect {
 	 * @return mixed
 	 */
 	public static function field ($o, $field) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:50: lines 50-52
 		if (is_string($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:51: characters 24-45
 			$tmp = Boot::dynamicString($o);
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:51: characters 4-53
 			return $tmp->{$field};
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:53: lines 53-54
 		if (!is_object($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:54: characters 4-15
 			return null;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:56: lines 56-58
 		if (($field === "") && (PHP_VERSION_ID < 70100)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:57: characters 4-56
 			return (((array)($o))[$field] ?? null);
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:60: lines 60-62
 		if (property_exists($o, $field)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:61: characters 24-25
 			$tmp1 = $o;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:61: characters 4-33
 			return $tmp1->{$field};
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:63: lines 63-65
 		if (method_exists($o, $field)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:64: characters 4-44
 			return Boot::getInstanceClosure($o, $field);
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:67: lines 67-78
 		if (($o instanceof HxClass)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:68: characters 4-54
 			$phpClassName = $o->phpClassName;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:69: lines 69-71
 			if (defined("" . ($phpClassName??'null') . "::" . ($field??'null'))) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:70: characters 5-52
 				return constant("" . ($phpClassName??'null') . "::" . ($field??'null'));
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:72: lines 72-74
 			if (property_exists($phpClassName, $field)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:73: characters 25-26
 				$tmp2 = $o;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:73: characters 5-34
 				return $tmp2->{$field};
 			}
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:75: lines 75-77
 			if (method_exists($phpClassName, $field)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:76: characters 5-54
 				return Boot::getStaticClosure($phpClassName, $field);
 			}
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:80: characters 3-14
 		return null;
 	}
 
@@ -228,12 +188,9 @@ class Reflect {
 	 * @return \Array_hx
 	 */
 	public static function fields ($o) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:117: lines 117-119
 		if (is_object($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:118: characters 4-77
 			return \Array_hx::wrap(array_keys(get_object_vars($o)));
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:120: characters 3-12
 		return new \Array_hx();
 	}
 
@@ -250,27 +207,18 @@ class Reflect {
 	 * @return mixed
 	 */
 	public static function getProperty ($o, $field) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:88: lines 88-97
 		if (is_object($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:89: lines 89-96
 			if (($o instanceof HxClass)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:90: characters 5-55
 				$phpClassName = $o->phpClassName;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:91: lines 91-93
 				if (Boot::hasGetter($phpClassName, $field)) {
-					#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:92: characters 31-43
 					$tmp = $phpClassName;
-					#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:92: characters 6-58
 					return $tmp::{"get_" . ($field??'null')}();
 				}
 			} else if (Boot::hasGetter(get_class($o), $field)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:95: characters 24-25
 				$tmp1 = $o;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:95: characters 5-40
 				return $tmp1->{"get_" . ($field??'null')}();
 			}
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:99: characters 3-33
 		return Reflect::field($o, $field);
 	}
 
@@ -286,30 +234,20 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function hasField ($o, $field) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:34: lines 34-35
 		if (!is_object($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:35: characters 4-16
 			return false;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:36: lines 36-37
 		if (property_exists($o, $field)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:37: characters 4-15
 			return true;
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:39: lines 39-44
 		if (($o instanceof HxClass)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:40: characters 4-54
 			$phpClassName = $o->phpClassName;
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:41: lines 41-43
 			if (!(property_exists($phpClassName, $field) || method_exists($phpClassName, $field))) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:43: characters 8-47
 				return defined("" . ($phpClassName??'null') . "::" . ($field??'null'));
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:41: lines 41-43
 				return true;
 			}
 		}
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:46: characters 3-15
 		return false;
 	}
 
@@ -324,7 +262,6 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function isEnumValue ($v) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:154: characters 3-29
 		return ($v instanceof HxEnum);
 	}
 
@@ -337,7 +274,6 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function isFunction ($f) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:124: characters 10-28
 		if (!($f instanceof \Closure)) {
 			return ($f instanceof HxClosure);
 		} else {
@@ -359,15 +295,11 @@ class Reflect {
 	 * @return bool
 	 */
 	public static function isObject ($v) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:146: lines 146-150
 		if (($v instanceof HxEnum)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:147: characters 4-16
 			return false;
 		} else if (!is_object($v)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:149: characters 28-41
 			return is_string($v);
 		} else {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:149: characters 11-41
 			return true;
 		}
 	}
@@ -381,11 +313,8 @@ class Reflect {
 	 * @return mixed
 	 */
 	public static function makeVarArgs ($f) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:176: lines 176-178
 		return function ()  use (&$f) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:177: characters 52-86
 			$tmp = \Array_hx::wrap(func_get_args());
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:177: characters 4-87
 			return call_user_func($f, $tmp);
 		};
 	}
@@ -405,9 +334,7 @@ class Reflect {
 	 * @return void
 	 */
 	public static function setField ($o, $field, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:84: characters 19-20
 		$tmp = $o;
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:84: characters 3-35
 		$tmp->{$field} = $value;
 	}
 
@@ -425,18 +352,12 @@ class Reflect {
 	 * @return void
 	 */
 	public static function setProperty ($o, $field, $value) {
-		#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:103: lines 103-109
 		if (is_object($o)) {
-			#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:104: lines 104-108
 			if (Boot::hasSetter(get_class($o), $field)) {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:105: characters 17-18
 				$tmp = $o;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:105: characters 5-40
 				$tmp->{"set_" . ($field??'null')}($value);
 			} else {
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:107: characters 21-22
 				$tmp1 = $o;
-				#C:\Program Files\Haxe\haxe\std/php/_std/Reflect.hx:107: characters 5-37
 				$tmp1->{$field} = $value;
 			}
 		}
