@@ -20,7 +20,11 @@
     "standard-library"
   ],
   "require": {
-    "php": ">=7.4.0"
+    "php": ">=7.4.0",
+    "ext-mbstring": "*",
+    "ext-pcre": "*",
+    "ext-reflection": "*",
+    "ext-spl": "*"
   },
   "require-dev": {
     "consolidation/robo": "^2.0.3"
