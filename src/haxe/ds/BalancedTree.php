@@ -6,6 +6,7 @@
 namespace haxe\ds;
 
 use \php\Boot;
+use \haxe\CallStack;
 use \haxe\iterators\MapKeyValueIterator;
 use \haxe\IMap;
 use \php\_Boot\HxException;
@@ -264,6 +265,7 @@ class BalancedTree implements IMap {
 			$this->root = $this->removeLoop($key, $this->root);
 			return true;
 		} catch (\Throwable $__hx__caught_e) {
+			CallStack::saveExceptionTrace($__hx__caught_e);
 			$__hx__real_e = ($__hx__caught_e instanceof HxException ? $__hx__caught_e->e : $__hx__caught_e);
 			if (is_string($__hx__real_e)) {
 				$e = $__hx__real_e;
