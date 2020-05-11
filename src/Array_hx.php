@@ -4,6 +4,7 @@
  */
 
 use \php\Boot;
+use \haxe\CallStack;
 use \php\_Boot\HxClosure;
 use \php\_Boot\HxException;
 use \_Array\ArrayIterator;
@@ -275,6 +276,7 @@ final class Array_hx implements \ArrayAccess {
 		try {
 			return $this->arr[$offset];
 		} catch (\Throwable $__hx__caught_e) {
+			CallStack::saveExceptionTrace($__hx__caught_e);
 			$__hx__real_e = ($__hx__caught_e instanceof HxException ? $__hx__caught_e->e : $__hx__caught_e);
 			$e = $__hx__real_e;
 			return null;

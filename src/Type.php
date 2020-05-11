@@ -6,6 +6,7 @@
 use \php\_Boot\HxAnon;
 use \php\Boot;
 use \php\_Boot\HxClass;
+use \haxe\CallStack;
 use \php\_Boot\HxString;
 use \php\_Boot\HxClosure;
 use \php\_Boot\HxException;
@@ -243,6 +244,7 @@ class Type {
 
 			return true;
 		} catch (\Throwable $__hx__caught_e) {
+			CallStack::saveExceptionTrace($__hx__caught_e);
 			$__hx__real_e = ($__hx__caught_e instanceof HxException ? $__hx__caught_e->e : $__hx__caught_e);
 			$e = $__hx__real_e;
 			return false;
