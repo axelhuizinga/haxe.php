@@ -1,5 +1,5 @@
 # Haxe Standard Library <small>for PHP</small>
-![Haxe](https://img.shields.io/badge/haxe-%3E%3D4.0.5-brightgreen.svg) ![PHP](https://img.shields.io/packagist/php-v/cedx/haxe.svg) ![Release](https://img.shields.io/packagist/v/cedx/haxe.svg) ![License](https://img.shields.io/packagist/l/cedx/haxe.svg) ![Downloads](https://img.shields.io/packagist/dt/cedx/haxe.svg)
+![Haxe](https://badgen.net/badge/haxe/%3E%3D4.0.5/green) ![PHP](https://badgen.net/packagist/php/cedx/haxe) ![Release](https://badgen.net/packagist/v/cedx/haxe) ![License](https://badgen.net/packagist/license/cedx/haxe) ![Downloads](https://badgen.net/packagist/dt/cedx/haxe)
 
 Provides the [Haxe](https://haxe.org) standard library as a reusable [PHP](https://www.php.net) package.
 
