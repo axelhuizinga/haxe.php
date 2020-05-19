@@ -6,7 +6,7 @@ Provides the [Haxe](https://haxe.org) standard library as a reusable [PHP](https
 ## Quick start
 Install the latest version of **Haxe Standard Library for PHP** with [Composer](https://getcomposer.org):
 
-```shell
+``` shell
 composer require cedx/haxe
 ```
 

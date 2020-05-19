@@ -1,34 +1,34 @@
 {
-  "description": "Provides the Haxe standard library as a reusable package.",
-  "homepage": "https://docs.belin.io/haxe.php",
-  "license": "MIT",
-  "name": "cedx/haxe",
-  "type": "library",
-  "version": "0.2.0",
-  "authors": [
-    {"email": "contact@haxe.org", "homepage": "https://haxe.org", "name": "Haxe Foundation"},
-    {"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
-  ],
-  "autoload": {
-    "psr-4": {"": "src/"}
-  },
-  "config": {
-    "optimize-autoloader": true
-  },
-  "keywords": [
-    "haxe",
-    "php",
-    "standard-library"
-  ],
-  "require": {
-    "php": ">=7.0.0",
-    "ext-mbstring": "*",
-    "ext-pcre": "*",
-    "ext-reflection": "*",
-    "ext-spl": "*"
-  },
-  "support": {
-    "docs": "https://api.belin.io/haxe.php",
-    "issues": "https://git.belin.io/cedx/haxe.php/issues"
-  }
+	"description": "Provides the Haxe standard library as a reusable package.",
+	"homepage": "https://docs.belin.io/haxe.php",
+	"license": "MIT",
+	"name": "cedx/haxe",
+	"type": "library",
+	"version": "0.2.0",
+	"authors": [
+		{"email": "contact@haxe.org", "homepage": "https://haxe.org", "name": "Haxe Foundation"},
+		{"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"}
+	],
+	"autoload": {
+		"psr-4": {"": "src/"}
+	},
+	"config": {
+		"optimize-autoloader": true
+	},
+	"keywords": [
+		"haxe",
+		"php",
+		"standard-library"
+	],
+	"require": {
+		"php": ">=7.0.0",
+		"ext-mbstring": "*",
+		"ext-pcre": "*",
+		"ext-reflection": "*",
+		"ext-spl": "*"
+	},
+	"support": {
+		"docs": "https://api.belin.io/haxe.php",
+		"issues": "https://git.belin.io/cedx/haxe.php/issues"
+	}
 }
