@@ -7,29 +7,27 @@ namespace haxe\iterators;
 
 use \php\_Boot\HxAnon;
 use \php\Boot;
-use \haxe\IMap;
+use \haxe\ds\_HashMap\HashMapData;
+use \php\_NativeIndexedArray\NativeIndexedArrayIterator;
 
-/**
- * This Key/Value iterator can be used to iterate across maps.
- */
-class MapKeyValueIterator {
+class HashMapKeyValueIterator {
 	/**
 	 * @var object
 	 */
 	public $keys;
 	/**
-	 * @var IMap
+	 * @var HashMapData
 	 */
 	public $map;
 
 	/**
-	 * @param IMap $map
+	 * @param HashMapData $map
 	 * 
 	 * @return void
 	 */
 	public function __construct ($map) {
 		$this->map = $map;
-		$this->keys = $map->keys();
+		$this->keys = new NativeIndexedArrayIterator(array_values($map->keys->data));
 	}
 
 	/**
@@ -48,11 +46,13 @@ class MapKeyValueIterator {
 	 */
 	public function next () {
 		$key = $this->keys->next();
+		$_this = $this->map->values;
+		$key1 = $key->hashCode();
 		return new HxAnon([
-			"value" => $this->map->get($key),
+			"value" => ($_this->data[$key1] ?? null),
 			"key" => $key,
 		]);
 	}
 }
 
-Boot::registerClass(MapKeyValueIterator::class, 'haxe.iterators.MapKeyValueIterator');
+Boot::registerClass(HashMapKeyValueIterator::class, 'haxe.iterators.HashMapKeyValueIterator');
