@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [0.3.0](https://git.belin.io/cedx/haxe.php/compare/v0.2.0...v0.3.0)
+- Upgraded the class library to [Haxe](https://haxe.org) 4.1.0.
+
 ## Version [0.2.0](https://git.belin.io/cedx/haxe.php/compare/v0.1.2...v0.2.0)
 - Added the classes from the `haxe\io` namespace.
 - Added the classes from the `haxe\macro` namespace.
