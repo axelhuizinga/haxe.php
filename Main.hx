@@ -34,6 +34,9 @@ using haxe.EnumTools;
 	var unserializer: Unserializer = null;
 	var valueException: ValueException = null;
 
+	// "sys" package.
+	var http: Http = null;
+
 	// "sys.io" package.
 	var process: Process = null;
 
@@ -49,6 +52,9 @@ using haxe.EnumTools;
 		Json.stringify(123);
 		Resource.listNames();
 		SysTools.quoteUnixArg("foo");
+
+		// "sys" package.
+		FileSystem.exists("build.hxml");
 
 		// "sys.io" package.
 		File.getContent("build.hxml");
