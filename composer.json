@@ -23,8 +23,10 @@
 	"require": {
 		"php": ">=7.0.0",
 		"ext-mbstring": "*",
+		"ext-json": "*",
 		"ext-pcre": "*",
 		"ext-reflection": "*",
+		"ext-sockets": "*",
 		"ext-spl": "*"
 	},
 	"support": {
