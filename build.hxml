@@ -1,4 +1,4 @@
---class-path src
+--class-path .
 --dce no
 --define php-lib=src
 --define real-position
