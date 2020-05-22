@@ -29,6 +29,7 @@ using haxe.EnumTools;
 	var xml: Xml = null;
 
 	// "haxe" package.
+	var dynamicAccess: DynamicAccess<Any> = {};
 	var exception: Exception = null;
 	var serializer: Serializer = null;
 	var template: Template = null;
