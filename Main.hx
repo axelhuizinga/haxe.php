@@ -2,9 +2,13 @@ import haxe.*;
 import sys.*;
 import sys.io.*;
 
+// Root package.
 using DateTools;
 using Lambda;
 using StringTools;
+
+// "haxe" package.
+using haxe.EnumTools;
 
 /** The main class. **/
 @:keep class Main {
@@ -22,7 +26,11 @@ using StringTools;
 	var unicodeString: UnicodeString = "";
 	var xml: Xml = null;
 
-	// sys.io package.
+	// "haxe" package.
+	var exception: Exception = null;
+	var serializer: Serializer = null;
+
+	// "sys.io" package.
 	var process: Process = null;
 
 	/** Application entry point. **/
@@ -33,7 +41,12 @@ using StringTools;
 		Std.isOfType("", String);
 		Sys.exit(0);
 
-		// sys.io package.
+		// "haxe" package.
+		Json.stringify(123);
+		Resource.listNames();
+		SysTools.quoteUnixArg("foo");
+
+		// "sys.io" package.
 		File.getContent("build.hxml");
 	}
 }
