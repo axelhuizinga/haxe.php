@@ -68,9 +68,7 @@ final class CallStack_Impl_ {
 				if ($item2 === null) {
 					return false;
 				} else if ($item2->index === 1) {
-					$m1 = $item1->params[0];
-					$m2 = $item2->params[0];
-					return $m1 === $m2;
+					return $item1->params[0] === $item2->params[0];
 				} else {
 					return false;
 				}
@@ -78,16 +76,8 @@ final class CallStack_Impl_ {
 				if ($item2 === null) {
 					return false;
 				} else if ($item2->index === 2) {
-					$item11 = $item1->params[0];
-					$file1 = $item1->params[1];
-					$line1 = $item1->params[2];
-					$col1 = $item1->params[3];
-					$col2 = $item2->params[3];
-					$line2 = $item2->params[2];
-					$file2 = $item2->params[1];
-					$item21 = $item2->params[0];
-					if (($file1 === $file2) && ($line1 === $line2) && ($col1 === $col2)) {
-						return CallStack_Impl_::equalItems($item11, $item21);
+					if (($item1->params[1] === $item2->params[1]) && ($item1->params[2] === $item2->params[2]) && ($item1->params[3] === $item2->params[3])) {
+						return CallStack_Impl_::equalItems($item1->params[0], $item2->params[0]);
 					} else {
 						return false;
 					}
@@ -98,12 +88,8 @@ final class CallStack_Impl_ {
 				if ($item2 === null) {
 					return false;
 				} else if ($item2->index === 3) {
-					$class1 = $item1->params[0];
-					$method1 = $item1->params[1];
-					$method2 = $item2->params[1];
-					$class2 = $item2->params[0];
-					if ($class1 === $class2) {
-						return $method1 === $method2;
+					if ($item1->params[0] === $item2->params[0]) {
+						return $item1->params[1] === $item2->params[1];
 					} else {
 						return false;
 					}
@@ -114,9 +100,7 @@ final class CallStack_Impl_ {
 				if ($item2 === null) {
 					return false;
 				} else if ($item2->index === 4) {
-					$v1 = $item1->params[0];
-					$v2 = $item2->params[0];
-					return $v1 === $v2;
+					return $item1->params[0] === $item2->params[0];
 				} else {
 					return false;
 				}
@@ -133,8 +117,7 @@ final class CallStack_Impl_ {
 	 * @return \Array_hx
 	 */
 	public static function exceptionStack () {
-		$eStack = NativeStackTrace::toHaxe(NativeStackTrace::exceptionStack());
-		return CallStack_Impl_::subtract($eStack, CallStack_Impl_::callStack());
+		return CallStack_Impl_::subtract(NativeStackTrace::toHaxe(NativeStackTrace::exceptionStack()), CallStack_Impl_::callStack());
 	}
 
 	/**
@@ -196,38 +179,33 @@ final class CallStack_Impl_ {
 		if ($__hx__switch === 0) {
 			$b->add("a C function");
 		} else if ($__hx__switch === 1) {
-			$m = $s->params[0];
 			$b->add("module ");
-			$b->add($m);
+			$b->add($s->params[0]);
 		} else if ($__hx__switch === 2) {
-			$col = $s->params[3];
-			$line = $s->params[2];
-			$file = $s->params[1];
-			$s1 = $s->params[0];
-			if ($s1 !== null) {
-				CallStack_Impl_::itemToString($b, $s1);
+			$_g = $s->params[3];
+			$_g1 = $s->params[0];
+			if ($_g1 !== null) {
+				CallStack_Impl_::itemToString($b, $_g1);
 				$b->add(" (");
 			}
-			$b->add($file);
+			$b->add($s->params[1]);
 			$b->add(" line ");
-			$b->add($line);
-			if ($col !== null) {
+			$b->add($s->params[2]);
+			if ($_g !== null) {
 				$b->add(" column ");
-				$b->add($col);
+				$b->add($_g);
 			}
-			if ($s1 !== null) {
+			if ($_g1 !== null) {
 				$b->add(")");
 			}
 		} else if ($__hx__switch === 3) {
-			$meth = $s->params[1];
-			$cname = $s->params[0];
-			$b->add(($cname === null ? "<unknown>" : $cname));
+			$_g = $s->params[0];
+			$b->add(($_g === null ? "<unknown>" : $_g));
 			$b->add(".");
-			$b->add($meth);
+			$b->add($s->params[1]);
 		} else if ($__hx__switch === 4) {
-			$n = $s->params[0];
 			$b->add("local function #");
-			$b->add($n);
+			$b->add($s->params[0]);
 		}
 	}
 
@@ -247,8 +225,7 @@ final class CallStack_Impl_ {
 			$_g = 0;
 			$_g1 = $stack->length;
 			while ($_g < $_g1) {
-				$j = $_g++;
-				if (CallStack_Impl_::equalItems(($this1->arr[$i] ?? null), ($stack->arr[$j] ?? null))) {
+				if (CallStack_Impl_::equalItems(($this1->arr[$i] ?? null), ($stack->arr[$_g++] ?? null))) {
 					if ($startIndex < 0) {
 						$startIndex = $i;
 					}
@@ -283,8 +260,7 @@ final class CallStack_Impl_ {
 		$_g = 0;
 		$_g1 = $stack;
 		while ($_g < $_g1->length) {
-			$s = ($_g1->arr[$_g] ?? null);
-			++$_g;
+			$s = ($_g1->arr[$_g++] ?? null);
 			$b->add("\x0ACalled from ");
 			CallStack_Impl_::itemToString($b, $s);
 		}

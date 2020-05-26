@@ -78,9 +78,7 @@ class Input {
 				if (($len < 0) || ($len > $buf->length)) {
 					throw Exception::thrown(Error::OutsideBounds());
 				} else {
-					$left = $total->b;
-					$this_s = substr($buf->b->s, 0, $len);
-					$total->b = ($left . $this_s);
+					$total->b = ($total->b . substr($buf->b->s, 0, $len));
 				}
 			}
 		} catch(\Throwable $_g) {
@@ -272,10 +270,9 @@ class Input {
 			NativeStackTrace::saveStack($_g);
 			$_g1 = Exception::caught($_g)->unwrap();
 			if (($_g1 instanceof Eof)) {
-				$e = $_g1;
 				$s = $buf->getBytes()->toString();
 				if (mb_strlen($s) === 0) {
-					throw Exception::thrown($e);
+					throw Exception::thrown($_g1);
 				}
 			} else {
 				throw $_g;

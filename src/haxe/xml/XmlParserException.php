@@ -43,8 +43,7 @@ class XmlParserException {
 		$this->lineNumber = 1;
 		$this->positionAtLine = 0;
 		$_g = 0;
-		$_g1 = $position;
-		while ($_g < $_g1) {
+		while ($_g < $position) {
 			$i = $_g++;
 			$s = $xml;
 			$c = ($i >= strlen($s) ? 0 : ord($s[$i]));

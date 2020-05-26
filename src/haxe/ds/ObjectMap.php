@@ -33,10 +33,8 @@ class ObjectMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		$this1 = [];
-		$this->_keys = $this1;
-		$this1 = [];
-		$this->_values = $this1;
+		$this->_keys = [];
+		$this->_values = [];
 	}
 
 	/**
@@ -45,10 +43,8 @@ class ObjectMap implements IMap {
 	 * @return void
 	 */
 	public function clear () {
-		$this1 = [];
-		$this->_keys = $this1;
-		$this1 = [];
-		$this->_values = $this1;
+		$this->_keys = [];
+		$this->_values = [];
 	}
 
 	/**
@@ -157,12 +153,11 @@ class ObjectMap implements IMap {
 	public function toString () {
 		$s = "{";
 		$it = new NativeIndexedArrayIterator(array_values($this->_keys));
-		$i = $it;
-		while ($i->hasNext()) {
-			$i1 = $i->next();
-			$s = ($s??'null') . (\Std::string($i1)??'null');
+		while ($it->hasNext()) {
+			$i = $it->next();
+			$s = ($s??'null') . (\Std::string($i)??'null');
 			$s = ($s??'null') . " => ";
-			$s = ($s??'null') . (\Std::string($this->get($i1))??'null');
+			$s = ($s??'null') . (\Std::string($this->get($i))??'null');
 			if ($it->hasNext()) {
 				$s = ($s??'null') . ", ";
 			}

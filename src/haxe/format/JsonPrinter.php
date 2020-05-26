@@ -94,13 +94,11 @@ class JsonPrinter {
 		$last = $len - 1;
 		$first = true;
 		$_g = 0;
-		$_g1 = $len;
-		while ($_g < $_g1) {
+		while ($_g < $len) {
 			$i = $_g++;
 			$f = ($fields->arr[$i] ?? null);
 			$value = \Reflect::field($v, $f);
-			$f1 = $value;
-			if (($f1 instanceof \Closure) || ($f1 instanceof HxClosure)) {
+			if (($value instanceof \Closure) || ($value instanceof HxClosure)) {
 				continue;
 			}
 			if ($first) {
@@ -234,19 +232,18 @@ class JsonPrinter {
 		} else if ($__hx__switch === 5) {
 			$this->buf->add("\"<fun>\"");
 		} else if ($__hx__switch === 6) {
-			$c = $_g->params[0];
-			if ($c === Boot::getClass('String')) {
+			$_g1 = $_g->params[0];
+			if ($_g1 === Boot::getClass('String')) {
 				$this->quote($v);
-			} else if ($c === Boot::getClass(\Array_hx::class)) {
+			} else if ($_g1 === Boot::getClass(\Array_hx::class)) {
 				$v1 = $v;
 				$_this = $this->buf;
 				$_this->b = ($_this->b??'null') . (mb_chr(91)??'null');
 				$len = $v1->length;
 				$last = $len - 1;
-				$_g1 = 0;
-				$_g2 = $len;
-				while ($_g1 < $_g2) {
-					$i = $_g1++;
+				$_g = 0;
+				while ($_g < $len) {
+					$i = $_g++;
 					if ($i > 0) {
 						$_this = $this->buf;
 						$_this->b = ($_this->b??'null') . (mb_chr(44)??'null');
@@ -276,29 +273,25 @@ class JsonPrinter {
 				}
 				$_this = $this->buf;
 				$_this->b = ($_this->b??'null') . (mb_chr(93)??'null');
-			} else if ($c === Boot::getClass(StringMap::class)) {
+			} else if ($_g1 === Boot::getClass(StringMap::class)) {
 				$v1 = $v;
 				$o = new HxAnon();
 				$data = array_values(array_map("strval", array_keys($v1->data)));
 				$_g_current = 0;
 				$_g_length = count($data);
-				$_g_data = $data;
 				while ($_g_current < $_g_length) {
-					$k = $_g_data[$_g_current++];
+					$k = $data[$_g_current++];
 					\Reflect::setField($o, $k, ($v1->data[$k] ?? null));
 				}
 				$v1 = $o;
 				$this->fieldsString($v1, \Reflect::fields($v1));
-			} else if ($c === Boot::getClass(\Date::class)) {
-				$v1 = $v;
-				$this->quote($v1->toString());
+			} else if ($_g1 === Boot::getClass(\Date::class)) {
+				$this->quote($v->toString());
 			} else {
 				$this->classString($v);
 			}
 		} else if ($__hx__switch === 7) {
-			$_g1 = $_g->params[0];
-			$i = $v->index;
-			$this->buf->add($i);
+			$this->buf->add($v->index);
 		} else if ($__hx__switch === 8) {
 			$this->buf->add("\"???\"");
 		}

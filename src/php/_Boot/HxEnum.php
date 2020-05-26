@@ -34,14 +34,7 @@ class HxEnum {
 	public function __construct ($tag, $index, $arguments = null) {
 		$this->tag = $tag;
 		$this->index = $index;
-		$tmp = null;
-		if ($arguments === null) {
-			$this1 = [];
-			$tmp = $this1;
-		} else {
-			$tmp = $arguments;
-		}
-		$this->params = $tmp;
+		$this->params = ($arguments === null ? [] : $arguments);
 	}
 
 	/**

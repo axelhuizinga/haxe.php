@@ -42,9 +42,6 @@ class EntryPoint {
 		Thread::create(function () use (&$f) {
 			$f();
 			EntryPoint::$threadCount--;
-			if (EntryPoint::$threadCount === 0) {
-				EntryPoint::wakeup();
-			}
 		});
 	}
 
@@ -76,12 +73,7 @@ class EntryPoint {
 	 * @return void
 	 */
 	public static function run () {
-		while (true) {
-			$nextTick = EntryPoint::processEvents();
-			if ($nextTick < 0) {
-				break;
-			}
-			$tmp = $nextTick > 0;
+		while (!(EntryPoint::processEvents() < 0)) {
 		}
 	}
 
@@ -93,7 +85,6 @@ class EntryPoint {
 	public static function runInMainThread ($f) {
 		$_this = EntryPoint::$pending;
 		$_this->arr[$_this->length++] = $f;
-		EntryPoint::wakeup();
 	}
 
 	/**

@@ -51,8 +51,7 @@ class Resource {
 	 * @return string
 	 */
 	public static function getDir () {
-		$pathToRoot = "/../..";
-		return (dirname(__FILE__)??'null') . ($pathToRoot??'null') . "/res";
+		return (dirname(__FILE__)??'null') . "/../.." . "/res";
 	}
 
 	/**
@@ -106,10 +105,8 @@ class Resource {
 		$data = $a->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$item = $_g_data[$_g_current++];
-			$result[] = Path::unescape($item);
+			$result[] = Path::unescape($data[$_g_current++]);
 		}
 		return \Array_hx::wrap($result);
 	}

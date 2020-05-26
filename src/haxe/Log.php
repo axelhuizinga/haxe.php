@@ -47,9 +47,7 @@ class Log {
 			$_g = 0;
 			$_g1 = $infos->customParams;
 			while ($_g < $_g1->length) {
-				$v = ($_g1->arr[$_g] ?? null);
-				++$_g;
-				$str = ($str??'null') . ", " . (\Std::string($v)??'null');
+				$str = ($str??'null') . ", " . (\Std::string(($_g1->arr[$_g++] ?? null))??'null');
 			}
 		}
 		return ($pstr??'null') . ": " . ($str??'null');
@@ -67,8 +65,7 @@ class Log {
 
 
 		self::$trace = function ($v, $infos = null) {
-			$str = Log::formatOutput($v, $infos);
-			echo((\Std::string($str)??'null') . PHP_EOL);
+			echo((\Std::string(Log::formatOutput($v, $infos))??'null') . PHP_EOL);
 		};
 	}
 }

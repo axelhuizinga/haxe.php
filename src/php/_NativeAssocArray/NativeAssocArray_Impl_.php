@@ -13,8 +13,7 @@ final class NativeAssocArray_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		$this1 = [];
-		return $this1;
+		return [];
 	}
 
 	/**

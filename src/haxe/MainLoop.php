@@ -105,7 +105,7 @@ class MainLoop {
 				$_g = 0;
 				$_g1 = $insize;
 				while ($_g < $_g1) {
-					$i = $_g++;
+					++$_g;
 					++$psize;
 					$q = $q->next;
 					if ($q === null) {

@@ -94,10 +94,8 @@ class Process {
 			$data = $_this->arr;
 			$_g_current = 0;
 			$_g_length = count($data);
-			$_g_data = $data;
 			while ($_g_current < $_g_length) {
-				$item = $_g_data[$_g_current++];
-				$result[] = $f($item);
+				$result[] = $f($data[$_g_current++]);
 			}
 			return \Array_hx::wrap($result)->join(" ");
 		} else {
@@ -107,10 +105,8 @@ class Process {
 			$data = $_this->arr;
 			$_g_current = 0;
 			$_g_length = count($data);
-			$_g_data = $data;
 			while ($_g_current < $_g_length) {
-				$item = $_g_data[$_g_current++];
-				$result[] = $f($item);
+				$result[] = $f($data[$_g_current++]);
 			}
 			return \Array_hx::wrap($result)->join(" ");
 		}
@@ -126,10 +122,8 @@ class Process {
 		$data = $this->pipes;
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$pipe = $_g_data[$_g_current++];
-			fclose($pipe);
+			fclose($data[$_g_current++]);
 		}
 		proc_close($this->process);
 	}

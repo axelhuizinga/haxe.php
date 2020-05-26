@@ -105,8 +105,7 @@ class Path {
 		if ($allowSlashes === null) {
 			$allowSlashes = false;
 		}
-		$regex = ($allowSlashes ? new \EReg("[^A-Za-z0-9_/\\\\\\.]", "g") : new \EReg("[^A-Za-z0-9_\\.]", "g"));
-		return $regex->map($path, function ($v) {
+		return Boot::deref((($allowSlashes ? new \EReg("[^A-Za-z0-9_/\\\\\\.]", "g") : new \EReg("[^A-Za-z0-9_\\.]", "g"))))->map($path, function ($v) {
 			return "-x" . (HxString::charCodeAt($v->matched(0), 0)??'null');
 		});
 	}
@@ -163,9 +162,8 @@ class Path {
 		$data = $paths->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$item = $_g_data[$_g_current++];
+			$item = $data[$_g_current++];
 			if (($item !== null) && ($item !== "")) {
 				$result[] = $item;
 			}
@@ -178,9 +176,8 @@ class Path {
 		$_g = 1;
 		$_g1 = $paths->length;
 		while ($_g < $_g1) {
-			$i = $_g++;
 			$path = Path::addTrailingSlash($path);
-			$path = ($path??'null') . (($paths->arr[$i] ?? null)??'null');
+			$path = ($path??'null') . (($paths->arr[$_g++] ?? null)??'null');
 		}
 		return Path::normalize($path);
 	}
@@ -196,14 +193,13 @@ class Path {
 	 * @return string
 	 */
 	public static function normalize ($path) {
-		$slash = "/";
-		$path = HxString::split($path, "\\")->join($slash);
-		if ($path === $slash) {
-			return $slash;
+		$path = HxString::split($path, "\\")->join("/");
+		if ($path === "/") {
+			return "/";
 		}
 		$target = new \Array_hx();
 		$_g = 0;
-		$_g1 = HxString::split($path, $slash);
+		$_g1 = HxString::split($path, "/");
 		while ($_g < $_g1->length) {
 			$token = ($_g1->arr[$_g] ?? null);
 			++$_g;
@@ -220,40 +216,35 @@ class Path {
 				$target->arr[$target->length++] = $token;
 			}
 		}
-		$tmp = $target->join($slash);
+		$tmp = $target->join("/");
 		$acc = new \StringBuf();
 		$colon = false;
 		$slashes = false;
 		$_g = 0;
 		$_g1 = mb_strlen($tmp);
 		while ($_g < $_g1) {
-			$i = $_g++;
-			$_g2 = \StringTools::fastCodeAt($tmp, $i);
+			$_g2 = \StringTools::fastCodeAt($tmp, $_g++);
 			if ($_g2 === 47) {
 				if (!$colon) {
 					$slashes = true;
 				} else {
-					$i1 = $_g2;
 					$colon = false;
 					if ($slashes) {
 						$acc->add("/");
 						$slashes = false;
 					}
-					$acc1 = $acc;
-					$acc1->b = ($acc1->b??'null') . (mb_chr($i1)??'null');
+					$acc->b = ($acc->b??'null') . (mb_chr($_g2)??'null');
 				}
 			} else if ($_g2 === 58) {
 				$acc->add(":");
 				$colon = true;
 			} else {
-				$i2 = $_g2;
 				$colon = false;
 				if ($slashes) {
 					$acc->add("/");
 					$slashes = false;
 				}
-				$acc2 = $acc;
-				$acc2->b = ($acc2->b??'null') . (mb_chr($i2)??'null');
+				$acc->b = ($acc->b??'null') . (mb_chr($_g2)??'null');
 			}
 		}
 		return $acc->b;
@@ -292,8 +283,7 @@ class Path {
 	 * @return string
 	 */
 	public static function unescape ($path) {
-		$regex = new \EReg("-x([0-9][0-9])", "g");
-		return $regex->map($path, function ($regex) {
+		return (new \EReg("-x([0-9][0-9])", "g"))->map($path, function ($regex) {
 			return mb_chr(\Std::parseInt($regex->matched(1)));
 		});
 	}

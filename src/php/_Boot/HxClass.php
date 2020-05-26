@@ -34,8 +34,7 @@ class HxClass {
 	 * @return mixed
 	 */
 	public function __call ($method, $args) {
-		$callback = ((($this->phpClassName === "String" ? HxString::class : $this->phpClassName))??'null') . "::" . ($method??'null');
-		return call_user_func_array($callback, $args);
+		return call_user_func_array(((($this->phpClassName === "String" ? HxString::class : $this->phpClassName))??'null') . "::" . ($method??'null'), $args);
 	}
 
 	/**

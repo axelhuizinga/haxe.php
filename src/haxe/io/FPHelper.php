@@ -71,8 +71,7 @@ class FPHelper {
 
 
 		self::$isLittleEndian = Boot::equal(unpack("S", "\x01\x00")[1], 1);
-		$this1 = new ___Int64(0, 0);
-		self::$i64tmp = $this1;
+		self::$i64tmp = new ___Int64(0, 0);
 	}
 }
 

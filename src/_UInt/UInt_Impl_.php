@@ -168,8 +168,7 @@ final class UInt_Impl_ {
 	 */
 	public static function gt ($a, $b) {
 		$aNeg = $a < 0;
-		$bNeg = $b < 0;
-		if ($aNeg !== $bNeg) {
+		if ($aNeg !== ($b < 0)) {
 			return $aNeg;
 		} else {
 			return $a > $b;
@@ -195,8 +194,7 @@ final class UInt_Impl_ {
 	 */
 	public static function gte ($a, $b) {
 		$aNeg = $a < 0;
-		$bNeg = $b < 0;
-		if ($aNeg !== $bNeg) {
+		if ($aNeg !== ($b < 0)) {
 			return $aNeg;
 		} else {
 			return $a >= $b;
@@ -222,8 +220,7 @@ final class UInt_Impl_ {
 	 */
 	public static function lt ($a, $b) {
 		$aNeg = $b < 0;
-		$bNeg = $a < 0;
-		if ($aNeg !== $bNeg) {
+		if ($aNeg !== ($a < 0)) {
 			return $aNeg;
 		} else {
 			return $b > $a;
@@ -249,8 +246,7 @@ final class UInt_Impl_ {
 	 */
 	public static function lte ($a, $b) {
 		$aNeg = $b < 0;
-		$bNeg = $a < 0;
-		if ($aNeg !== $bNeg) {
+		if ($aNeg !== ($a < 0)) {
 			return $aNeg;
 		} else {
 			return $b >= $a;
@@ -435,11 +431,10 @@ final class UInt_Impl_ {
 	 * @return float
 	 */
 	public static function toFloat ($this1) {
-		$int = $this1;
-		if ($int < 0) {
-			return 4294967296.0 + $int;
+		if ($this1 < 0) {
+			return 4294967296.0 + $this1;
 		} else {
-			return $int + 0.0;
+			return $this1 + 0.0;
 		}
 	}
 
@@ -459,8 +454,7 @@ final class UInt_Impl_ {
 	 * @return string
 	 */
 	public static function toString ($this1, $radix = null) {
-		$int = $this1;
-		return \Std::string(($int < 0 ? 4294967296.0 + $int : $int + 0.0));
+		return \Std::string(($this1 < 0 ? 4294967296.0 + $this1 : $this1 + 0.0));
 	}
 
 	/**

@@ -67,9 +67,7 @@ class Sys {
 				$_g1 = 0;
 				$_g2 = (\Array_hx::wrap([\StringTools::replace($cmd, "/", "\\")]))->concat($args);
 				while ($_g1 < $_g2->length) {
-					$a = ($_g2->arr[$_g1] ?? null);
-					++$_g1;
-					$x = SysTools::quoteWinArg($a, true);
+					$x = SysTools::quoteWinArg(($_g2->arr[$_g1++] ?? null), true);
 					$_g->arr[$_g->length++] = $x;
 				}
 				$cmd = $_g->join(" ");
@@ -80,10 +78,8 @@ class Sys {
 				$data = $_this->arr;
 				$_g_current = 0;
 				$_g_length = count($data);
-				$_g_data = $data;
 				while ($_g_current < $_g_length) {
-					$item = $_g_data[$_g_current++];
-					$result[] = $f($item);
+					$result[] = $f($data[$_g_current++]);
 				}
 				$cmd = \Array_hx::wrap($result)->join(" ");
 			}
@@ -280,8 +276,7 @@ class Sys {
 	 * @return Output
 	 */
 	public static function stderr () {
-		$p = (defined("STDERR") ? STDERR : fopen("php://stderr", "w"));
-		return new FileOutput($p);
+		return new FileOutput((defined("STDERR") ? STDERR : fopen("php://stderr", "w")));
 	}
 
 	/**
@@ -292,8 +287,7 @@ class Sys {
 	 * @return Input
 	 */
 	public static function stdin () {
-		$p = (defined("STDIN") ? STDIN : fopen("php://stdin", "r"));
-		return new FileInput($p);
+		return new FileInput((defined("STDIN") ? STDIN : fopen("php://stdin", "r")));
 	}
 
 	/**
@@ -302,8 +296,7 @@ class Sys {
 	 * @return Output
 	 */
 	public static function stdout () {
-		$p = (defined("STDOUT") ? STDOUT : fopen("php://stdout", "w"));
-		return new FileOutput($p);
+		return new FileOutput((defined("STDOUT") ? STDOUT : fopen("php://stdout", "w")));
 	}
 
 	/**
@@ -345,8 +338,7 @@ class Sys {
 		$called = true;
 
 
-		$this1 = [];
-		self::$customEnvVars = $this1;
+		self::$customEnvVars = [];
 		self::$_programPath = (realpath($_SERVER["SCRIPT_FILENAME"]) ?: null);
 	}
 }

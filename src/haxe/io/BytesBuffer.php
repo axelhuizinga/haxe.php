@@ -52,9 +52,7 @@ class BytesBuffer {
 		if (($pos < 0) || ($len < 0) || (($pos + $len) > $src->length)) {
 			throw Exception::thrown(Error::OutsideBounds());
 		} else {
-			$left = $this->b;
-			$this_s = substr($src->b->s, $pos, $len);
-			$this->b = ($left . $this_s);
+			$this->b = ($this->b . substr($src->b->s, $pos, $len));
 		}
 	}
 

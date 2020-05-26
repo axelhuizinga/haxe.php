@@ -305,9 +305,7 @@ class Template {
 			$_g = 0;
 			$_g1 = $t->l;
 			while ($_g < $_g1->length) {
-				$p1 = ($_g1->arr[$_g] ?? null);
-				++$_g;
-				$pe->add($this->parseBlock($this->parseTokens($p1)));
+				$pe->add($this->parseBlock($this->parseTokens(($_g1->arr[$_g++] ?? null))));
 			}
 			return TemplateExpr::OpMacro($p, $pe);
 		}
@@ -316,11 +314,10 @@ class Template {
 			$length = mb_strlen($kwd);
 			if (mb_substr($p, 0, $length) === $kwd) {
 				$pos = $length;
+				$s = mb_substr($p, $length, null);
 				$_g_offset = 0;
-				$_g_s = mb_substr($p, $length, null);
-				while ($_g_offset < mb_strlen($_g_s)) {
-					$c = \StringTools::fastCodeAt($_g_s, $_g_offset++);
-					if ($c === 32) {
+				while ($_g_offset < mb_strlen($s)) {
+					if (\StringTools::fastCodeAt($s, $_g_offset++) === 32) {
 						++$pos;
 					} else {
 						break;
@@ -405,7 +402,6 @@ class Template {
 		$expr = $data;
 		while (Template::$expr_splitter->match($data)) {
 			$p = Template::$expr_splitter->matchedPos();
-			$k = $p->pos + $p->len;
 			if ($p->pos !== 0) {
 				$l->add(new HxAnon([
 					"p" => mb_substr($data, 0, $p->pos),
@@ -424,12 +420,9 @@ class Template {
 			$_g_s = $data;
 			while ($_g_offset < mb_strlen($_g_s)) {
 				$_g1_key = $_g_offset;
-				$_g1_value = \StringTools::fastCodeAt($_g_s, $_g_offset++);
-				$i = $_g1_key;
-				$c = $_g1_value;
-				if ($c !== 32) {
+				if (\StringTools::fastCodeAt($_g_s, $_g_offset++) !== 32) {
 					$l->add(new HxAnon([
-						"p" => mb_substr($data, $i, null),
+						"p" => mb_substr($data, $_g1_key, null),
 						"s" => true,
 					]));
 					break;
@@ -446,8 +439,7 @@ class Template {
 			NativeStackTrace::saveStack($_g);
 			$_g1 = Exception::caught($_g)->unwrap();
 			if (is_string($_g1)) {
-				$s = $_g1;
-				throw Exception::thrown("Unexpected '" . ($s??'null') . "' in " . ($expr??'null'));
+				throw Exception::thrown("Unexpected '" . ($_g1??'null') . "' in " . ($expr??'null'));
 			} else {
 				throw $_g;
 			}
@@ -457,8 +449,7 @@ class Template {
 				return $e();
 			} catch(\Throwable $_g) {
 				NativeStackTrace::saveStack($_g);
-				$exc = Exception::caught($_g)->unwrap();
-				throw Exception::thrown("Error : " . (\Std::string($exc)??'null') . " in " . ($expr??'null'));
+				throw Exception::thrown("Error : " . (\Std::string(Exception::caught($_g)->unwrap())??'null') . " in " . ($expr??'null'));
 			}
 		};
 	}
@@ -547,9 +538,8 @@ class Template {
 		while ($_g_head !== null) {
 			$val = $_g_head->item;
 			$_g_head = $_g_head->next;
-			$ctx = $val;
-			$value = \Reflect::getProperty($ctx, $v);
-			if (($value !== null) || \Reflect::hasField($ctx, $v)) {
+			$value = \Reflect::getProperty($val, $v);
+			if (($value !== null) || \Reflect::hasField($val, $v)) {
 				return $value;
 			}
 		}
@@ -564,100 +554,86 @@ class Template {
 	public function run ($e) {
 		$__hx__switch = ($e->index);
 		if ($__hx__switch === 0) {
-			$v = $e->params[0];
-			$this->buf->add(\Std::string($this->resolve($v)));
+			$this->buf->add(\Std::string($this->resolve($e->params[0])));
 		} else if ($__hx__switch === 1) {
-			$e1 = $e->params[0];
-			$this->buf->add(\Std::string($e1()));
+			$this->buf->add(\Std::string($e->params[0]()));
 		} else if ($__hx__switch === 2) {
-			$eelse = $e->params[2];
-			$eif = $e->params[1];
-			$e1 = $e->params[0];
-			$v = $e1();
+			$_g = $e->params[2];
+			$v = $e->params[0]();
 			if (($v === null) || ($v === false)) {
-				if ($eelse !== null) {
-					$this->run($eelse);
+				if ($_g !== null) {
+					$this->run($_g);
 				}
 			} else {
-				$this->run($eif);
+				$this->run($e->params[1]);
 			}
 		} else if ($__hx__switch === 3) {
-			$str = $e->params[0];
-			$this->buf->add($str);
+			$this->buf->add($e->params[0]);
 		} else if ($__hx__switch === 4) {
-			$l = $e->params[0];
-			$_g_head = $l->h;
+			$_g_head = $e->params[0]->h;
 			while ($_g_head !== null) {
 				$val = $_g_head->item;
 				$_g_head = $_g_head->next;
-				$e1 = $val;
-				$this->run($e1);
+				$this->run($val);
 			}
 		} else if ($__hx__switch === 5) {
-			$loop = $e->params[1];
-			$e1 = $e->params[0];
-			$v = $e1();
+			$_g = $e->params[1];
+			$v = $e->params[0]();
 			try {
 				$x = $v->iterator();
 				if (Boot::dynamicField($x, 'hasNext') === null) {
 					throw Exception::thrown(null);
 				}
 				$v = $x;
-			} catch(\Throwable $_g) {
-				NativeStackTrace::saveStack($_g);
+			} catch(\Throwable $_g1) {
+				NativeStackTrace::saveStack($_g1);
 				try {
 					if (Boot::dynamicField($v, 'hasNext') === null) {
 						throw Exception::thrown(null);
 					}
-				} catch(\Throwable $_g) {
+				} catch(\Throwable $_g1) {
 					throw Exception::thrown("Cannot iter on " . (\Std::string($v)??'null'));
 				}
 			}
 			$this->stack->push($this->context);
 			$v1 = $v;
-			$ctx = $v1;
-			while ($ctx->hasNext()) {
-				$ctx1 = $ctx->next();
-				$this->context = $ctx1;
-				$this->run($loop);
+			while ($v1->hasNext()) {
+				$this->context = $v1->next();
+				$this->run($_g);
 			}
 			$this->context = $this->stack->pop();
 		} else if ($__hx__switch === 6) {
-			$params = $e->params[1];
-			$m = $e->params[0];
-			$v = \Reflect::field($this->macros, $m);
+			$_g = $e->params[0];
+			$v = \Reflect::field($this->macros, $_g);
 			$pl = new \Array_hx();
 			$old = $this->buf;
 			$pl->arr[$pl->length++] = Boot::getInstanceClosure($this, 'resolve');
-			$_g_head = $params->h;
+			$_g_head = $e->params[1]->h;
 			while ($_g_head !== null) {
 				$val = $_g_head->item;
 				$_g_head = $_g_head->next;
-				$p = $val;
-				if ($p->index === 0) {
-					$v1 = $p->params[0];
-					$x = $this->resolve($v1);
+				if ($val->index === 0) {
+					$x = $this->resolve($val->params[0]);
 					$pl->arr[$pl->length++] = $x;
 				} else {
 					$this->buf = new \StringBuf();
-					$this->run($p);
+					$this->run($val);
 					$pl->arr[$pl->length++] = $this->buf->b;
 				}
 			}
 			$this->buf = $old;
 			try {
 				$this->buf->add(\Std::string(\Reflect::callMethod($this->macros, $v, $pl)));
-			} catch(\Throwable $_g) {
-				NativeStackTrace::saveStack($_g);
-				$e = Exception::caught($_g)->unwrap();
+			} catch(\Throwable $_g1) {
+				NativeStackTrace::saveStack($_g1);
+				$_g2 = Exception::caught($_g1)->unwrap();
 				$plstr = null;
 				try {
 					$plstr = $pl->join(",");
-				} catch(\Throwable $_g) {
+				} catch(\Throwable $_g1) {
 					$plstr = "???";
 				}
-				$msg = "Macro call " . ($m??'null') . "(" . ($plstr??'null') . ") failed (" . (\Std::string($e)??'null') . ")";
-				throw Exception::thrown($msg);
+				throw Exception::thrown("Macro call " . ($_g??'null') . "(" . ($plstr??'null') . ") failed (" . (\Std::string($_g2)??'null') . ")");
 			}
 		}
 	}
@@ -670,11 +646,10 @@ class Template {
 	public function skipSpaces ($l) {
 		$p = $l->first();
 		while ($p !== null) {
+			$s = $p->p;
 			$_g_offset = 0;
-			$_g_s = $p->p;
-			while ($_g_offset < mb_strlen($_g_s)) {
-				$c = \StringTools::fastCodeAt($_g_s, $_g_offset++);
-				if ($c !== 32) {
+			while ($_g_offset < mb_strlen($s)) {
+				if (\StringTools::fastCodeAt($s, $_g_offset++) !== 32) {
 					return;
 				}
 			}

@@ -157,8 +157,8 @@ class Parser {
 					}
 					$tmp2 = substr($str, $start, $p - $start);
 					$aname = $tmp2;
-					if ($xml->exists($aname)) {
-						throw Exception::thrown(new XmlParserException("Duplicate attribute [" . ($aname??'null') . "]", $str, $p));
+					if ($xml->exists($tmp2)) {
+						throw Exception::thrown(new XmlParserException("Duplicate attribute [" . ($tmp2??'null') . "]", $str, $p));
 					}
 					$state = 0;
 					$next = 6;
@@ -273,8 +273,7 @@ class Parser {
 				}
 				if ($tmp3) {
 					++$p;
-					$str1 = substr($str, $start + 1, $p - $start - 2);
-					$parent->addChild(\Xml::createProcessingInstruction($str1));
+					$parent->addChild(\Xml::createProcessingInstruction(substr($str, $start + 1, $p - $start - 2)));
 					++$nsubs;
 					$state = 1;
 				}
@@ -325,8 +324,7 @@ class Parser {
 					$tmp6 = false;
 				}
 				if ($tmp6) {
-					$child1 = \Xml::createCData(substr($str, $start, $p - $start));
-					$parent->addChild($child1);
+					$parent->addChild(\Xml::createCData(substr($str, $start, $p - $start)));
 					++$nsubs;
 					$p += 2;
 					$state = 1;
@@ -335,8 +333,7 @@ class Parser {
 				if ($c === 59) {
 					$s = substr($str, $start, $p - $start);
 					if (((0 >= strlen($s) ? 0 : ord($s[0]))) === 35) {
-						$c1 = (((1 >= strlen($s) ? 0 : ord($s[1]))) === 120 ? \Std::parseInt("0" . (substr($s, 1, strlen($s) - 1)??'null')) : \Std::parseInt(substr($s, 1, strlen($s) - 1)));
-						$buf = ($buf . mb_chr($c1));
+						$buf = ($buf . mb_chr((((1 >= strlen($s) ? 0 : ord($s[1]))) === 120 ? \Std::parseInt("0" . (substr($s, 1, strlen($s) - 1)??'null')) : \Std::parseInt(substr($s, 1, strlen($s) - 1)))));
 					} else if (!array_key_exists($s, Parser::$escapes->data)) {
 						if ($strict) {
 							throw Exception::thrown(new XmlParserException("Undefined entity: " . ($s??'null'), $str, $p));
@@ -375,7 +372,6 @@ class Parser {
 			if (($p !== $start) || ($nsubs === 0)) {
 				$buf = ($buf . substr($str, $start, $p - $start));
 				$parent->addChild(\Xml::createPCData($buf));
-				++$nsubs;
 			}
 			return $p;
 		}
@@ -383,7 +379,6 @@ class Parser {
 			$buf = ($buf . "&");
 			$buf = ($buf . substr($str, $start, $p - $start));
 			$parent->addChild(\Xml::createPCData($buf));
-			++$nsubs;
 			return $p;
 		}
 		throw Exception::thrown(new XmlParserException("Unexpected end", $str, $p));

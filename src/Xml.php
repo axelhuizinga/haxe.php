@@ -266,8 +266,7 @@ class Xml {
 				$_g->arr[$_g->length++] = $child;
 			}
 		}
-		$ret = $_g;
-		return new IteratorsArrayIterator($ret);
+		return new IteratorsArrayIterator($_g);
 	}
 
 	/**
@@ -301,8 +300,7 @@ class Xml {
 				$_g->arr[$_g->length++] = $child;
 			}
 		}
-		$ret = $_g;
-		return new IteratorsArrayIterator($ret);
+		return new IteratorsArrayIterator($_g);
 	}
 
 	/**

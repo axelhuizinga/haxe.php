@@ -176,8 +176,7 @@ final class Date {
 	 * @return int
 	 */
 	public function getMonth () {
-		$m = (int)(date("n", (int)($this->__t)));
-		return -1 + $m;
+		return -1 + (int)(date("n", (int)($this->__t)));
 	}
 
 	/**
@@ -276,8 +275,7 @@ final class Date {
 	 * @return int
 	 */
 	public function getUTCMonth () {
-		$m = (int)(gmdate("n", (int)($this->__t)));
-		return -1 + $m;
+		return -1 + (int)(gmdate("n", (int)($this->__t)));
 	}
 
 	/**

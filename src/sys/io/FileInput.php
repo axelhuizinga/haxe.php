@@ -120,8 +120,7 @@ class FileInput extends Input {
 		} else if ($__hx__switch === 2) {
 			$w = SEEK_END;
 		}
-		$r = fseek($this->__f, $p, $w);
-		if ($r === false) {
+		if (fseek($this->__f, $p, $w) === false) {
 			throw Exception::thrown(Error::Custom("An error occurred"));
 		}
 	}

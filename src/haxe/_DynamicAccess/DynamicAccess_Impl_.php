@@ -17,8 +17,7 @@ final class DynamicAccess_Impl_ {
 	 * @return mixed
 	 */
 	public static function _new () {
-		$this1 = new HxAnon();
-		return $this1;
+		return new HxAnon();
 	}
 
 	/**

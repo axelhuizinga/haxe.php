@@ -60,10 +60,10 @@ class Printer {
 		if (($value->nodeType !== \Xml::$Document) && ($value->nodeType !== \Xml::$Element)) {
 			throw Exception::thrown("Bad node type, expected Element or Document but found " . ((($value->nodeType === null ? "null" : XmlType_Impl_::toString($value->nodeType)))??'null'));
 		}
+		$_this = $value->children;
 		$_g_current = 0;
-		$_g_array = $value->children;
-		while ($_g_current < $_g_array->length) {
-			$child = ($_g_array->arr[$_g_current++] ?? null);
+		while ($_g_current < $_this->length) {
+			$child = ($_this->arr[$_g_current++] ?? null);
 			$__hx__switch = ($child->nodeType);
 			if ($__hx__switch === 0 || $__hx__switch === 1) {
 				return true;
@@ -128,11 +128,10 @@ class Printer {
 				if (($value->nodeType !== \Xml::$Document) && ($value->nodeType !== \Xml::$Element)) {
 					throw Exception::thrown("Bad node type, expected Element or Document but found " . ((($value->nodeType === null ? "null" : XmlType_Impl_::toString($value->nodeType)))??'null'));
 				}
+				$_this = $value->children;
 				$_g_current = 0;
-				$_g_array = $value->children;
-				while ($_g_current < $_g_array->length) {
-					$child = ($_g_array->arr[$_g_current++] ?? null);
-					$this->writeNode($child, ($this->pretty ? ($tabs??'null') . "\x09" : $tabs));
+				while ($_g_current < $_this->length) {
+					$this->writeNode(($_this->arr[$_g_current++] ?? null), ($this->pretty ? ($tabs??'null') . "\x09" : $tabs));
 				}
 				$this->output->add(($tabs??'null') . "</");
 				if ($value->nodeType !== \Xml::$Element) {
@@ -155,8 +154,12 @@ class Printer {
 			}
 			$nodeValue = $value->nodeValue;
 			if (mb_strlen($nodeValue) !== 0) {
-				$input = ($tabs??'null') . (htmlspecialchars($nodeValue, (null ? ENT_QUOTES | ENT_HTML401 : ENT_NOQUOTES))??'null');
-				$this->output->add($input);
+				$input = null;
+				if (!null) {
+					$input = ENT_NOQUOTES;
+				}
+				$input1 = ($tabs??'null') . (htmlspecialchars($nodeValue, $input)??'null');
+				$this->output->add($input1);
 				if ($this->pretty) {
 					$this->output->add("\x0A");
 				}
@@ -204,11 +207,10 @@ class Printer {
 			if (($value->nodeType !== \Xml::$Document) && ($value->nodeType !== \Xml::$Element)) {
 				throw Exception::thrown("Bad node type, expected Element or Document but found " . ((($value->nodeType === null ? "null" : XmlType_Impl_::toString($value->nodeType)))??'null'));
 			}
+			$_this = $value->children;
 			$_g_current = 0;
-			$_g_array = $value->children;
-			while ($_g_current < $_g_array->length) {
-				$child = ($_g_array->arr[$_g_current++] ?? null);
-				$this->writeNode($child, $tabs);
+			while ($_g_current < $_this->length) {
+				$this->writeNode(($_this->arr[$_g_current++] ?? null), $tabs);
 			}
 		}
 	}

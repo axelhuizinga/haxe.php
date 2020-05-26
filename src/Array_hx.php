@@ -38,8 +38,7 @@ final class Array_hx implements \JsonSerializable, \Countable, \IteratorAggregat
 	 * @return void
 	 */
 	public function __construct () {
-		$this1 = [];
-		$this->arr = $this1;
+		$this->arr = [];
 		$this->length = 0;
 	}
 
@@ -107,9 +106,8 @@ final class Array_hx implements \JsonSerializable, \Countable, \IteratorAggregat
 		$data = $this->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$item = $_g_data[$_g_current++];
+			$item = $data[$_g_current++];
 			if ($f($item)) {
 				$result[] = $item;
 			}
@@ -285,10 +283,8 @@ final class Array_hx implements \JsonSerializable, \Countable, \IteratorAggregat
 		$data = $this->arr;
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$item = $_g_data[$_g_current++];
-			$result[] = $f($item);
+			$result[] = $f($data[$_g_current++]);
 		}
 		return Array_hx::wrap($result);
 	}
@@ -327,8 +323,7 @@ final class Array_hx implements \JsonSerializable, \Countable, \IteratorAggregat
 			$_g = $this->length;
 			$_g1 = $offset + 1;
 			while ($_g < $_g1) {
-				$i = $_g++;
-				$this->arr[$i] = null;
+				$this->arr[$_g++] = null;
 			}
 			$this->length = $offset + 1;
 		}

@@ -24,8 +24,7 @@ class PhpVectorData {
 	 */
 	public function __construct ($length) {
 		$this->length = $length;
-		$this1 = [];
-		$this->data = $this1;
+		$this->data = [];
 	}
 }
 

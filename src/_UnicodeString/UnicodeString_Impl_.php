@@ -21,8 +21,7 @@ final class UnicodeString_Impl_ {
 	 * @return string
 	 */
 	public static function _new ($string) {
-		$this1 = $string;
-		return $this1;
+		return $string;
 	}
 
 	/**

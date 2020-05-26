@@ -114,8 +114,7 @@ class Socket {
 			$_g = new \Array_hx();
 			$_g1 = 0;
 			while ($_g1 < $read->length) {
-				$s = ($read->arr[$_g1] ?? null);
-				++$_g1;
+				$s = ($read->arr[$_g1++] ?? null);
 				$_g->arr[$_g->length++] = $s->__s;
 			}
 			$a = $_g;
@@ -128,8 +127,7 @@ class Socket {
 			$_g = new \Array_hx();
 			$_g1 = 0;
 			while ($_g1 < $write->length) {
-				$s = ($write->arr[$_g1] ?? null);
-				++$_g1;
+				$s = ($write->arr[$_g1++] ?? null);
 				$_g->arr[$_g->length++] = $s->__s;
 			}
 			$a = $_g;
@@ -142,53 +140,41 @@ class Socket {
 			$_g = new \Array_hx();
 			$_g1 = 0;
 			while ($_g1 < $others->length) {
-				$s = ($others->arr[$_g1] ?? null);
-				++$_g1;
+				$s = ($others->arr[$_g1++] ?? null);
 				$_g->arr[$_g->length++] = $s->__s;
 			}
 			$a = $_g;
 		}
 		$rawOthers = $a->arr;
-		$sec = ($timeout === null ? null : (int)($timeout));
-		$usec = ($timeout === null ? 0 : (int)((fmod($timeout, 1) * 1000000)));
-		$result = socket_select($rawRead, $rawWrite, $rawOthers, $sec, $usec);
-		Socket::checkError($result, 0, "Error during select call");
+		Socket::checkError(socket_select($rawRead, $rawWrite, $rawOthers, ($timeout === null ? null : (int)($timeout)), ($timeout === null ? 0 : (int)((fmod($timeout, 1) * 1000000)))), 0, "Error during select call");
 		$result = \Array_hx::wrap($rawRead);
 		$_g = new \Array_hx();
 		$_g1 = 0;
 		while ($_g1 < $result->length) {
-			$r = ($result->arr[$_g1] ?? null);
-			++$_g1;
-			$key = (int)($r);
+			$key = (int)(($result->arr[$_g1++] ?? null));
 			$x = ($map->data[$key] ?? null);
 			$_g->arr[$_g->length++] = $x;
 		}
-		$tmp = $_g;
 		$result = \Array_hx::wrap($rawWrite);
-		$_g = new \Array_hx();
-		$_g1 = 0;
-		while ($_g1 < $result->length) {
-			$r = ($result->arr[$_g1] ?? null);
-			++$_g1;
-			$key = (int)($r);
+		$_g1 = new \Array_hx();
+		$_g2 = 0;
+		while ($_g2 < $result->length) {
+			$key = (int)(($result->arr[$_g2++] ?? null));
 			$x = ($map->data[$key] ?? null);
-			$_g->arr[$_g->length++] = $x;
+			$_g1->arr[$_g1->length++] = $x;
 		}
-		$tmp1 = $_g;
 		$result = \Array_hx::wrap($rawOthers);
-		$_g = new \Array_hx();
-		$_g1 = 0;
-		while ($_g1 < $result->length) {
-			$r = ($result->arr[$_g1] ?? null);
-			++$_g1;
-			$key = (int)($r);
+		$_g2 = new \Array_hx();
+		$_g3 = 0;
+		while ($_g3 < $result->length) {
+			$key = (int)(($result->arr[$_g3++] ?? null));
 			$x = ($map->data[$key] ?? null);
-			$_g->arr[$_g->length++] = $x;
+			$_g2->arr[$_g2->length++] = $x;
 		}
 		return new HxAnon([
-			"read" => $tmp,
-			"write" => $tmp1,
-			"others" => $_g,
+			"read" => $_g,
+			"write" => $_g1,
+			"others" => $_g2,
 		]);
 	}
 
@@ -236,8 +222,7 @@ class Socket {
 	 * @return void
 	 */
 	public function bind ($host, $port) {
-		$r = socket_bind($this->__s, $host->host, $port);
-		Socket::checkError($r, 0, "Unable to bind socket");
+		Socket::checkError(socket_bind($this->__s, $host->host, $port), 0, "Unable to bind socket");
 	}
 
 	/**
@@ -262,8 +247,7 @@ class Socket {
 	 * @return void
 	 */
 	public function connect ($host, $port) {
-		$r = socket_connect($this->__s, $host->host, $port);
-		Socket::checkError($r, 0, "Unable to connect");
+		Socket::checkError(socket_connect($this->__s, $host->host, $port), 0, "Unable to connect");
 		$this->assignHandler();
 	}
 
@@ -275,8 +259,7 @@ class Socket {
 	public function host () {
 		$host = "";
 		$port = 0;
-		$r = socket_getsockname($this->__s, $host, $port);
-		Socket::checkError($r, 0, "Unable to retrieve the host name");
+		Socket::checkError(socket_getsockname($this->__s, $host, $port), 0, "Unable to retrieve the host name");
 		return new HxAnon([
 			"host" => new Host($host),
 			"port" => $port,
@@ -298,8 +281,7 @@ class Socket {
 	 * @return void
 	 */
 	public function listen ($connections) {
-		$r = socket_listen($this->__s, $connections);
-		Socket::checkError($r, 0, "Unable to listen on socket");
+		Socket::checkError(socket_listen($this->__s, $connections), 0, "Unable to listen on socket");
 		$this->assignHandler();
 	}
 
@@ -311,8 +293,7 @@ class Socket {
 	public function peer () {
 		$host = "";
 		$port = 0;
-		$r = socket_getpeername($this->__s, $host, $port);
-		Socket::checkError($r, 0, "Unable to retrieve the peer name");
+		Socket::checkError(socket_getpeername($this->__s, $host, $port), 0, "Unable to retrieve the peer name");
 		return new HxAnon([
 			"host" => new Host($host),
 			"port" => $port,
@@ -342,8 +323,7 @@ class Socket {
 	 * @return void
 	 */
 	public function setBlocking ($b) {
-		$r = ($b ? socket_set_block($this->__s) : socket_set_nonblock($this->__s));
-		Socket::checkError($r, 0, "Unable to set blocking");
+		Socket::checkError(($b ? socket_set_block($this->__s) : socket_set_nonblock($this->__s)), 0, "Unable to set blocking");
 	}
 
 	/**
@@ -354,8 +334,7 @@ class Socket {
 	 * @return void
 	 */
 	public function setFastSend ($b) {
-		$r = socket_set_option($this->__s, SOL_TCP, TCP_NODELAY, true);
-		Socket::checkError($r, 0, "Unable to set TCP_NODELAY on socket");
+		Socket::checkError(socket_set_option($this->__s, SOL_TCP, TCP_NODELAY, true), 0, "Unable to set TCP_NODELAY on socket");
 	}
 
 	/**
@@ -367,10 +346,9 @@ class Socket {
 	 */
 	public function setTimeout ($timeout) {
 		$s = (int)($timeout);
-		$ms = (int)((($timeout - $s) * 1000000));
 		$timeOut = [
 			"sec" => $s,
-			"usec" => $ms,
+			"usec" => (int)((($timeout - $s) * 1000000)),
 		];
 		$r = socket_set_option($this->__s, SOL_SOCKET, SO_RCVTIMEO, $timeOut);
 		Socket::checkError($r, 0, "Unable to set receive timeout");
@@ -387,9 +365,7 @@ class Socket {
 	 * @return void
 	 */
 	public function shutdown ($read, $write) {
-		$rw = ($read && $write ? 2 : ($write ? 1 : ($read ? 0 : 2)));
-		$r = socket_shutdown($this->__s, $rw);
-		Socket::checkError($r, 0, "Unable to shutdown");
+		Socket::checkError(socket_shutdown($this->__s, ($read && $write ? 2 : ($write ? 1 : ($read ? 0 : 2)))), 0, "Unable to shutdown");
 	}
 
 	/**

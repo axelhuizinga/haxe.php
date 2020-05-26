@@ -1,5 +1,6 @@
 --class-path .
 --dce no
+--define analyzer-optimize
 --define php-lib=src
 --define real-position
 --main Main

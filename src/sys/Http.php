@@ -259,12 +259,12 @@ class Http extends HttpBase {
 			$sock->close();
 		} catch(\Throwable $_g) {
 			NativeStackTrace::saveStack($_g);
-			$e = Exception::caught($_g)->unwrap();
+			$_g1 = Exception::caught($_g)->unwrap();
 			try {
 				$sock->close();
 			} catch(\Throwable $_g) {
 			}
-			$this->onError(\Std::string($e));
+			$this->onError(\Std::string($_g1));
 		}
 	}
 
@@ -322,9 +322,7 @@ class Http extends HttpBase {
 				if (($len < 0) || ($len > $buf->length)) {
 					throw Exception::thrown(Error::OutsideBounds());
 				} else {
-					$left = $b->b;
-					$this_s = substr($buf->b->s, 0, $len);
-					$b->b = ($left . $this_s);
+					$b->b = ($b->b . substr($buf->b->s, 0, $len));
 				}
 				$buf = $b->getBytes();
 				$len += $this->chunk_buf->length;
@@ -333,8 +331,7 @@ class Http extends HttpBase {
 			if ($chunk_re->match($buf->toString())) {
 				$p = $chunk_re->matchedPos();
 				if ($p->len <= $len) {
-					$cstr = $chunk_re->matched(1);
-					$this->chunk_size = \Std::parseInt("0x" . ($cstr??'null'));
+					$this->chunk_size = \Std::parseInt("0x" . ($chunk_re->matched(1)??'null'));
 					if ($this->chunk_size === 0) {
 						$this->chunk_size = null;
 						$this->chunk_buf = null;
@@ -413,9 +410,7 @@ class Http extends HttpBase {
 			if (($k < 0) || ($k > $s->length)) {
 				throw Exception::thrown(Error::OutsideBounds());
 			} else {
-				$left = $b->b;
-				$this_s = substr($s->b->s, 0, $k);
-				$b->b = ($left . $this_s);
+				$b->b = ($b->b . substr($s->b->s, 0, $k));
 			}
 			if ($k === 1) {
 				$c = ord($s->b->s[0]);
@@ -481,9 +476,7 @@ class Http extends HttpBase {
 		if ($headers->length > 0) {
 			$headers->length--;
 		}
-		$response = array_shift($headers->arr);
-		$rp = HxString::split($response, " ");
-		$status = \Std::parseInt(($rp->arr[1] ?? null));
+		$status = \Std::parseInt((HxString::split(array_shift($headers->arr), " ")->arr[1] ?? null));
 		if (($status === 0) || ($status === null)) {
 			throw Exception::thrown("Response status error");
 		}
@@ -500,9 +493,7 @@ class Http extends HttpBase {
 		$chunked = false;
 		$_g = 0;
 		while ($_g < $headers->length) {
-			$hline = ($headers->arr[$_g] ?? null);
-			++$_g;
-			$a = HxString::split($hline, ": ");
+			$a = HxString::split(($headers->arr[$_g++] ?? null), ": ");
 			if ($a->length > 0) {
 				$a->length--;
 			}
@@ -521,15 +512,10 @@ class Http extends HttpBase {
 		$chunk_re = new \EReg("^([0-9A-Fa-f]+)[ ]*\x0D\x0A", "m");
 		$this->chunk_size = null;
 		$this->chunk_buf = null;
-		$bufsize = 1024;
-		$buf = Bytes::alloc($bufsize);
+		$buf = Bytes::alloc(1024);
 		if ($chunked) {
 			try {
-				while (true) {
-					$len = $sock->input->readBytes($buf, 0, $bufsize);
-					if (!$this->readChunk($chunk_re, $api, $buf, $len)) {
-						break;
-					}
+				while ($this->readChunk($chunk_re, $api, $buf, $sock->input->readBytes($buf, 0, 1024))) {
 				}
 			} catch(\Throwable $_g) {
 				NativeStackTrace::saveStack($_g);
@@ -545,7 +531,7 @@ class Http extends HttpBase {
 			}
 			try {
 				while (true) {
-					$len = $sock->input->readBytes($buf, 0, $bufsize);
+					$len = $sock->input->readBytes($buf, 0, 1024);
 					if ($len === 0) {
 						break;
 					}
@@ -561,7 +547,7 @@ class Http extends HttpBase {
 			$api->prepare($size);
 			try {
 				while ($size > 0) {
-					$len = $sock->input->readBytes($buf, 0, ($size > $bufsize ? $bufsize : $size));
+					$len = $sock->input->readBytes($buf, 0, ($size > 1024 ? 1024 : $size));
 					$api->writeBytes($buf, 0, $len);
 					$size -= $len;
 				}
@@ -621,10 +607,9 @@ class Http extends HttpBase {
 			$sock->output->writeFullBytes($bytes, 0, $bytes->length);
 		}
 		if ($boundary !== null) {
-			$bufsize = 4096;
-			$buf = Bytes::alloc($bufsize);
+			$buf = Bytes::alloc(4096);
 			while ($fileSize > 0) {
-				$size = ($fileSize > $bufsize ? $bufsize : $fileSize);
+				$size = ($fileSize > 4096 ? 4096 : $fileSize);
 				$len = 0;
 				try {
 					$len = $fileInput->readBytes($buf, 0, $size);

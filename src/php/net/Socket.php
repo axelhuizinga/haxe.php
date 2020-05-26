@@ -221,8 +221,7 @@ class Socket extends NetSocket {
 		}
 		$s = (int)($timeout);
 		$ms = (int)((($timeout - $s) * 1000000));
-		$r = stream_set_timeout($this->__s, $s, $ms);
-		NetSocket::checkError($r, 0, "Unable to set timeout");
+		NetSocket::checkError(stream_set_timeout($this->__s, $s, $ms), 0, "Unable to set timeout");
 	}
 
 	/**
@@ -232,9 +231,7 @@ class Socket extends NetSocket {
 	 * @return void
 	 */
 	public function shutdown ($read, $write) {
-		$rw = ($read && $write ? 2 : ($write ? 1 : ($read ? 0 : 2)));
-		$r = stream_socket_shutdown($this->__s, $rw);
-		NetSocket::checkError($r, 0, "Unable to Shutdown");
+		NetSocket::checkError(stream_socket_shutdown($this->__s, ($read && $write ? 2 : ($write ? 1 : ($read ? 0 : 2)))), 0, "Unable to Shutdown");
 	}
 
 	/**

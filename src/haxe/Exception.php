@@ -177,11 +177,9 @@ class Exception extends \Exception {
 	public function get_stack () {
 		$_g = $this->__exceptionStack;
 		if ($_g === null) {
-			$nativeTrace = NativeStackTrace::complementTrace($this->__nativeException->getTrace(), $this->get_native());
-			return $this->__exceptionStack = NativeStackTrace::toHaxe($nativeTrace, $this->__skipStack);
+			return $this->__exceptionStack = NativeStackTrace::toHaxe(NativeStackTrace::complementTrace($this->__nativeException->getTrace(), $this->get_native()), $this->__skipStack);
 		} else {
-			$s = $_g;
-			return $s;
+			return $_g;
 		}
 	}
 

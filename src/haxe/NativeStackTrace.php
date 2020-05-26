@@ -38,14 +38,12 @@ class NativeStackTrace {
 	 * @return mixed
 	 */
 	public static function complementTrace ($nativeTrace, $e) {
-		$this1 = [];
-		$thrownAt = $this1;
+		$thrownAt = [];
 		$thrownAt["function"] = "";
 		$thrownAt["line"] = $e->getLine();
 		$thrownAt["file"] = $e->getFile();
 		$thrownAt["class"] = "";
-		$this1 = [];
-		$thrownAt["args"] = $this1;
+		$thrownAt["args"] = [];
 		array_unshift($nativeTrace, $thrownAt);
 		return $nativeTrace;
 	}
@@ -55,8 +53,7 @@ class NativeStackTrace {
 	 */
 	public static function exceptionStack () {
 		if (NativeStackTrace::$lastExceptionTrace === null) {
-			$this1 = [];
-			return $this1;
+			return [];
 		} else {
 			return NativeStackTrace::$lastExceptionTrace;
 		}
@@ -70,10 +67,8 @@ class NativeStackTrace {
 	public static function saveStack ($e) {
 		$nativeTrace = $e->getTrace();
 		$currentTrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-		$count = count($currentTrace);
-		$_g = -($count - 1);
-		$_g1 = 1;
-		while ($_g < $_g1) {
+		$_g = -(count($currentTrace) - 1);
+		while ($_g < 1) {
 			$i = $_g++;
 			$exceptionEntry = end($nativeTrace);
 			if (!isset($exceptionEntry["file"]) || !isset($currentTrace[-$i]["file"])) {
@@ -86,11 +81,9 @@ class NativeStackTrace {
 		}
 		$count = count($nativeTrace);
 		$_g = 0;
-		$_g1 = $count;
-		while ($_g < $_g1) {
-			$i = $_g++;
+		while ($_g < $count) {
 			$this1 = [];
-			$nativeTrace[$i]["args"] = $this1;
+			$nativeTrace[$_g++]["args"] = $this1;
 		}
 		NativeStackTrace::$lastExceptionTrace = NativeStackTrace::complementTrace($nativeTrace, $e);
 	}
@@ -108,8 +101,7 @@ class NativeStackTrace {
 		$result = new \Array_hx();
 		$count = count($native);
 		$_g = 0;
-		$_g1 = $count;
-		while ($_g < $_g1) {
+		while ($_g < $count) {
 			$i = $_g++;
 			if ($skip > $i) {
 				continue;

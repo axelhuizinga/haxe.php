@@ -76,14 +76,13 @@ class Lambda {
 		if ($pred === null) {
 			$_ = $it->iterator();
 			while ($_->hasNext()) {
-				$_1 = $_->next();
+				$_->next();
 				++$n;
 			}
 		} else {
 			$x = $it->iterator();
 			while ($x->hasNext()) {
-				$x1 = $x->next();
-				if ($pred($x1)) {
+				if ($pred($x->next())) {
 					++$n;
 				}
 			}
@@ -117,8 +116,7 @@ class Lambda {
 	public static function exists ($it, $f) {
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			if ($f($x1)) {
+			if ($f($x->next())) {
 				return true;
 			}
 		}
@@ -187,8 +185,7 @@ class Lambda {
 		$i = 0;
 		$v = $it->iterator();
 		while ($v->hasNext()) {
-			$v1 = $v->next();
-			if ($f($v1)) {
+			if ($f($v->next())) {
 				return $i;
 			}
 			++$i;
@@ -210,15 +207,13 @@ class Lambda {
 		$_g = new \Array_hx();
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$x2 = $f($x1);
-			$_g->arr[$_g->length++] = $x2;
+			$x1 = $f($x->next());
+			$_g->arr[$_g->length++] = $x1;
 		}
 		$_g1 = new \Array_hx();
 		$e = $_g->iterator();
 		while ($e->hasNext()) {
-			$e1 = $e->next();
-			$x = $e1->iterator();
+			$x = $e->next()->iterator();
 			while ($x->hasNext()) {
 				$x1 = $x->next();
 				$_g1->arr[$_g1->length++] = $x1;
@@ -239,8 +234,7 @@ class Lambda {
 		$_g = new \Array_hx();
 		$e = $it->iterator();
 		while ($e->hasNext()) {
-			$e1 = $e->next();
-			$x = $e1->iterator();
+			$x = $e->next()->iterator();
 			while ($x->hasNext()) {
 				$x1 = $x->next();
 				$_g->arr[$_g->length++] = $x1;
@@ -267,8 +261,7 @@ class Lambda {
 	public static function fold ($it, $f, $first) {
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$first = $f($x1, $first);
+			$first = $f($x->next(), $first);
 		}
 		return $first;
 	}
@@ -287,8 +280,7 @@ class Lambda {
 		$i = 0;
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$first = $f($x1, $first, $i);
+			$first = $f($x->next(), $first, $i);
 			++$i;
 		}
 		return $first;
@@ -310,8 +302,7 @@ class Lambda {
 	public static function foreach ($it, $f) {
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			if (!$f($x1)) {
+			if (!$f($x->next())) {
 				return false;
 			}
 		}
@@ -332,8 +323,7 @@ class Lambda {
 	public static function has ($it, $elt) {
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			if (Boot::equal($x1, $elt)) {
+			if (Boot::equal($x->next(), $elt)) {
 				return true;
 			}
 		}
@@ -354,8 +344,7 @@ class Lambda {
 		$i = 0;
 		$v2 = $it->iterator();
 		while ($v2->hasNext()) {
-			$v21 = $v2->next();
-			if (Boot::equal($v, $v21)) {
+			if (Boot::equal($v, $v2->next())) {
 				return $i;
 			}
 			++$i;
@@ -375,8 +364,7 @@ class Lambda {
 	public static function iter ($it, $f) {
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$f($x1);
+			$f($x->next());
 		}
 	}
 
@@ -392,8 +380,7 @@ class Lambda {
 		$l = new List_hx();
 		$i = $it->iterator();
 		while ($i->hasNext()) {
-			$i1 = $i->next();
-			$l->add($i1);
+			$l->add($i->next());
 		}
 		return $l;
 	}
@@ -412,9 +399,8 @@ class Lambda {
 		$_g = new \Array_hx();
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$x2 = $f($x1);
-			$_g->arr[$_g->length++] = $x2;
+			$x1 = $f($x->next());
+			$_g->arr[$_g->length++] = $x1;
 		}
 		return $_g;
 	}
@@ -434,9 +420,8 @@ class Lambda {
 		$_g = new \Array_hx();
 		$x = $it->iterator();
 		while ($x->hasNext()) {
-			$x1 = $x->next();
-			$x2 = $f($i++, $x1);
-			$_g->arr[$_g->length++] = $x2;
+			$x1 = $f($i++, $x->next());
+			$_g->arr[$_g->length++] = $x1;
 		}
 		return $_g;
 	}

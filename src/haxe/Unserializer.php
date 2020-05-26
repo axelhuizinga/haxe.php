@@ -273,10 +273,8 @@ class Unserializer {
 			$h = new ObjectMap();
 			$_this = $this->cache;
 			$_this->arr[$_this->length++] = $h;
-			$buf = $this->buf;
 			while (\StringTools::fastCodeAt($this->buf, $this->pos) !== 104) {
-				$s = $this->unserialize();
-				$h->set($s, $this->unserialize());
+				$h->set($this->unserialize(), $this->unserialize());
 			}
 			$this->pos++;
 			return $h;
@@ -287,7 +285,6 @@ class Unserializer {
 			}
 			return ($this->scache->arr[$n] ?? null);
 		} else if ($__hx__switch === 97) {
-			$buf = $this->buf;
 			$a = new \Array_hx();
 			$_this = $this->cache;
 			$_this->arr[$_this->length++] = $a;
@@ -311,7 +308,6 @@ class Unserializer {
 			$h = new StringMap();
 			$_this = $this->cache;
 			$_this->arr[$_this->length++] = $h;
-			$buf = $this->buf;
 			while (\StringTools::fastCodeAt($this->buf, $this->pos) !== 104) {
 				$s = $this->unserialize();
 				$value = $this->unserialize();
@@ -358,7 +354,6 @@ class Unserializer {
 			$l = new List_hx();
 			$_this = $this->cache;
 			$_this->arr[$_this->length++] = $l;
-			$buf = $this->buf;
 			while (\StringTools::fastCodeAt($this->buf, $this->pos) !== 104) {
 				$l->add($this->unserialize());
 			}
@@ -380,7 +375,6 @@ class Unserializer {
 			$h = new IntMap();
 			$_this = $this->cache;
 			$_this->arr[$_this->length++] = $h;
-			$buf = $this->buf;
 			$c = \StringTools::fastCodeAt($this->buf, $this->pos++);
 			while ($c === 58) {
 				$i = $this->readDigits();
@@ -404,8 +398,7 @@ class Unserializer {
 			if ((\StringTools::fastCodeAt($this->buf, $this->pos++) !== 58) || (($this->length - $this->pos) < $len)) {
 				throw Exception::thrown("Invalid bytes length");
 			}
-			$phpEncoded = strtr(mb_substr($buf, $this->pos, $len), "%:", "+/");
-			$b = new Container(base64_decode($phpEncoded));
+			$b = new Container(base64_decode(strtr(mb_substr($buf, $this->pos, $len), "%:", "+/")));
 			$bytes = new Bytes(strlen($b->s), $b);
 			$this->pos += $len;
 			$_this = $this->cache;
@@ -495,8 +488,7 @@ class Unserializer {
 			if (!is_string($k)) {
 				throw Exception::thrown("Invalid object key");
 			}
-			$v = $this->unserialize();
-			\Reflect::setField($o, $k, $v);
+			\Reflect::setField($o, $k, $this->unserialize());
 		}
 		$this->pos++;
 	}

@@ -176,22 +176,21 @@ class Serializer {
 		} else if ($__hx__switch === 5) {
 			throw Exception::thrown("Cannot serialize function");
 		} else if ($__hx__switch === 6) {
-			$c = $_g->params[0];
-			if ($c === Boot::getClass('String')) {
+			$_g1 = $_g->params[0];
+			if ($_g1 === Boot::getClass('String')) {
 				$this->serializeString($v);
 				return;
 			}
 			if ($this->useCache && $this->serializeRef($v)) {
 				return;
 			}
-			if ($c === Boot::getClass(\Array_hx::class)) {
+			if ($_g1 === Boot::getClass(\Array_hx::class)) {
 				$ucount = 0;
 				$this->buf->add("a");
 				$l = Boot::dynamicField($v, 'length');
-				$_g1 = 0;
-				$_g2 = $l;
-				while ($_g1 < $_g2) {
-					$i = $_g1++;
+				$_g2 = 0;
+				while ($_g2 < $l) {
+					$i = $_g2++;
 					if ($v[$i] === null) {
 						++$ucount;
 					} else {
@@ -216,64 +215,57 @@ class Serializer {
 					}
 				}
 				$this->buf->add("h");
-			} else if ($c === Boot::getClass(\Date::class)) {
-				$d = $v;
+			} else if ($_g1 === Boot::getClass(\Date::class)) {
 				$this->buf->add("v");
-				$this->buf->add($d->getTime());
-			} else if ($c === Boot::getClass(IntMap::class)) {
+				$this->buf->add($v->getTime());
+			} else if ($_g1 === Boot::getClass(IntMap::class)) {
 				$this->buf->add("q");
 				$v1 = $v;
 				$data = array_keys($v1->data);
 				$_g_current = 0;
 				$_g_length = count($data);
-				$_g_data = $data;
 				while ($_g_current < $_g_length) {
-					$k = $_g_data[$_g_current++];
+					$k = $data[$_g_current++];
 					$this->buf->add(":");
 					$this->buf->add($k);
 					$this->serialize(($v1->data[$k] ?? null));
 				}
 				$this->buf->add("h");
-			} else if ($c === Boot::getClass(List_hx::class)) {
+			} else if ($_g1 === Boot::getClass(List_hx::class)) {
 				$this->buf->add("l");
-				$v1 = $v;
-				$_g_head = $v1->h;
+				$_g_head = $v->h;
 				while ($_g_head !== null) {
 					$val = $_g_head->item;
 					$_g_head = $_g_head->next;
-					$i = $val;
-					$this->serialize($i);
+					$this->serialize($val);
 				}
 				$this->buf->add("h");
-			} else if ($c === Boot::getClass(ObjectMap::class)) {
+			} else if ($_g1 === Boot::getClass(ObjectMap::class)) {
 				$this->buf->add("M");
 				$v1 = $v;
 				$data = array_values($v1->_keys);
 				$_g_current = 0;
 				$_g_length = count($data);
-				$_g_data = $data;
 				while ($_g_current < $_g_length) {
-					$k = $_g_data[$_g_current++];
+					$k = $data[$_g_current++];
 					$this->serialize($k);
 					$this->serialize($v1->get($k));
 				}
 				$this->buf->add("h");
-			} else if ($c === Boot::getClass(StringMap::class)) {
+			} else if ($_g1 === Boot::getClass(StringMap::class)) {
 				$this->buf->add("b");
 				$v1 = $v;
 				$data = array_values(array_map("strval", array_keys($v1->data)));
 				$_g_current = 0;
 				$_g_length = count($data);
-				$_g_data = $data;
 				while ($_g_current < $_g_length) {
-					$k = $_g_data[$_g_current++];
+					$k = $data[$_g_current++];
 					$this->serializeString($k);
 					$this->serialize(($v1->data[$k] ?? null));
 				}
 				$this->buf->add("h");
-			} else if ($c === Boot::getClass(Bytes::class)) {
-				$v1 = $v;
-				$chars = base64_encode($v1->b->s);
+			} else if ($_g1 === Boot::getClass(Bytes::class)) {
+				$chars = base64_encode($v->b->s);
 				$chars = strtr($chars, "+/", "%:");
 				$this->buf->add("s");
 				$this->buf->add(mb_strlen($chars));
@@ -289,7 +281,7 @@ class Serializer {
 				}
 				if (method_exists($v, "hxSerialize")) {
 					$this->buf->add("C");
-					$this->serializeString(\Type::getClassName($c));
+					$this->serializeString(\Type::getClassName($_g1));
 					if ($this->useCache) {
 						$_this = $this->cache;
 						$_this->arr[$_this->length++] = $v;
@@ -298,7 +290,7 @@ class Serializer {
 					$this->buf->add("g");
 				} else {
 					$this->buf->add("c");
-					$this->serializeString(\Type::getClassName($c));
+					$this->serializeString(\Type::getClassName($_g1));
 					if ($this->useCache) {
 						$_this = $this->cache;
 						$_this->arr[$_this->length++] = $v;
@@ -307,7 +299,6 @@ class Serializer {
 				}
 			}
 		} else if ($__hx__switch === 7) {
-			$e = $_g->params[0];
 			if ($this->useCache) {
 				if ($this->serializeRef($v)) {
 					return;
@@ -319,7 +310,7 @@ class Serializer {
 				array_pop($_this->arr);
 			}
 			$this->buf->add(($this->useEnumIndex ? "j" : "w"));
-			$this->serializeString(\Type::getEnumName($e));
+			$this->serializeString(\Type::getEnumName($_g->params[0]));
 			if ($this->useEnumIndex) {
 				$this->buf->add(":");
 				$this->buf->add(Boot::dynamicField($v, 'index'));
@@ -333,10 +324,8 @@ class Serializer {
 			} else {
 				$this->buf->add($l);
 				$_g = 0;
-				$_g1 = $l;
-				while ($_g < $_g1) {
-					$i = $_g++;
-					$this->serialize(Boot::dynamicField($v, 'params')[$i]);
+				while ($_g < $l) {
+					$this->serialize(Boot::dynamicField($v, 'params')[$_g++]);
 				}
 			}
 			if ($this->useCache) {

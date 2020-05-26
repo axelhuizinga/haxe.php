@@ -103,11 +103,9 @@ class StringTools {
 		$tmp = strlen($s);
 		$tmp1 = null;
 		if (null === $digits) {
-			$tmp1 = $len;
+			$tmp1 = 8;
 		} else {
-			if ($digits > $len) {
-				$len = $digits;
-			}
+			$len = ($digits > 8 ? $digits : 8);
 			$tmp1 = $len;
 		}
 		if ($tmp > $tmp1) {
@@ -303,26 +301,23 @@ class StringTools {
 	 */
 	public static function quoteWinArg ($argument, $escapeMetaCharacters) {
 		$argument1 = $argument;
-		if (!(new \EReg("^[^ \x09\\\\\"]+\$", ""))->match($argument1)) {
+		if (!(new \EReg("^[^ \x09\\\\\"]+\$", ""))->match($argument)) {
 			$result = new \StringBuf();
-			$needquote = (HxString::indexOf($argument1, " ") !== -1) || (HxString::indexOf($argument1, "\x09") !== -1) || ($argument1 === "");
+			$needquote = (HxString::indexOf($argument, " ") !== -1) || (HxString::indexOf($argument, "\x09") !== -1) || ($argument === "");
 			if ($needquote) {
 				$result->add("\"");
 			}
 			$bs_buf = new \StringBuf();
 			$_g = 0;
-			$_g1 = mb_strlen($argument1);
+			$_g1 = mb_strlen($argument);
 			while ($_g < $_g1) {
-				$i = $_g++;
-				$_g2 = HxString::charCodeAt($argument1, $i);
+				$_g2 = HxString::charCodeAt($argument, $_g++);
 				if ($_g2 === null) {
-					$c = $_g2;
 					if (mb_strlen($bs_buf->b) > 0) {
 						$result->add($bs_buf->b);
 						$bs_buf = new \StringBuf();
 					}
-					$result1 = $result;
-					$result1->b = ($result1->b??'null') . (mb_chr($c)??'null');
+					$result->b = ($result->b??'null') . (mb_chr($_g2)??'null');
 				} else {
 					if ($_g2 === 34) {
 						$bs = $bs_buf->b;
@@ -333,13 +328,11 @@ class StringTools {
 					} else if ($_g2 === 92) {
 						$bs_buf->add("\\");
 					} else {
-						$c1 = $_g2;
 						if (mb_strlen($bs_buf->b) > 0) {
 							$result->add($bs_buf->b);
 							$bs_buf = new \StringBuf();
 						}
-						$result2 = $result;
-						$result2->b = ($result2->b??'null') . (mb_chr($c1)??'null');
+						$result->b = ($result->b??'null') . (mb_chr($_g2)??'null');
 					}
 				}
 			}
@@ -355,14 +348,11 @@ class StringTools {
 			$_g = 0;
 			$_g1 = mb_strlen($argument1);
 			while ($_g < $_g1) {
-				$i = $_g++;
-				$c = HxString::charCodeAt($argument1, $i);
+				$c = HxString::charCodeAt($argument1, $_g++);
 				if (SysTools::$winMetaCharacters->indexOf($c) >= 0) {
-					$result1 = $result;
-					$result1->b = ($result1->b??'null') . (mb_chr(94)??'null');
+					$result->b = ($result->b??'null') . (mb_chr(94)??'null');
 				}
-				$result2 = $result;
-				$result2->b = ($result2->b??'null') . (mb_chr($c)??'null');
+				$result->b = ($result->b??'null') . (mb_chr($c)??'null');
 			}
 			return $result->b;
 		} else {

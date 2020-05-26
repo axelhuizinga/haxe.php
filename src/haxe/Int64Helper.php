@@ -32,8 +32,7 @@ class Int64Helper {
 		if ($noFractions < -9007199254740991) {
 			throw Exception::thrown("Conversion underflow");
 		}
-		$this1 = new ___Int64(0, 0);
-		$result = $this1;
+		$result = new ___Int64(0, 0);
 		$neg = $noFractions < 0;
 		$rest = ($neg ? -$noFractions : $noFractions);
 		$i = 0;
@@ -45,25 +44,14 @@ class Int64Helper {
 				$a_low = 1;
 				$b = $i;
 				$b &= 63;
-				$b1 = null;
-				if ($b === 0) {
-					$this1 = new ___Int64($a_high, $a_low);
-					$b1 = $this1;
-				} else if ($b < 32) {
-					$this2 = new ___Int64((((($a_high << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a_low, (32 - $b))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($a_low << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-					$b1 = $this2;
-				} else {
-					$this3 = new ___Int64(($a_low << ($b - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0);
-					$b1 = $this3;
-				}
+				$b1 = ($b === 0 ? new ___Int64($a_high, $a_low) : ($b < 32 ? new ___Int64((((($a_high << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a_low, (32 - $b))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($a_low << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) : new ___Int64(($a_low << ($b - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0)));
 				$high = (($result->high + $b1->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				$low = (($result->low + $b1->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				if (Int32_Impl_::ucompare($low, $result->low) < 0) {
-					$ret = $high++;
+					++$high;
 					$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				}
-				$this4 = new ___Int64($high, $low);
-				$result = $this4;
+				$result = new ___Int64($high, $low);
 			}
 			++$i;
 		}
@@ -71,11 +59,10 @@ class Int64Helper {
 			$high = (~$result->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$low = ((~$result->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			if ($low === 0) {
-				$ret = $high++;
+				++$high;
 				$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
-			$this1 = new ___Int64($high, $low);
-			$result = $this1;
+			$result = new ___Int64($high, $low);
 		}
 		return $result;
 	}
@@ -90,10 +77,8 @@ class Int64Helper {
 	public static function parseString ($sParam) {
 		$base_high = 0;
 		$base_low = 10;
-		$this1 = new ___Int64(0, 0);
-		$current = $this1;
-		$this1 = new ___Int64(0, 1);
-		$multiplier = $this1;
+		$current = new ___Int64(0, 0);
+		$multiplier = new ___Int64(0, 1);
 		$sIsNegative = false;
 		$s = trim($sParam);
 		if (mb_substr($s, 0, 1) === "-") {
@@ -102,10 +87,8 @@ class Int64Helper {
 		}
 		$len = mb_strlen($s);
 		$_g = 0;
-		$_g1 = $len;
-		while ($_g < $_g1) {
-			$i = $_g++;
-			$digitInt = HxString::charCodeAt($s, $len - 1 - $i) - 48;
+		while ($_g < $len) {
+			$digitInt = HxString::charCodeAt($s, $len - 1 - $_g++) - 48;
 			if (($digitInt < 0) || ($digitInt > 9)) {
 				throw Exception::thrown("NumberFormatError");
 			}
@@ -113,109 +96,96 @@ class Int64Helper {
 				$digit_high = $digitInt >> 31;
 				$digit_low = $digitInt;
 				if ($sIsNegative) {
-					$mask = 65535;
-					$al = $multiplier->low & $mask;
+					$al = $multiplier->low & 65535;
 					$ah = Boot::shiftRightUnsigned($multiplier->low, 16);
-					$bl = $digit_low & $mask;
+					$bl = $digit_low & 65535;
 					$bh = Boot::shiftRightUnsigned($digit_low, 16);
 					$p00 = Int32_Impl_::mul($al, $bl);
 					$p10 = Int32_Impl_::mul($ah, $bl);
 					$p01 = Int32_Impl_::mul($al, $bh);
-					$p11 = Int32_Impl_::mul($ah, $bh);
 					$low = $p00;
-					$high = ((((($p11 + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					$high = (((((Int32_Impl_::mul($ah, $bh) + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					$p01 = ($p01 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$low = (($low + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					$low = (($p00 + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					if (Int32_Impl_::ucompare($low, $p01) < 0) {
-						$ret = $high++;
+						++$high;
 						$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
 					$p10 = ($p10 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					$low = (($low + $p10) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					if (Int32_Impl_::ucompare($low, $p10) < 0) {
-						$ret1 = $high++;
+						++$high;
 						$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
 					$high = (($high + (((Int32_Impl_::mul($multiplier->low, $digit_high) + Int32_Impl_::mul($multiplier->high, $digit_low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$b_high = $high;
 					$b_low = $low;
-					$high1 = (($current->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$low1 = (($current->low - $b_low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					$high1 = (($current->high - $high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					if (Int32_Impl_::ucompare($current->low, $b_low) < 0) {
-						$ret2 = $high1--;
+						--$high1;
 						$high1 = ($high1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
-					$this1 = new ___Int64($high1, $low1);
-					$current = $this1;
+					$current = new ___Int64($high1, (($current->low - $b_low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 					if (!($current->high < 0)) {
 						throw Exception::thrown("NumberFormatError: Underflow");
 					}
 				} else {
-					$mask1 = 65535;
-					$al1 = $multiplier->low & $mask1;
+					$al1 = $multiplier->low & 65535;
 					$ah1 = Boot::shiftRightUnsigned($multiplier->low, 16);
-					$bl1 = $digit_low & $mask1;
+					$bl1 = $digit_low & 65535;
 					$bh1 = Boot::shiftRightUnsigned($digit_low, 16);
 					$p001 = Int32_Impl_::mul($al1, $bl1);
 					$p101 = Int32_Impl_::mul($ah1, $bl1);
 					$p011 = Int32_Impl_::mul($al1, $bh1);
-					$p111 = Int32_Impl_::mul($ah1, $bh1);
-					$low2 = $p001;
-					$high2 = ((((($p111 + (Boot::shiftRightUnsigned($p011, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p101, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					$low1 = $p001;
+					$high2 = (((((Int32_Impl_::mul($ah1, $bh1) + (Boot::shiftRightUnsigned($p011, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p101, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					$p011 = ($p011 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$low2 = (($low2 + $p011) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					if (Int32_Impl_::ucompare($low2, $p011) < 0) {
-						$ret3 = $high2++;
+					$low1 = (($p001 + $p011) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					if (Int32_Impl_::ucompare($low1, $p011) < 0) {
+						++$high2;
 						$high2 = ($high2 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
 					$p101 = ($p101 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$low2 = (($low2 + $p101) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					if (Int32_Impl_::ucompare($low2, $p101) < 0) {
-						$ret4 = $high2++;
+					$low1 = (($low1 + $p101) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					if (Int32_Impl_::ucompare($low1, $p101) < 0) {
+						++$high2;
 						$high2 = ($high2 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
 					$high2 = (($high2 + (((Int32_Impl_::mul($multiplier->low, $digit_high) + Int32_Impl_::mul($multiplier->high, $digit_low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$b_high1 = $high2;
-					$b_low1 = $low2;
-					$high3 = (($current->high + $b_high1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					$low3 = (($current->low + $b_low1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-					if (Int32_Impl_::ucompare($low3, $current->low) < 0) {
-						$ret5 = $high3++;
+					$high3 = (($current->high + $high2) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					$low2 = (($current->low + $low1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+					if (Int32_Impl_::ucompare($low2, $current->low) < 0) {
+						++$high3;
 						$high3 = ($high3 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 					}
-					$this2 = new ___Int64($high3, $low3);
-					$current = $this2;
+					$current = new ___Int64($high3, $low2);
 					if ($current->high < 0) {
 						throw Exception::thrown("NumberFormatError: Overflow");
 					}
 				}
 			}
-			$mask2 = 65535;
-			$al2 = $multiplier->low & $mask2;
+			$al2 = $multiplier->low & 65535;
 			$ah2 = Boot::shiftRightUnsigned($multiplier->low, 16);
-			$bl2 = $base_low & $mask2;
+			$bl2 = $base_low & 65535;
 			$bh2 = Boot::shiftRightUnsigned($base_low, 16);
 			$p002 = Int32_Impl_::mul($al2, $bl2);
 			$p102 = Int32_Impl_::mul($ah2, $bl2);
 			$p012 = Int32_Impl_::mul($al2, $bh2);
-			$p112 = Int32_Impl_::mul($ah2, $bh2);
-			$low4 = $p002;
-			$high4 = ((((($p112 + (Boot::shiftRightUnsigned($p012, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p102, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+			$low3 = $p002;
+			$high4 = (((((Int32_Impl_::mul($ah2, $bh2) + (Boot::shiftRightUnsigned($p012, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p102, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$p012 = ($p012 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-			$low4 = (($low4 + $p012) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-			if (Int32_Impl_::ucompare($low4, $p012) < 0) {
-				$ret6 = $high4++;
+			$low3 = (($p002 + $p012) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+			if (Int32_Impl_::ucompare($low3, $p012) < 0) {
+				++$high4;
 				$high4 = ($high4 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
 			$p102 = ($p102 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-			$low4 = (($low4 + $p102) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-			if (Int32_Impl_::ucompare($low4, $p102) < 0) {
-				$ret7 = $high4++;
+			$low3 = (($low3 + $p102) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+			if (Int32_Impl_::ucompare($low3, $p102) < 0) {
+				++$high4;
 				$high4 = ($high4 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
 			$high4 = (($high4 + (((Int32_Impl_::mul($multiplier->low, $base_high) + Int32_Impl_::mul($multiplier->high, $base_low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-			$this3 = new ___Int64($high4, $low4);
-			$multiplier = $this3;
+			$multiplier = new ___Int64($high4, $low3);
 		}
 		return $current;
 	}

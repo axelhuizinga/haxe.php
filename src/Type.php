@@ -43,9 +43,7 @@ class Type {
 		$_g = 0;
 		$_g1 = Type::getEnumConstructs($e);
 		while ($_g < $_g1->length) {
-			$name = ($_g1->arr[$_g] ?? null);
-			++$_g;
-			$reflection = new \ReflectionMethod($phpName, $name);
+			$reflection = new \ReflectionMethod($phpName, ($_g1->arr[$_g++] ?? null));
 			if ($reflection->getNumberOfParameters() === 0) {
 				$x = $reflection->invoke(null);
 				$result->arr[$result->length++] = $x;
@@ -70,8 +68,7 @@ class Type {
 		if (Boot::getClass(\Array_hx::class) === $cl) {
 			return new \Array_hx();
 		}
-		$reflection = new \ReflectionClass($cl->phpClassName);
-		return $reflection->newInstanceWithoutConstructor();
+		return (new \ReflectionClass($cl->phpClassName))->newInstanceWithoutConstructor();
 	}
 
 	/**
@@ -103,8 +100,7 @@ class Type {
 		if ($params === null) {
 			return $phpName::{$constr}();
 		} else {
-			$nativeArgs = $params->arr;
-			return $phpName::{$constr}(...$nativeArgs);
+			return $phpName::{$constr}(...$params->arr);
 		}
 	}
 
@@ -141,8 +137,7 @@ class Type {
 		if ($params === null) {
 			return $phpName::{$constr}();
 		} else {
-			$nativeArgs = $params->arr;
-			return $phpName::{$constr}(...$nativeArgs);
+			return $phpName::{$constr}(...$params->arr);
 		}
 	}
 
@@ -309,35 +304,30 @@ class Type {
 		}
 		$phpName = $c->phpClassName;
 		$reflection = new \ReflectionClass($phpName);
-		$this1 = [];
-		$methods = $this1;
+		$methods = [];
 		$data = $reflection->getMethods(\ReflectionMethod::IS_STATIC);
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$m = $_g_data[$_g_current++];
+			$m = $data[$_g_current++];
 			$name = $m->getName();
 			if (!(($name === "__construct") || (HxString::indexOf($name, "__hx_") === 0)) && ($phpName === $m->getDeclaringClass()->getName())) {
 				array_push($methods, $name);
 			}
 		}
-		$this1 = [];
-		$properties = $this1;
+		$properties = [];
 		$data = $reflection->getProperties(\ReflectionProperty::IS_STATIC);
 		$_g1_current = 0;
 		$_g1_length = count($data);
-		$_g1_data = $data;
 		while ($_g1_current < $_g1_length) {
-			$p = $_g1_data[$_g1_current++];
+			$p = $data[$_g1_current++];
 			$name = $p->getName();
 			if (!(($name === "__construct") || (HxString::indexOf($name, "__hx_") === 0)) && ($phpName === $p->getDeclaringClass()->getName())) {
 				array_push($properties, $name);
 			}
 		}
 		$properties = array_diff($properties, $methods);
-		$fields = array_merge($properties, $methods);
-		return \Array_hx::wrap($fields);
+		return \Array_hx::wrap(array_merge($properties, $methods));
 	}
 
 	/**
@@ -448,14 +438,12 @@ class Type {
 			]);
 		}
 		$reflection = new \ReflectionClass($c->phpClassName);
-		$this1 = [];
-		$methods = $this1;
+		$methods = [];
 		$data = $reflection->getMethods();
 		$_g_current = 0;
 		$_g_length = count($data);
-		$_g_data = $data;
 		while ($_g_current < $_g_length) {
-			$method = $_g_data[$_g_current++];
+			$method = $data[$_g_current++];
 			if (!$method->isStatic()) {
 				$name = $method->getName();
 				if (!(($name === "__construct") || (HxString::indexOf($name, "__hx_") === 0))) {
@@ -463,14 +451,12 @@ class Type {
 				}
 			}
 		}
-		$this1 = [];
-		$properties = $this1;
+		$properties = [];
 		$data = $reflection->getProperties();
 		$_g1_current = 0;
 		$_g1_length = count($data);
-		$_g1_data = $data;
 		while ($_g1_current < $_g1_length) {
-			$property = $_g1_data[$_g1_current++];
+			$property = $data[$_g1_current++];
 			if (!$property->isStatic()) {
 				$name = $property->getName();
 				if (!(($name === "__construct") || (HxString::indexOf($name, "__hx_") === 0))) {
@@ -479,8 +465,7 @@ class Type {
 			}
 		}
 		$properties = array_diff($properties, $methods);
-		$fields = array_merge($properties, $methods);
-		return \Array_hx::wrap($fields);
+		return \Array_hx::wrap(array_merge($properties, $methods));
 	}
 
 	/**
@@ -554,8 +539,7 @@ class Type {
 		if (!class_exists($phpClass) && !interface_exists($phpClass)) {
 			return null;
 		}
-		$hxClass = Boot::getClass($phpClass);
-		return $hxClass;
+		return Boot::getClass($phpClass);
 	}
 
 	/**
@@ -581,8 +565,7 @@ class Type {
 		if (!class_exists($phpClass)) {
 			return null;
 		}
-		$hxClass = Boot::getClass($phpClass);
-		return $hxClass;
+		return Boot::getClass($phpClass);
 	}
 
 	/**

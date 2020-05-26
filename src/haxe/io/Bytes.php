@@ -54,8 +54,7 @@ class Bytes {
 	 * @return Bytes
 	 */
 	public static function ofHex ($s) {
-		$len = strlen($s);
-		if (($len & 1) !== 0) {
+		if ((strlen($s) & 1) !== 0) {
 			throw Exception::thrown("Not a hex string (odd number of digits)");
 		}
 		$b = hex2bin($s);
@@ -123,8 +122,7 @@ class Bytes {
 		$_g = $pos;
 		$_g1 = $pos + $len;
 		while ($_g < $_g1) {
-			$i = $_g++;
-			$this->b->s[$i] = chr($value);
+			$this->b->s[$_g++] = chr($value);
 		}
 	}
 
@@ -164,8 +162,7 @@ class Bytes {
 	 * @return float
 	 */
 	public function getFloat ($pos) {
-		$b = new BytesInput($this, $pos, 4);
-		return $b->readFloat();
+		return (new BytesInput($this, $pos, 4))->readFloat();
 	}
 
 	/**
@@ -191,8 +188,7 @@ class Bytes {
 		$pos1 = $pos + 4;
 		$v = ord($this->b->s[$pos1]) | (ord($this->b->s[$pos1 + 1]) << 8) | (ord($this->b->s[$pos1 + 2]) << 16) | (ord($this->b->s[$pos1 + 3]) << 24);
 		$v1 = ord($this->b->s[$pos]) | (ord($this->b->s[$pos + 1]) << 8) | (ord($this->b->s[$pos + 2]) << 16) | (ord($this->b->s[$pos + 3]) << 24);
-		$this1 = new ___Int64((($v & ((int)-2147483648)) !== 0 ? $v | ((int)-2147483648) : $v), (($v1 & ((int)-2147483648)) !== 0 ? $v1 | ((int)-2147483648) : $v1));
-		return $this1;
+		return new ___Int64((($v & ((int)-2147483648)) !== 0 ? $v | ((int)-2147483648) : $v), (($v1 & ((int)-2147483648)) !== 0 ? $v1 | ((int)-2147483648) : $v1));
 	}
 
 	/**

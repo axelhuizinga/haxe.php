@@ -57,9 +57,7 @@ class BytesOutput extends Output {
 		if (($pos < 0) || ($len < 0) || (($pos + $len) > $buf->length)) {
 			throw Exception::thrown(Error::OutsideBounds());
 		} else {
-			$left = $_this->b;
-			$this_s = substr($buf->b->s, $pos, $len);
-			$_this->b = ($left . $this_s);
+			$_this->b = ($_this->b . substr($buf->b->s, $pos, $len));
 		}
 		return $len;
 	}

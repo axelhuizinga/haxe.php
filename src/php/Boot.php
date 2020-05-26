@@ -229,8 +229,7 @@ class Boot {
 			$phpClassName = mb_substr($phpClassName, 1, null);
 		}
 		if (!isset(Boot::$classes[$phpClassName])) {
-			$val = new HxClass($phpClassName);
-			Boot::$classes[$phpClassName] = $val;
+			Boot::$classes[$phpClassName] = new HxClass($phpClassName);
 		}
 		return Boot::$classes[$phpClassName];
 	}
@@ -324,8 +323,7 @@ class Boot {
 		}
 		$result = new HxClosure($obj, $methodName);
 		if (!property_exists($obj, "__hx_closureCache")) {
-			$this1 = [];
-			$obj->__hx_closureCache = $this1;
+			$obj->__hx_closureCache = [];
 		}
 		$obj->__hx_closureCache[$methodName] = $result;
 		return $result;
@@ -578,9 +576,7 @@ class Boot {
 			return $value !== null;
 		} else if ($phpType === "Class" || $phpType === "Enum") {
 			if (($value instanceof HxClass)) {
-				$valuePhpClass = $value->phpClassName;
-				$enumPhpClass = Boot::getClass(HxEnum::class)->phpClassName;
-				$isEnumType = is_subclass_of($valuePhpClass, $enumPhpClass);
+				$isEnumType = is_subclass_of($value->phpClassName, Boot::getClass(HxEnum::class)->phpClassName);
 				if ($phpType === "Enum") {
 					return $isEnumType;
 				} else {
@@ -605,8 +601,8 @@ class Boot {
 			return is_array($value);
 		} else {
 			if (is_object($value)) {
-				$type1 = $type;
-				return ($value instanceof $type1->phpClassName);
+				$tmp = $type;
+				return ($value instanceof $tmp->phpClassName);
 			}
 		}
 		return false;
@@ -740,8 +736,7 @@ class Boot {
 		}
 		if (is_array($value)) {
 			$strings = [];
-			$collection = $value;
-			foreach ($collection as $key => $value1) {
+			foreach ($value as $key => $value1) {
 				$strings[] = (((string)($key)??'null') . " => " . (Boot::stringify($value1, $maxRecursion - 1)??'null'));
 			}
 			return "[" . (implode(", ", $strings)??'null') . "]";
@@ -754,10 +749,9 @@ class Boot {
 				$e = $value;
 				$result = $e->tag;
 				if (count($e->params) > 0) {
-					$strings = array_map(function ($item) use (&$maxRecursion) {
+					$result = ($result??'null') . "(" . (implode(",", array_map(function ($item) use (&$maxRecursion) {
 						return Boot::stringify($item, $maxRecursion - 1);
-					}, $e->params);
-					$result = ($result??'null') . "(" . (implode(",", $strings)??'null') . ")";
+					}, $e->params))??'null') . ")";
 				}
 				return $result;
 			}
@@ -771,15 +765,13 @@ class Boot {
 				if (isset($value->toString) && is_callable(Boot::dynamicField($value, 'toString'))) {
 					return HxDynamicStr::wrap($value)->toString();
 				}
-				$this1 = [];
-				$result = $this1;
+				$result = [];
 				$data = get_object_vars($value);
 				$data1 = array_keys($data);
 				$_g_current = 0;
 				$_g_length = count($data1);
-				$_g_data = $data1;
 				while ($_g_current < $_g_length) {
-					$key = $_g_data[$_g_current++];
+					$key = $data1[$_g_current++];
 					array_push($result, "" . ($key??'null') . " : " . (Boot::stringify($data[$key], $maxRecursion - 1)??'null'));
 				}
 				return "{ " . (implode(", ", $result)??'null') . " }";
@@ -903,18 +895,12 @@ class Boot {
 			}
 		}
 
-		$this1 = [];
-		self::$aliases = $this1;
-		$this1 = [];
-		self::$classes = $this1;
-		$this1 = [];
-		self::$getters = $this1;
-		$this1 = [];
-		self::$setters = $this1;
-		$this1 = [];
-		self::$meta = $this1;
-		$this1 = [];
-		self::$staticClosures = $this1;
+		self::$aliases = [];
+		self::$classes = [];
+		self::$getters = [];
+		self::$setters = [];
+		self::$meta = [];
+		self::$staticClosures = [];
 	}
 }
 

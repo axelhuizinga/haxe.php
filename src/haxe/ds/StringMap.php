@@ -27,8 +27,7 @@ class StringMap implements IMap {
 	 * @return void
 	 */
 	public function __construct () {
-		$this1 = [];
-		$this->data = $this1;
+		$this->data = [];
 	}
 
 	/**
@@ -37,8 +36,7 @@ class StringMap implements IMap {
 	 * @return void
 	 */
 	public function clear () {
-		$this1 = [];
-		$this->data = $this1;
+		$this->data = [];
 	}
 
 	/**
@@ -137,8 +135,7 @@ class StringMap implements IMap {
 	 * @return string
 	 */
 	public function toString () {
-		$this1 = [];
-		$parts = $this1;
+		$parts = [];
 		$collection = $this->data;
 		foreach ($collection as $key => $value) {
 			array_push($parts, "" . ($key??'null') . " => " . (\Std::string($value)??'null'));

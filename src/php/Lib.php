@@ -71,8 +71,7 @@ class Lib {
 	public static function getClasses () {
 		if (!Lib::$loaded) {
 			Lib::$loaded = true;
-			$reflection = new \ReflectionClass(Boot::getPhpName("php.Boot"));
-			Lib::loadLib(dirname($reflection->getFileName(), 2));
+			Lib::loadLib(dirname((new \ReflectionClass(Boot::getPhpName("php.Boot")))->getFileName(), 2));
 		}
 		$result = new HxAnon();
 		$collection = Boot::getRegisteredAliases();
@@ -163,9 +162,8 @@ class Lib {
 	 */
 	public static function objectOfAssociativeArray ($arr) {
 		foreach ($arr as $key => $value) {
-			$value1 = $value;
-			if (is_array($value1)) {
-				$arr[$key] = Lib::objectOfAssociativeArray($value1);
+			if (is_array($value)) {
+				$arr[$key] = Lib::objectOfAssociativeArray($value);
 			}
 		}
 		return new HxAnon($arr);

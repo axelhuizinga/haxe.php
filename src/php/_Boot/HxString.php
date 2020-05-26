@@ -118,16 +118,16 @@ class HxString {
 	 */
 	public static function lastIndexOf ($str, $search, $startIndex = null) {
 		$start = $startIndex;
-		if ($start === null) {
+		if ($startIndex === null) {
 			$start = 0;
 		} else {
 			$length = mb_strlen($str);
-			if ($start >= 0) {
-				$start -= $length;
+			if ($startIndex >= 0) {
+				$start = $startIndex - $length;
 				if ($start > 0) {
 					$start = 0;
 				}
-			} else if ($start < -$length) {
+			} else if ($startIndex < -$length) {
 				$start = -$length;
 			}
 		}

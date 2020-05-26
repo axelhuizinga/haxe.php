@@ -44,8 +44,7 @@ class FileOutput extends Output {
 	 * @return void
 	 */
 	public function flush () {
-		$r = fflush($this->__f);
-		if ($r === false) {
+		if (fflush($this->__f) === false) {
 			throw Exception::thrown(Error::Custom("An error occurred"));
 		}
 	}
@@ -66,8 +65,7 @@ class FileOutput extends Output {
 		} else if ($__hx__switch === 2) {
 			$w = SEEK_END;
 		}
-		$r = fseek($this->__f, $p, $w);
-		if ($r === false) {
+		if (fseek($this->__f, $p, $w) === false) {
 			throw Exception::thrown(Error::Custom("An error occurred"));
 		}
 	}
@@ -89,8 +87,7 @@ class FileOutput extends Output {
 	 * @return void
 	 */
 	public function writeByte ($c) {
-		$r = fwrite($this->__f, chr($c));
-		if ($r === false) {
+		if (fwrite($this->__f, chr($c)) === false) {
 			throw Exception::thrown(Error::Custom("An error occurred"));
 		}
 	}

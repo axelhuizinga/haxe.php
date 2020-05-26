@@ -15,8 +15,7 @@ final class Vector_Impl_ {
 	 * @return PhpVectorData
 	 */
 	public static function _new ($length) {
-		$this1 = new PhpVectorData($length);
-		return $this1;
+		return new PhpVectorData($length);
 	}
 
 	/**
@@ -34,9 +33,8 @@ final class Vector_Impl_ {
 				$i = $srcPos + $len;
 				$j = $destPos + $len;
 				$_g = 0;
-				$_g1 = $len;
-				while ($_g < $_g1) {
-					$k = $_g++;
+				while ($_g < $len) {
+					++$_g;
 					--$i;
 					--$j;
 					$val = ($src->data[$i] ?? null);
@@ -46,9 +44,8 @@ final class Vector_Impl_ {
 				$i = $srcPos;
 				$j = $destPos;
 				$_g = 0;
-				$_g1 = $len;
-				while ($_g < $_g1) {
-					$k = $_g++;
+				while ($_g < $len) {
+					++$_g;
 					$val = ($src->data[$i] ?? null);
 					$src->data[$j] = $val;
 					++$i;
@@ -57,8 +54,7 @@ final class Vector_Impl_ {
 			}
 		} else {
 			$_g = 0;
-			$_g1 = $len;
-			while ($_g < $_g1) {
+			while ($_g < $len) {
 				$i = $_g++;
 				$val = ($src->data[$srcPos + $i] ?? null);
 				$dest->data[$destPos + $i] = $val;
@@ -128,8 +124,7 @@ final class Vector_Impl_ {
 		$_g = 1;
 		$_g1 = $this1->length;
 		while ($_g < $_g1) {
-			$i = $_g++;
-			$result = ($result . ($sep . \Std::string(($this1->data[$i] ?? null))));
+			$result = ($result . ($sep . \Std::string(($this1->data[$_g++] ?? null))));
 		}
 		return $result;
 	}
@@ -141,8 +136,7 @@ final class Vector_Impl_ {
 	 * @return PhpVectorData
 	 */
 	public static function map ($this1, $f) {
-		$this2 = new PhpVectorData($this1->length);
-		$result = $this2;
+		$result = new PhpVectorData($this1->length);
 		$collection = $this1->data;
 		foreach ($collection as $key => $value) {
 			$val = $f($value);
@@ -183,8 +177,7 @@ final class Vector_Impl_ {
 		$_g = 0;
 		$_g1 = $this1->length;
 		while ($_g < $_g1) {
-			$i = $_g++;
-			$val = ($this1->data[$i] ?? null);
+			$val = ($this1->data[$_g++] ?? null);
 			$result->arr[] = $val;
 		}
 		return $result;

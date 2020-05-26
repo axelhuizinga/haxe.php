@@ -62,16 +62,13 @@ class SysTools {
 			$_g = 0;
 			$_g1 = mb_strlen($argument);
 			while ($_g < $_g1) {
-				$i = $_g++;
-				$_g2 = HxString::charCodeAt($argument, $i);
+				$_g2 = HxString::charCodeAt($argument, $_g++);
 				if ($_g2 === null) {
-					$c = $_g2;
 					if (mb_strlen($bs_buf->b) > 0) {
 						$result->add($bs_buf->b);
 						$bs_buf = new \StringBuf();
 					}
-					$result1 = $result;
-					$result1->b = ($result1->b??'null') . (mb_chr($c)??'null');
+					$result->b = ($result->b??'null') . (mb_chr($_g2)??'null');
 				} else {
 					if ($_g2 === 34) {
 						$bs = $bs_buf->b;
@@ -82,13 +79,11 @@ class SysTools {
 					} else if ($_g2 === 92) {
 						$bs_buf->add("\\");
 					} else {
-						$c1 = $_g2;
 						if (mb_strlen($bs_buf->b) > 0) {
 							$result->add($bs_buf->b);
 							$bs_buf = new \StringBuf();
 						}
-						$result2 = $result;
-						$result2->b = ($result2->b??'null') . (mb_chr($c1)??'null');
+						$result->b = ($result->b??'null') . (mb_chr($_g2)??'null');
 					}
 				}
 			}
@@ -104,14 +99,11 @@ class SysTools {
 			$_g = 0;
 			$_g1 = mb_strlen($argument);
 			while ($_g < $_g1) {
-				$i = $_g++;
-				$c = HxString::charCodeAt($argument, $i);
+				$c = HxString::charCodeAt($argument, $_g++);
 				if (SysTools::$winMetaCharacters->indexOf($c) >= 0) {
-					$result1 = $result;
-					$result1->b = ($result1->b??'null') . (mb_chr(94)??'null');
+					$result->b = ($result->b??'null') . (mb_chr(94)??'null');
 				}
-				$result2 = $result;
-				$result2->b = ($result2->b??'null') . (mb_chr($c)??'null');
+				$result->b = ($result->b??'null') . (mb_chr($c)??'null');
 			}
 			return $result->b;
 		} else {

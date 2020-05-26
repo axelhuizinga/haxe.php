@@ -33,10 +33,14 @@ class BalancedTree implements IMap {
 	 * @return void
 	 */
 	public static function iteratorLoop ($node, $acc) {
-		if ($node !== null) {
-			BalancedTree::iteratorLoop($node->left, $acc);
-			$acc->arr[$acc->length++] = $node->value;
-			BalancedTree::iteratorLoop($node->right, $acc);
+		while (true) {
+			if ($node !== null) {
+				BalancedTree::iteratorLoop($node->left, $acc);
+				$acc->arr[$acc->length++] = $node->value;
+				$node = $node->right;
+				continue;
+			}
+			return;
 		}
 	}
 
@@ -63,15 +67,9 @@ class BalancedTree implements IMap {
 			$_this = $l->left;
 			$_this1 = $l->right;
 			if ((($_this === null ? 0 : $_this->_height)) >= (($_this1 === null ? 0 : $_this1->_height))) {
-				$l1 = $l->left;
-				$l2 = $l->key;
-				$l3 = $l->value;
-				return new TreeNode($l1, $l2, $l3, new TreeNode($l->right, $k, $v, $r));
+				return new TreeNode($l->left, $l->key, $l->value, new TreeNode($l->right, $k, $v, $r));
 			} else {
-				$tmp = new TreeNode($l->left, $l->key, $l->value, $l->right->left);
-				$l1 = $l->right->key;
-				$l2 = $l->right->value;
-				return new TreeNode($tmp, $l1, $l2, new TreeNode($l->right->right, $k, $v, $r));
+				return new TreeNode(new TreeNode($l->left, $l->key, $l->value, $l->right->left), $l->right->key, $l->right->value, new TreeNode($l->right->right, $k, $v, $r));
 			}
 		} else if ($hr > ($hl + 2)) {
 			$_this = $r->right;
@@ -79,10 +77,7 @@ class BalancedTree implements IMap {
 			if ((($_this === null ? 0 : $_this->_height)) > (($_this1 === null ? 0 : $_this1->_height))) {
 				return new TreeNode(new TreeNode($l, $k, $v, $r->left), $r->key, $r->value, $r->right);
 			} else {
-				$tmp = new TreeNode($l, $k, $v, $r->left->left);
-				$r1 = $r->left->key;
-				$r2 = $r->left->value;
-				return new TreeNode($tmp, $r1, $r2, new TreeNode($r->left->right, $r->key, $r->value, $r->right));
+				return new TreeNode(new TreeNode($l, $k, $v, $r->left->left), $r->left->key, $r->left->value, new TreeNode($r->left->right, $r->key, $r->value, $r->right));
 			}
 		} else {
 			return new TreeNode($l, $k, $v, $r, (($hl > $hr ? $hl : $hr)) + 1);
@@ -332,8 +327,7 @@ class BalancedTree implements IMap {
 		if ($c === 0) {
 			return new TreeNode($node->left, $k, $v, $node->right, ($node === null ? 0 : $node->_height));
 		} else if ($c < 0) {
-			$nl = $this->setLoop($k, $v, $node->left);
-			return $this->balance($nl, $node->key, $node->value, $node->right);
+			return $this->balance($this->setLoop($k, $v, $node->left), $node->key, $node->value, $node->right);
 		} else {
 			$nr = $this->setLoop($k, $v, $node->right);
 			return $this->balance($node->left, $node->key, $node->value, $nr);

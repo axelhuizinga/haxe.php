@@ -16,8 +16,7 @@ final class HashMap_Impl_ {
 	 * @return HashMapData
 	 */
 	public static function _new () {
-		$this1 = new HashMapData();
-		return $this1;
+		return new HashMapData();
 	}
 
 	/**
@@ -28,12 +27,8 @@ final class HashMap_Impl_ {
 	 * @return void
 	 */
 	public static function clear ($this1) {
-		$_this = $this1->keys;
-		$this2 = [];
-		$_this->data = $this2;
-		$_this = $this1->values;
-		$this1 = [];
-		$_this->data = $this1;
+		$this1->keys->data = [];
+		$this1->values->data = [];
 	}
 
 	/**

@@ -23,8 +23,7 @@ class Json {
 	 */
 	public static function convertAfterDecode ($value) {
 		if (is_object($value)) {
-			$this1 = [];
-			$result = $this1;
+			$result = [];
 			$data = ((array)($value));
 			foreach ($data as $key => $value1) {
 				$result[$key] = Json::convertAfterDecode($value1);
@@ -32,10 +31,8 @@ class Json {
 			return new HxAnon($result);
 		}
 		if (is_array($value)) {
-			$this1 = [];
-			$result = $this1;
-			$collection = $value;
-			foreach ($collection as $key => $value1) {
+			$result = [];
+			foreach ($value as $key => $value1) {
 				$result[$key] = Json::convertAfterDecode($value1);
 			}
 			return \Array_hx::wrap($result);
@@ -50,8 +47,7 @@ class Json {
 	 */
 	public static function convertBeforeEncode ($value) {
 		if (($value instanceof \Array_hx)) {
-			$this1 = [];
-			$result = $this1;
+			$result = [];
 			$collection = Boot::dynamicField($value, 'arr');
 			foreach ($collection as $key => $value1) {
 				$result[$key] = Json::convertBeforeEncode($value1);
@@ -60,8 +56,7 @@ class Json {
 		}
 		if (is_object($value)) {
 			$result = new HxAnon();
-			$collection = $value;
-			foreach ($collection as $key => $value1) {
+			foreach ($value as $key => $value1) {
 				$result->{$key} = Json::convertBeforeEncode($value1);
 			}
 			return $result;

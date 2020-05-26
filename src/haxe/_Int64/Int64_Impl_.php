@@ -19,8 +19,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function _new ($x) {
-		$this1 = $x;
-		return $this1;
+		return $x;
 	}
 
 	/**
@@ -35,11 +34,10 @@ final class Int64_Impl_ {
 		$high = (($a->high + $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$low = (($a->low + $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $a->low) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -49,16 +47,13 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function addInt ($a, $b) {
-		$b_high = $b >> 31;
-		$b_low = $b;
-		$high = (($a->high + $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($a->low + $b_low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$high = (($a->high + ($b >> 31)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$low = (($a->low + $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $a->low) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -70,8 +65,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function and ($a, $b) {
-		$this1 = new ___Int64($a->high & $b->high, $a->low & $b->low);
-		return $this1;
+		return new ___Int64($a->high & $b->high, $a->low & $b->low);
 	}
 
 	/**
@@ -110,8 +104,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function complement ($a) {
-		$this1 = new ___Int64((~$a->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (~$a->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-		return $this1;
+		return new ___Int64((~$a->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (~$a->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 
 	/**
@@ -122,8 +115,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function copy ($this1) {
-		$this2 = new ___Int64($this1->high, $this1->low);
-		return $this2;
+		return new ___Int64($this1->high, $this1->low);
 	}
 
 	/**
@@ -145,8 +137,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function divInt ($a, $b) {
-		$this1 = new ___Int64($b >> 31, $b);
-		return Int64_Impl_::divMod($a, $this1)->quotient;
+		return Int64_Impl_::divMod($a, new ___Int64($b >> 31, $b))->quotient;
 	}
 
 	/**
@@ -164,11 +155,9 @@ final class Int64_Impl_ {
 			if ($__hx__switch === 0) {
 				throw Exception::thrown("divide by zero");
 			} else if ($__hx__switch === 1) {
-				$this1 = new ___Int64($dividend->high, $dividend->low);
-				$this2 = new ___Int64(0, 0);
 				return new HxAnon([
-					"quotient" => $this1,
-					"modulus" => $this2,
+					"quotient" => new ___Int64($dividend->high, $dividend->low),
+					"modulus" => new ___Int64(0, 0),
 				]);
 			}
 		}
@@ -178,123 +167,64 @@ final class Int64_Impl_ {
 			$high = (~$dividend->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$low = ((~$dividend->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			if ($low === 0) {
-				$ret = $high++;
+				++$high;
 				$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
-			$this1 = new ___Int64($high, $low);
-			$modulus = $this1;
+			$modulus = new ___Int64($high, $low);
 		} else {
-			$this1 = new ___Int64($dividend->high, $dividend->low);
-			$modulus = $this1;
+			$modulus = new ___Int64($dividend->high, $dividend->low);
 		}
 		if ($divisor->high < 0) {
 			$high = (~$divisor->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$low = ((~$divisor->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			if ($low === 0) {
-				$ret = $high++;
+				++$high;
 				$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
-			$this1 = new ___Int64($high, $low);
-			$divisor = $this1;
+			$divisor = new ___Int64($high, $low);
 		}
-		$this1 = new ___Int64(0, 0);
-		$quotient = $this1;
-		$this1 = new ___Int64(0, 1);
-		$mask = $this1;
+		$quotient = new ___Int64(0, 0);
+		$mask = new ___Int64(0, 1);
 		while (!($divisor->high < 0)) {
 			$v = Int32_Impl_::ucompare($divisor->high, $modulus->high);
 			$cmp = ($v !== 0 ? $v : Int32_Impl_::ucompare($divisor->low, $modulus->low));
-			$b = 1;
-			$b &= 63;
-			if ($b === 0) {
-				$this1 = new ___Int64($divisor->high, $divisor->low);
-				$divisor = $this1;
-			} else if ($b < 32) {
-				$this2 = new ___Int64((((($divisor->high << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($divisor->low, (32 - $b))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($divisor->low << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-				$divisor = $this2;
-			} else {
-				$this3 = new ___Int64(($divisor->low << ($b - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0);
-				$divisor = $this3;
-			}
-			$b1 = 1;
-			$b1 &= 63;
-			if ($b1 === 0) {
-				$this4 = new ___Int64($mask->high, $mask->low);
-				$mask = $this4;
-			} else if ($b1 < 32) {
-				$this5 = new ___Int64((((($mask->high << $b1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($mask->low, (32 - $b1))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($mask->low << $b1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-				$mask = $this5;
-			} else {
-				$this6 = new ___Int64(($mask->low << ($b1 - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0);
-				$mask = $this6;
-			}
+			$divisor = new ___Int64((((($divisor->high << 1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($divisor->low, 31)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($divisor->low << 1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
+			$mask = new ___Int64((((($mask->high << 1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($mask->low, 31)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($mask->low << 1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 			if ($cmp >= 0) {
 				break;
 			}
 		}
-		while (true) {
-			$b_high = 0;
-			$b_low = 0;
-			if (!(($mask->high !== $b_high) || ($mask->low !== $b_low))) {
-				break;
-			}
+		while (($mask->high !== 0) || ($mask->low !== 0)) {
 			$v = Int32_Impl_::ucompare($modulus->high, $divisor->high);
 			if ((($v !== 0 ? $v : Int32_Impl_::ucompare($modulus->low, $divisor->low))) >= 0) {
-				$this1 = new ___Int64((($quotient->high | $mask->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($quotient->low | $mask->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-				$quotient = $this1;
+				$quotient = new ___Int64((($quotient->high | $mask->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($quotient->low | $mask->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 				$high = (($modulus->high - $divisor->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-				$low = (($modulus->low - $divisor->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				if (Int32_Impl_::ucompare($modulus->low, $divisor->low) < 0) {
-					$ret = $high--;
+					--$high;
 					$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				}
-				$this2 = new ___Int64($high, $low);
-				$modulus = $this2;
+				$modulus = new ___Int64($high, (($modulus->low - $divisor->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 			}
-			$b = 1;
-			$b &= 63;
-			if ($b === 0) {
-				$this3 = new ___Int64($mask->high, $mask->low);
-				$mask = $this3;
-			} else if ($b < 32) {
-				$this4 = new ___Int64(Boot::shiftRightUnsigned($mask->high, $b), (((($mask->high << (32 - $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($mask->low, $b)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-				$mask = $this4;
-			} else {
-				$this5 = new ___Int64(0, Boot::shiftRightUnsigned($mask->high, ($b - 32)));
-				$mask = $this5;
-			}
-			$b1 = 1;
-			$b1 &= 63;
-			if ($b1 === 0) {
-				$this6 = new ___Int64($divisor->high, $divisor->low);
-				$divisor = $this6;
-			} else if ($b1 < 32) {
-				$this7 = new ___Int64(Boot::shiftRightUnsigned($divisor->high, $b1), (((($divisor->high << (32 - $b1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($divisor->low, $b1)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-				$divisor = $this7;
-			} else {
-				$this8 = new ___Int64(0, Boot::shiftRightUnsigned($divisor->high, ($b1 - 32)));
-				$divisor = $this8;
-			}
+			$mask = new ___Int64(Boot::shiftRightUnsigned($mask->high, 1), (((($mask->high << 31 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($mask->low, 1)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
+			$divisor = new ___Int64(Boot::shiftRightUnsigned($divisor->high, 1), (((($divisor->high << 31 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($divisor->low, 1)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 		}
 		if ($divSign) {
 			$high = (~$quotient->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$low = ((~$quotient->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			if ($low === 0) {
-				$ret = $high++;
+				++$high;
 				$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
-			$this1 = new ___Int64($high, $low);
-			$quotient = $this1;
+			$quotient = new ___Int64($high, $low);
 		}
 		if ($dividend->high < 0) {
 			$high = (~$modulus->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			$low = ((~$modulus->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			if ($low === 0) {
-				$ret = $high++;
+				++$high;
 				$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 			}
-			$this1 = new ___Int64($high, $low);
-			$modulus = $this1;
+			$modulus = new ___Int64($high, $low);
 		}
 		return new HxAnon([
 			"quotient" => $quotient,
@@ -325,10 +255,8 @@ final class Int64_Impl_ {
 	 * @return bool
 	 */
 	public static function eqInt ($a, $b) {
-		$b_high = $b >> 31;
-		$b_low = $b;
-		if ($a->high === $b_high) {
-			return $a->low === $b_low;
+		if ($a->high === ($b >> 31)) {
+			return $a->low === $b;
 		} else {
 			return false;
 		}
@@ -405,10 +333,9 @@ final class Int64_Impl_ {
 	 */
 	public static function gtInt ($a, $b) {
 		$b_high = $b >> 31;
-		$b_low = $b;
 		$v = (($a->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a->low, $b_low);
+			$v = Int32_Impl_::ucompare($a->low, $b);
 		}
 		return (($a->high < 0 ? ($b_high < 0 ? $v : -1) : ($b_high >= 0 ? $v : 1))) > 0;
 	}
@@ -435,10 +362,9 @@ final class Int64_Impl_ {
 	 */
 	public static function gteInt ($a, $b) {
 		$b_high = $b >> 31;
-		$b_low = $b;
 		$v = (($a->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a->low, $b_low);
+			$v = Int32_Impl_::ucompare($a->low, $b);
 		}
 		return (($a->high < 0 ? ($b_high < 0 ? $v : -1) : ($b_high >= 0 ? $v : 1))) >= 0;
 	}
@@ -450,14 +376,12 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function intDiv ($a, $b) {
-		$this1 = new ___Int64($a >> 31, $a);
-		$x = Int64_Impl_::divMod($this1, $b)->quotient;
+		$x = Int64_Impl_::divMod(new ___Int64($a >> 31, $a), $b)->quotient;
 		if ($x->high !== ((($x->low >> 31) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) {
 			throw Exception::thrown("Overflow");
 		}
 		$x1 = $x->low;
-		$this1 = new ___Int64($x1 >> 31, $x1);
-		return $this1;
+		return new ___Int64($x1 >> 31, $x1);
 	}
 
 	/**
@@ -468,10 +392,9 @@ final class Int64_Impl_ {
 	 */
 	public static function intGt ($a, $b) {
 		$a_high = $a >> 31;
-		$a_low = $a;
 		$v = (($a_high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a_low, $b->low);
+			$v = Int32_Impl_::ucompare($a, $b->low);
 		}
 		return (($a_high < 0 ? ($b->high < 0 ? $v : -1) : ($b->high >= 0 ? $v : 1))) > 0;
 	}
@@ -484,10 +407,9 @@ final class Int64_Impl_ {
 	 */
 	public static function intGte ($a, $b) {
 		$a_high = $a >> 31;
-		$a_low = $a;
 		$v = (($a_high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a_low, $b->low);
+			$v = Int32_Impl_::ucompare($a, $b->low);
 		}
 		return (($a_high < 0 ? ($b->high < 0 ? $v : -1) : ($b->high >= 0 ? $v : 1))) >= 0;
 	}
@@ -500,10 +422,9 @@ final class Int64_Impl_ {
 	 */
 	public static function intLt ($a, $b) {
 		$a_high = $a >> 31;
-		$a_low = $a;
 		$v = (($a_high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a_low, $b->low);
+			$v = Int32_Impl_::ucompare($a, $b->low);
 		}
 		return (($a_high < 0 ? ($b->high < 0 ? $v : -1) : ($b->high >= 0 ? $v : 1))) < 0;
 	}
@@ -516,10 +437,9 @@ final class Int64_Impl_ {
 	 */
 	public static function intLte ($a, $b) {
 		$a_high = $a >> 31;
-		$a_low = $a;
 		$v = (($a_high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a_low, $b->low);
+			$v = Int32_Impl_::ucompare($a, $b->low);
 		}
 		return (($a_high < 0 ? ($b->high < 0 ? $v : -1) : ($b->high >= 0 ? $v : 1))) <= 0;
 	}
@@ -531,14 +451,12 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function intMod ($a, $b) {
-		$this1 = new ___Int64($a >> 31, $a);
-		$x = Int64_Impl_::divMod($this1, $b)->modulus;
+		$x = Int64_Impl_::divMod(new ___Int64($a >> 31, $a), $b)->modulus;
 		if ($x->high !== ((($x->low >> 31) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) {
 			throw Exception::thrown("Overflow");
 		}
 		$x1 = $x->low;
-		$this1 = new ___Int64($x1 >> 31, $x1);
-		return $this1;
+		return new ___Int64($x1 >> 31, $x1);
 	}
 
 	/**
@@ -548,16 +466,13 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function intSub ($a, $b) {
-		$a_high = $a >> 31;
 		$a_low = $a;
-		$high = (($a_high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($a_low - $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$high = ((($a >> 31) - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($a_low, $b->low) < 0) {
-			$ret = $high--;
+			--$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, (($a_low - $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 
 	/**
@@ -599,10 +514,8 @@ final class Int64_Impl_ {
 	 * @return bool
 	 */
 	public static function isZero ($x) {
-		$b_high = 0;
-		$b_low = 0;
-		if ($x->high === $b_high) {
-			return $x->low === $b_low;
+		if ($x->high === 0) {
+			return $x->low === 0;
 		} else {
 			return false;
 		}
@@ -630,10 +543,9 @@ final class Int64_Impl_ {
 	 */
 	public static function ltInt ($a, $b) {
 		$b_high = $b >> 31;
-		$b_low = $b;
 		$v = (($a->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a->low, $b_low);
+			$v = Int32_Impl_::ucompare($a->low, $b);
 		}
 		return (($a->high < 0 ? ($b_high < 0 ? $v : -1) : ($b_high >= 0 ? $v : 1))) < 0;
 	}
@@ -660,10 +572,9 @@ final class Int64_Impl_ {
 	 */
 	public static function lteInt ($a, $b) {
 		$b_high = $b >> 31;
-		$b_low = $b;
 		$v = (($a->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($v === 0) {
-			$v = Int32_Impl_::ucompare($a->low, $b_low);
+			$v = Int32_Impl_::ucompare($a->low, $b);
 		}
 		return (($a->high < 0 ? ($b_high < 0 ? $v : -1) : ($b_high >= 0 ? $v : 1))) <= 0;
 	}
@@ -677,8 +588,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function make ($high, $low) {
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -700,14 +610,12 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function modInt ($a, $b) {
-		$this1 = new ___Int64($b >> 31, $b);
-		$x = Int64_Impl_::divMod($a, $this1)->modulus;
+		$x = Int64_Impl_::divMod($a, new ___Int64($b >> 31, $b))->modulus;
 		if ($x->high !== ((($x->low >> 31) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) {
 			throw Exception::thrown("Overflow");
 		}
 		$x1 = $x->low;
-		$this1 = new ___Int64($x1 >> 31, $x1);
-		return $this1;
+		return new ___Int64($x1 >> 31, $x1);
 	}
 
 	/**
@@ -719,32 +627,29 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function mul ($a, $b) {
-		$mask = 65535;
-		$al = $a->low & $mask;
+		$al = $a->low & 65535;
 		$ah = Boot::shiftRightUnsigned($a->low, 16);
-		$bl = $b->low & $mask;
+		$bl = $b->low & 65535;
 		$bh = Boot::shiftRightUnsigned($b->low, 16);
 		$p00 = Int32_Impl_::mul($al, $bl);
 		$p10 = Int32_Impl_::mul($ah, $bl);
 		$p01 = Int32_Impl_::mul($al, $bh);
-		$p11 = Int32_Impl_::mul($ah, $bh);
 		$low = $p00;
-		$high = ((((($p11 + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$high = (((((Int32_Impl_::mul($ah, $bh) + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$p01 = ($p01 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($low + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$low = (($p00 + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $p01) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
 		$p10 = ($p10 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$low = (($low + $p10) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $p10) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
 		$high = (($high + (((Int32_Impl_::mul($a->low, $b->high) + Int32_Impl_::mul($a->high, $b->low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -754,34 +659,30 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function mulInt ($a, $b) {
-		$b_high = $b >> 31;
 		$b_low = $b;
-		$mask = 65535;
-		$al = $a->low & $mask;
+		$al = $a->low & 65535;
 		$ah = Boot::shiftRightUnsigned($a->low, 16);
-		$bl = $b_low & $mask;
+		$bl = $b_low & 65535;
 		$bh = Boot::shiftRightUnsigned($b_low, 16);
 		$p00 = Int32_Impl_::mul($al, $bl);
 		$p10 = Int32_Impl_::mul($ah, $bl);
 		$p01 = Int32_Impl_::mul($al, $bh);
-		$p11 = Int32_Impl_::mul($ah, $bh);
 		$low = $p00;
-		$high = ((((($p11 + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$high = (((((Int32_Impl_::mul($ah, $bh) + (Boot::shiftRightUnsigned($p01, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) + (Boot::shiftRightUnsigned($p10, 16))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$p01 = ($p01 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($low + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$low = (($p00 + $p01) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $p01) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
 		$p10 = ($p10 << 16 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$low = (($low + $p10) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($low, $p10) < 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$high = (($high + (((Int32_Impl_::mul($a->low, $b_high) + Int32_Impl_::mul($a->high, $b_low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		$high = (($high + (((Int32_Impl_::mul($a->low, $b >> 31) + Int32_Impl_::mul($a->high, $b_low)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -795,11 +696,10 @@ final class Int64_Impl_ {
 		$high = (~$x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		$low = ((~$x->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if ($low === 0) {
-			$ret = $high++;
+			++$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, $low);
 	}
 
 	/**
@@ -825,10 +725,8 @@ final class Int64_Impl_ {
 	 * @return bool
 	 */
 	public static function neqInt ($a, $b) {
-		$b_high = $b >> 31;
-		$b_low = $b;
-		if ($a->high === $b_high) {
-			return $a->low !== $b_low;
+		if ($a->high === ($b >> 31)) {
+			return $a->low !== $b;
 		} else {
 			return true;
 		}
@@ -843,8 +741,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function ofInt ($x) {
-		$this1 = new ___Int64($x >> 31, $x);
-		return $this1;
+		return new ___Int64($x >> 31, $x);
 	}
 
 	/**
@@ -856,8 +753,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function or ($a, $b) {
-		$this1 = new ___Int64((($a->high | $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->low | $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-		return $this1;
+		return new ___Int64((($a->high | $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->low | $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 
 	/**
@@ -876,14 +772,14 @@ final class Int64_Impl_ {
 	 */
 	public static function postDecrement ($this1) {
 		$ret = $this1;
-		$this2 = new ___Int64($this1->high, $this1->low);
-		$this1 = $this2;
-		if ($this1->low === 0) {
-			$ret1 = $this1->high--;
-			$this1->high = ($this1->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$x = new ___Int64($this1->high, $this1->low);
+		$this1 = $x;
+		if ($x->low === 0) {
+			$x->high--;
+			$x->high = ($x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$ret1 = $this1->low--;
-		$this1->low = ($this1->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$x->low--;
+		$x->low = ($x->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		return $ret;
 	}
 
@@ -894,13 +790,13 @@ final class Int64_Impl_ {
 	 */
 	public static function postIncrement ($this1) {
 		$ret = $this1;
-		$this2 = new ___Int64($this1->high, $this1->low);
-		$this1 = $this2;
-		$ret1 = $this1->low++;
-		$this1->low = ($this1->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		if ($this1->low === 0) {
-			$ret1 = $this1->high++;
-			$this1->high = ($this1->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$x = new ___Int64($this1->high, $this1->low);
+		$this1 = $x;
+		$x->low++;
+		$x->low = ($x->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		if ($x->low === 0) {
+			$x->high++;
+			$x->high = ($x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
 		return $ret;
 	}
@@ -911,15 +807,15 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function preDecrement ($this1) {
-		$this2 = new ___Int64($this1->high, $this1->low);
-		$this1 = $this2;
-		if ($this1->low === 0) {
-			$ret = $this1->high--;
-			$this1->high = ($this1->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$x = new ___Int64($this1->high, $this1->low);
+		$this1 = $x;
+		if ($x->low === 0) {
+			$x->high--;
+			$x->high = ($x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$ret = $this1->low--;
-		$this1->low = ($this1->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		return $this1;
+		$x->low--;
+		$x->low = ($x->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		return $x;
 	}
 
 	/**
@@ -928,15 +824,15 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function preIncrement ($this1) {
-		$this2 = new ___Int64($this1->high, $this1->low);
-		$this1 = $this2;
-		$ret = $this1->low++;
-		$this1->low = ($this1->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		if ($this1->low === 0) {
-			$ret = $this1->high++;
-			$this1->high = ($this1->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$x = new ___Int64($this1->high, $this1->low);
+		$this1 = $x;
+		$x->low++;
+		$x->low = ($x->low << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		if ($x->low === 0) {
+			$x->high++;
+			$x->high = ($x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		return $this1;
+		return $x;
 	}
 
 	/**
@@ -970,14 +866,11 @@ final class Int64_Impl_ {
 	public static function shl ($a, $b) {
 		$b &= 63;
 		if ($b === 0) {
-			$this1 = new ___Int64($a->high, $a->low);
-			return $this1;
+			return new ___Int64($a->high, $a->low);
 		} else if ($b < 32) {
-			$this1 = new ___Int64((((($a->high << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, (32 - $b))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($a->low << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-			return $this1;
+			return new ___Int64((((($a->high << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, (32 - $b))) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, ($a->low << $b << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 		} else {
-			$this1 = new ___Int64(($a->low << ($b - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0);
-			return $this1;
+			return new ___Int64(($a->low << ($b - 32) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, 0);
 		}
 	}
 
@@ -993,14 +886,11 @@ final class Int64_Impl_ {
 	public static function shr ($a, $b) {
 		$b &= 63;
 		if ($b === 0) {
-			$this1 = new ___Int64($a->high, $a->low);
-			return $this1;
+			return new ___Int64($a->high, $a->low);
 		} else if ($b < 32) {
-			$this1 = new ___Int64((($a->high >> $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (((($a->high << (32 - $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, $b)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-			return $this1;
+			return new ___Int64((($a->high >> $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (((($a->high << (32 - $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, $b)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 		} else {
-			$this1 = new ___Int64((($a->high >> 31) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->high >> ($b - 32)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-			return $this1;
+			return new ___Int64((($a->high >> 31) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->high >> ($b - 32)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 		}
 	}
 
@@ -1014,13 +904,11 @@ final class Int64_Impl_ {
 	 */
 	public static function sub ($a, $b) {
 		$high = (($a->high - $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($a->low - $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($a->low, $b->low) < 0) {
-			$ret = $high--;
+			--$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, (($a->low - $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 
 	/**
@@ -1030,16 +918,13 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function subInt ($a, $b) {
-		$b_high = $b >> 31;
 		$b_low = $b;
-		$high = (($a->high - $b_high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-		$low = (($a->low - $b_low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
+		$high = (($a->high - ($b >> 31)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		if (Int32_Impl_::ucompare($a->low, $b_low) < 0) {
-			$ret = $high--;
+			--$high;
 			$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 		}
-		$this1 = new ___Int64($high, $low);
-		return $this1;
+		return new ___Int64($high, (($a->low - $b_low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 
 	/**
@@ -1075,9 +960,7 @@ final class Int64_Impl_ {
 	 */
 	public static function toString ($this1) {
 		$i = $this1;
-		$b_high = 0;
-		$b_low = 0;
-		if (($i->high === $b_high) && ($i->low === $b_low)) {
+		if (($i->high === 0) && ($i->low === 0)) {
 			return "0";
 		}
 		$str = "";
@@ -1085,35 +968,19 @@ final class Int64_Impl_ {
 		if ($i->high < 0) {
 			$neg = true;
 		}
-		$this1 = new ___Int64(0, 10);
-		$ten = $this1;
-		while (true) {
-			$b_high = 0;
-			$b_low = 0;
-			if (!(($i->high !== $b_high) || ($i->low !== $b_low))) {
-				break;
-			}
+		$ten = new ___Int64(0, 10);
+		while (($i->high !== 0) || ($i->low !== 0)) {
 			$r = Int64_Impl_::divMod($i, $ten);
 			if ($r->modulus->high < 0) {
-				$x = $r->modulus;
+				$str = ((((~$r->modulus->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits)??'null') . ($str??'null');
+				$x = $r->quotient;
 				$high = (~$x->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				$low = ((~$x->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				if ($low === 0) {
-					$ret = $high++;
+					++$high;
 					$high = ($high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
 				}
-				$this_high = $high;
-				$this_low = $low;
-				$str = ($this_low??'null') . ($str??'null');
-				$x1 = $r->quotient;
-				$high1 = (~$x1->high << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-				$low1 = ((~$x1->low + 1) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-				if ($low1 === 0) {
-					$ret1 = $high1++;
-					$high1 = ($high1 << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits;
-				}
-				$this1 = new ___Int64($high1, $low1);
-				$i = $this1;
+				$i = new ___Int64($high, $low);
 			} else {
 				$str = ($r->modulus->low??'null') . ($str??'null');
 				$i = $r->quotient;
@@ -1156,14 +1023,11 @@ final class Int64_Impl_ {
 	public static function ushr ($a, $b) {
 		$b &= 63;
 		if ($b === 0) {
-			$this1 = new ___Int64($a->high, $a->low);
-			return $this1;
+			return new ___Int64($a->high, $a->low);
 		} else if ($b < 32) {
-			$this1 = new ___Int64(Boot::shiftRightUnsigned($a->high, $b), (((($a->high << (32 - $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, $b)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-			return $this1;
+			return new ___Int64(Boot::shiftRightUnsigned($a->high, $b), (((($a->high << (32 - $b) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits) | Boot::shiftRightUnsigned($a->low, $b)) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 		} else {
-			$this1 = new ___Int64(0, Boot::shiftRightUnsigned($a->high, ($b - 32)));
-			return $this1;
+			return new ___Int64(0, Boot::shiftRightUnsigned($a->high, ($b - 32)));
 		}
 	}
 
@@ -1176,8 +1040,7 @@ final class Int64_Impl_ {
 	 * @return ___Int64
 	 */
 	public static function xor ($a, $b) {
-		$this1 = new ___Int64((($a->high ^ $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->low ^ $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
-		return $this1;
+		return new ___Int64((($a->high ^ $b->high) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits, (($a->low ^ $b->low) << Int32_Impl_::$extraBits) >> Int32_Impl_::$extraBits);
 	}
 }
 
