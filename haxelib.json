@@ -1,0 +1,12 @@
+{
+	"classPath": "src/",
+	"contributors": ["cedx"],
+	"dependencies": {"thenshim": "1.1.0", "tink_cli": "0.5.1"},
+	"description": "Provides the Haxe standard library as a reusable package.",
+	"license": "MIT",
+	"name": "haxe.php",
+	"releasenote": "Added the 'thenshim' and 'tink_cli' libraries.",
+	"tags": ["haxe", "php", "standard-library"],
+	"url": "https://docs.belin.io/haxe.php",
+	"version": "1.1.0"
+}
