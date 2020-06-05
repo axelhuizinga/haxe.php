@@ -3,6 +3,7 @@ import haxe.ds.*;
 import sys.*;
 import sys.io.*;
 import sys.net.*;
+import thenshim.Promise;
 
 // Root package.
 using DateTools;
@@ -11,6 +12,9 @@ using StringTools;
 
 // "haxe" package.
 using haxe.EnumTools;
+
+// "thenshim" package
+using thenshim.PromiseTools;
 
 /** The main class. **/
 @:keep class Main {
@@ -57,6 +61,9 @@ using haxe.EnumTools;
 	// "sys.net" package.
 	var address: Address = null;
 	var host: Host = null;
+
+	// "thenshim" package
+	var promise: Promise<Any> = null;
 
 	/** Application entry point. **/
 	static function main(): Void {
