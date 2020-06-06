@@ -20,7 +20,7 @@
 		"standard-library"
 	],
 	"require": {
-		"php": ">=7.0.0",
+		"php": ">=7.4.0",
 		"ext-mbstring": "*",
 		"ext-json": "*",
 		"ext-pcre": "*",
