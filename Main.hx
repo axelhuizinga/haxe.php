@@ -3,10 +3,8 @@ import haxe.ds.*;
 import sys.*;
 import sys.io.*;
 import sys.net.*;
-import thenshim.*;
 import tink.*;
 import tink.cli.*;
-import tink.cli.prompt.*;
 import tink.core.*;
 
 // Root package.
@@ -67,7 +65,7 @@ using thenshim.PromiseTools;
 	var host: Host = null;
 
 	// "thenshim" package.
-	var promise: Promise<Any> = null;
+	var promise: thenshim.Promise<Any> = null;
 
 	/** Application entry point. **/
 	static function main(): Void {
