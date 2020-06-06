@@ -3,7 +3,11 @@ import haxe.ds.*;
 import sys.*;
 import sys.io.*;
 import sys.net.*;
-import thenshim.Promise;
+import thenshim.*;
+import tink.*;
+import tink.cli.*;
+import tink.cli.prompt.*;
+import tink.core.*;
 
 // Root package.
 using DateTools;
@@ -13,7 +17,7 @@ using StringTools;
 // "haxe" package.
 using haxe.EnumTools;
 
-// "thenshim" package
+// "thenshim" package.
 using thenshim.PromiseTools;
 
 /** The main class. **/
@@ -62,7 +66,7 @@ using thenshim.PromiseTools;
 	var address: Address = null;
 	var host: Host = null;
 
-	// "thenshim" package
+	// "thenshim" package.
 	var promise: Promise<Any> = null;
 
 	/** Application entry point. **/
@@ -83,5 +87,17 @@ using thenshim.PromiseTools;
 
 		// "sys.io" package.
 		File.getContent("build.hxml");
+
+		// "tink_cli" package.
+		Cli.process(Sys.args(), new Main()).handle(Cli.exit);
+	}
+
+	/** Creates a new program. **/
+	public function new() {}
+
+	/** A dummy "tink_cli" command. **/
+	@:defaultCommand
+	public function run(rest: Rest<String>): Void {
+		Cli.getDoc(this);
 	}
 }
