@@ -1,5 +1,5 @@
 site_name: Haxe Standard Library for PHP
-site_description: Provides the Haxe standard library as a reusable PHP package.
+site_description: Provides a subset of the Haxe standard library as a reusable PHP package.
 site_author: Cédric Belin - cedric@belin.io
 site_url: https://docs.belin.io/haxe.php
 

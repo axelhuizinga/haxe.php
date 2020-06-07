@@ -1,5 +1,5 @@
 {
-	"description": "Provides the Haxe standard library as a reusable package.",
+	"description": "Provides a subset of the Haxe standard library as a reusable package.",
 	"homepage": "https://docs.belin.io/haxe.php",
 	"license": "MIT",
 	"name": "cedx/haxe",
