@@ -33,7 +33,7 @@
 		"clean": "pwsh tool/clean.ps1",
 		"doc": "pwsh tool/doc.ps1",
 		"post-update-cmd": ["haxelib install all --always", "haxelib update --always"],
-		"publish": ["@build", "@clean", "@version", "pwsh tool/publish.ps1"],
+		"publish": ["@clean", "@version", "@build", "pwsh tool/publish.ps1"],
 		"version": "pwsh tool/version.ps1"
   },
 	"support": {
