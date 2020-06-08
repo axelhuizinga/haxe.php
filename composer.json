@@ -32,7 +32,7 @@
 		"build": "pwsh tool/build.ps1",
 		"clean": "pwsh tool/clean.ps1",
 		"doc": "pwsh tool/doc.ps1",
-		"post-update-cmd": "haxelib newrepo && haxelib install all --always && haxelib update --always",
+		"post-update-cmd": "haxelib install all --always && haxelib update --always",
 		"publish": "pwsh tool/publish.ps1",
 		"version": "pwsh tool/version.ps1"
   },

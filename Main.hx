@@ -76,6 +76,7 @@ using thenshim.PromiseTools;
 		Sys.exit(0);
 
 		// "haxe" package.
+		Http.requestUrl("https://belin.io");
 		Json.stringify(123);
 		Resource.listNames();
 		SysTools.quoteUnixArg("foo");
