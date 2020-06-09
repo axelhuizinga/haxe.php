@@ -31,7 +31,7 @@
   "scripts": {
 		"build": "pwsh tool/build.ps1",
 		"clean": "pwsh tool/clean.ps1",
-		"doc": "pwsh tool/doc.ps1",
+		"doc": ["@version", "pwsh tool/doc.ps1"],
 		"post-update-cmd": ["haxelib install all --always", "haxelib update --always"],
 		"publish": ["@clean", "@version", "@build", "pwsh tool/publish.ps1"],
 		"version": "pwsh tool/version.ps1"
