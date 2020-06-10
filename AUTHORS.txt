@@ -1,2 +1,2 @@
-Haxe Foundation <contact@haxe.org>
 Cédric Belin <cedric@belin.io>
+Haxe Foundation <contact@haxe.org>
