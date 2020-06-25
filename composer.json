@@ -4,7 +4,7 @@
 	"license": "MIT",
 	"name": "cedx/haxe",
 	"type": "library",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"authors": [
 		{"email": "cedric@belin.io", "homepage": "https://belin.io", "name": "Cédric Belin"},
 		{"email": "contact@haxe.org", "homepage": "https://haxe.org", "name": "Haxe Foundation"}

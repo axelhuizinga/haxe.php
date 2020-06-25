@@ -1,8 +1,12 @@
 # Changelog
 
-## Version [1.0.0](https://git.belin.io/cedx/haxe.php/compare/v1.0.0...v1.1.0)
-- Added the classes from the [`thenshim` library](https://lib.haxe.org/p/thenshim).
-- Added the classes from the [`tink_cli` library](https://lib.haxe.org/p/tink_cli).
+## Version [1.1.1](https://git.belin.io/cedx/haxe.php/compare/v1.1.0...v1.1.1)
+- Upgraded the class library to [Haxe](https://haxe.org) 4.1.2.
+- Upgraded the [`thenshim` package](https://lib.haxe.org/p/thenshim) to version 1.1.1.
+
+## Version [1.1.0](https://git.belin.io/cedx/haxe.php/compare/v1.0.0...v1.1.0)
+- Added the classes from the [`thenshim` package](https://lib.haxe.org/p/thenshim).
+- Added the classes from the [`tink_cli` package](https://lib.haxe.org/p/tink_cli).
 
 ## Version [1.0.0](https://git.belin.io/cedx/haxe.php/compare/v0.3.0...v1.0.0)
 - Added a system for automating the upgrade process of PHP classes from Haxe sources.
