@@ -61,11 +61,15 @@ class HandlerSession {
 			HandlerSession::resolvePromiseThenable($promise, $value);
 		} else {
 			$tmp = null;
-			if (!\Reflect::isObject($value)) {
-				$f = $value;
-				$tmp = ($f instanceof \Closure) || ($f instanceof HxClosure);
+			if (!is_string($value)) {
+				if (!\Reflect::isObject($value)) {
+					$f = $value;
+					$tmp = ($f instanceof \Closure) || ($f instanceof HxClosure);
+				} else {
+					$tmp = true;
+				}
 			} else {
-				$tmp = true;
+				$tmp = false;
 			}
 			if ($tmp) {
 				HandlerSession::resolvePromiseObject($promise, $value);
