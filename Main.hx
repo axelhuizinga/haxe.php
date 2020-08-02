@@ -7,15 +7,10 @@ import tink.*;
 import tink.cli.*;
 import tink.core.*;
 
-// Root package.
 using DateTools;
 using Lambda;
 using StringTools;
-
-// "haxe" package.
 using haxe.EnumTools;
-
-// "thenshim" package.
 using thenshim.PromiseTools;
 
 /** The main class. **/
@@ -66,6 +61,9 @@ using thenshim.PromiseTools;
 
 	// "thenshim" package.
 	var promise: thenshim.Promise<Any> = null;
+
+	// "tink_url" package.
+	var url: Url = null;
 
 	/** Application entry point. **/
 	static function main(): Void {
