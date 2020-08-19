@@ -42,7 +42,7 @@ class ListCell implements LinkObject {
 			$list = $this->list;
 			$this->cb = null;
 			$this->list = null;
-			if (--$list->used < ($list->used >> 1)) {
+			if (--$list->used <= ($list->cells->length >> 1)) {
 				$list->compact();
 			}
 		}

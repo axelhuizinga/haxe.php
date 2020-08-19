@@ -70,7 +70,9 @@ class FutureTrigger implements FutureObject {
 			}, $_this);
 			$_this1 = $_this->cells;
 			$_this1->arr[$_this1->length++] = $node;
-			$_this->used++;
+			if ($_this->used++ === 0) {
+				$_this->onfill();
+			}
 			return $ret;
 		}
 	}
@@ -96,7 +98,9 @@ class FutureTrigger implements FutureObject {
 			$node = new ListCell($callback, $_g);
 			$_this = $_g->cells;
 			$_this->arr[$_this->length++] = $node;
-			$_g->used++;
+			if ($_g->used++ === 0) {
+				$_g->onfill();
+			}
 			return $node;
 		}
 	}
@@ -117,7 +121,9 @@ class FutureTrigger implements FutureObject {
 			}, $_this);
 			$_this1 = $_this->cells;
 			$_this1->arr[$_this1->length++] = $node;
-			$_this->used++;
+			if ($_this->used++ === 0) {
+				$_this->onfill();
+			}
 			return $ret;
 		}
 	}

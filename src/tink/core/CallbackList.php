@@ -24,6 +24,10 @@ class CallbackList {
 	 */
 	public $ondrain;
 	/**
+	 * @var \Closure
+	 */
+	public $onfill;
+	/**
 	 * @var \Array_hx
 	 */
 	public $queue;
@@ -40,6 +44,10 @@ class CallbackList {
 			$this->__hx__default__ondrain = new HxClosure($this, 'ondrain');
 			if ($this->ondrain === null) $this->ondrain = $this->__hx__default__ondrain;
 		}
+		if (!$this->__hx__default__onfill) {
+			$this->__hx__default__onfill = new HxClosure($this, 'onfill');
+			if ($this->onfill === null) $this->onfill = $this->__hx__default__onfill;
+		}
 		$this->busy = false;
 		$this->queue = new \Array_hx();
 		$this->used = 0;
@@ -55,7 +63,9 @@ class CallbackList {
 		$node = new ListCell($cb, $this);
 		$_this = $this->cells;
 		$_this->arr[$_this->length++] = $node;
-		$this->used++;
+		if ($this->used++ === 0) {
+			$this->onfill();
+		}
 		return $node;
 	}
 
@@ -180,8 +190,17 @@ class CallbackList {
 	/**
 	 * @return void
 	 */
+	public function onfill ()
+	{
+		if ($this->onfill !== $this->__hx__default__onfill) return call_user_func_array($this->onfill, func_get_args());
+	}
+	protected $__hx__default__onfill;
+
+	/**
+	 * @return void
+	 */
 	public function release () {
-		if (--$this->used < ($this->used >> 1)) {
+		if (--$this->used <= ($this->cells->length >> 1)) {
 			$this->compact();
 		}
 	}

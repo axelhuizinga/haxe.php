@@ -95,7 +95,9 @@ class SuspendableFuture implements FutureObject {
 			$node = new ListCell($callback, $_this);
 			$_this1 = $_this->cells;
 			$_this1->arr[$_this1->length++] = $node;
-			$_this->used++;
+			if ($_this->used++ === 0) {
+				$_this->onfill();
+			}
 			if ($this->suspended) {
 				$this->suspended = false;
 				$this->link = ($this->wakeup)(Boot::getInstanceClosure($this, 'trigger'));

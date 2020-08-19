@@ -56,7 +56,9 @@ class SignalTrigger implements SignalObject {
 		$node = new ListCell($cb, $_this);
 		$_this1 = $_this->cells;
 		$_this1->arr[$_this1->length++] = $node;
-		$_this->used++;
+		if ($_this->used++ === 0) {
+			$_this->onfill();
+		}
 		return $node;
 	}
 
