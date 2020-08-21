@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.3.0](https://git.belin.io/cedx/haxe.php/compare/v1.2.0...v1.3.0)
+- Added the classes from the [`tink_semver` package](https://lib.haxe.org/p/tink_semver).
+
 ## Version [1.2.0](https://git.belin.io/cedx/haxe.php/compare/v1.1.1...v1.2.0)
 - Added the classes from the [`tink_url` package](https://lib.haxe.org/p/tink_url).
 - Upgraded the class library to [Haxe](https://haxe.org) 4.1.3.
