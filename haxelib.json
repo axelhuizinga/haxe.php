@@ -1,7 +1,13 @@
 {
 	"classPath": "src/",
 	"contributors": ["cedx"],
-	"dependencies": {"thenshim": "1.1.1", "tink_cli": "0.5.1", "tink_core": "1.27.1", "tink_url": "0.4.2"},
+	"dependencies": {
+		"thenshim": "1.1.1",
+		"tink_cli": "0.5.1",
+		"tink_core": "1.27.1",
+		"tink_semver": "0.1.0",
+		"tink_url": "0.4.2"
+	},
 	"description": "Provides a subset of the Haxe standard library as a reusable package.",
 	"license": "MIT",
 	"name": "haxe.php",

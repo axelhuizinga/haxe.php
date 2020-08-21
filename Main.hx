@@ -6,6 +6,7 @@ import sys.net.*;
 import tink.*;
 import tink.cli.*;
 import tink.core.*;
+import tink.semver.*;
 
 using DateTools;
 using Lambda;
@@ -61,6 +62,9 @@ using thenshim.PromiseTools;
 
 	// "thenshim" package.
 	var promise: thenshim.Promise<Any> = null;
+
+	// "tink_semver" package.
+	var version: Version = null;
 
 	// "tink_url" package.
 	var url: Url = null;
