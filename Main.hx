@@ -1,3 +1,4 @@
+import datetime.*;
 import haxe.*;
 import haxe.ds.*;
 import sys.*;
@@ -76,6 +77,10 @@ using thenshim.PromiseTools;
 		Reflect.hasField({}, "foo");
 		Std.isOfType("", String);
 		Sys.exit(0);
+
+		// "datetime" package.
+		DateTime.now();
+		Timezone.local();
 
 		// "haxe" package.
 		Http.requestUrl("https://belin.io");
