@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.4.0](https://git.belin.io/cedx/haxe.php/compare/v1.3.0...v1.4.0)
+- Added the classes from the [`datetime` package](https://lib.haxe.org/p/datetime).
+
 ## Version [1.3.0](https://git.belin.io/cedx/haxe.php/compare/v1.2.0...v1.3.0)
 - Added the classes from the [`tink_semver` package](https://lib.haxe.org/p/tink_semver).
 
