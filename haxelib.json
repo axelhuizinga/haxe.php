@@ -15,5 +15,5 @@
 	"releasenote": "Added the classes of the 'thenshim' and 'tink_cli' libraries.",
 	"tags": ["haxe", "php", "standard-library"],
 	"url": "https://docs.belin.io/haxe.php",
-	"version": "1.4.0"
+	"version": "1.5.0"
 }
