@@ -1,5 +1,12 @@
 # Changelog
 
+## Version [1.5.0](https://git.belin.io/cedx/haxe.php/compare/v1.4.0...v1.5.0)
+- Added the classes from the [`haxe.crypto` package](https://api.haxe.org/haxe/crypto).
+- Added the classes from the [`haxe.rtti` package](https://api.haxe.org/haxe/rtti).
+- Added the classes from the [`haxe.xml` package](https://api.haxe.org/haxe/xml).
+- Added the classes from the [`haxe.zip` package](https://api.haxe.org/haxe/zip).
+- Added the classes from the [`sys.db` package](https://api.haxe.org/sys/db).
+
 ## Version [1.4.0](https://git.belin.io/cedx/haxe.php/compare/v1.3.0...v1.4.0)
 - Added the classes from the [`datetime` package](https://lib.haxe.org/p/datetime).
 
@@ -26,10 +33,10 @@
 - Upgraded the class library to [Haxe](https://haxe.org) 4.1.0.
 
 ## Version [0.2.0](https://git.belin.io/cedx/haxe.php/compare/v0.1.2...v0.2.0)
-- Added the classes from the [`haxe\io` package](https://api.haxe.org/haxe/io).
-- Added the classes from the [`haxe\macro` package](https://api.haxe.org/haxe/macro).
+- Added the classes from the [`haxe.io` package](https://api.haxe.org/haxe/io).
+- Added the classes from the [`haxe.macro` package](https://api.haxe.org/haxe/macro).
 - Added the classes from the [`sys` package](https://api.haxe.org/sys).
-- Added the classes from the [`sys\io` package](https://api.haxe.org/sys/io).
+- Added the classes from the [`sys.io` package](https://api.haxe.org/sys/io).
 
 ## Version [0.1.2](https://git.belin.io/cedx/haxe.php/compare/v0.1.1...v0.1.2)
 - Removed the position comments from the source code.

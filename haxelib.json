@@ -12,7 +12,7 @@
 	"description": "Provides a subset of the Haxe standard library as a reusable package.",
 	"license": "MIT",
 	"name": "haxe.php",
-	"releasenote": "Added the classes of the 'thenshim' and 'tink_cli' libraries.",
+	"releasenote": "Added the classes from the `haxe.crypto`, `haxe.rtti`, `haxe.xml`, `haxe.zip` and `sys.db` packages.",
 	"tags": ["haxe", "php", "standard-library"],
 	"url": "https://docs.belin.io/haxe.php",
 	"version": "1.5.0"
