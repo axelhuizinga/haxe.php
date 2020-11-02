@@ -743,7 +743,16 @@ class Boot {
 		}
 		if (\is_object($value)) {
 			if (($value instanceof \Array_hx)) {
-				return Boot::stringifyNativeIndexedArray(Boot::dynamicField($value, 'arr'), $maxRecursion - 1);
+				$arr = Boot::dynamicField($value, 'arr');
+				$maxRecursion1 = $maxRecursion - 1;
+				if ($maxRecursion1 === null) {
+					$maxRecursion1 = 10;
+				}
+				$strings = [];
+				foreach ($arr as $key => $value1) {
+					$strings[$key] = Boot::stringify($value1, $maxRecursion1 - 1);
+				}
+				return "[" . (\implode(",", $strings)??'null') . "]";
 			}
 			if (($value instanceof HxEnum)) {
 				$e = $value;
@@ -907,3 +916,5 @@ class Boot {
 require_once __DIR__.'/_polyfills.php';
 Boot::__hx__init();
 Boot::registerClass(Boot::class, 'php.Boot');
+\php\Web::__hx__init();
+\php\Session::__hx__init();

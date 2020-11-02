@@ -9,5 +9,25 @@
 --library tink_core:1.27.1
 --library tink_semver:0.1.0
 --library tink_url:0.4.2
+--macro include('', false)
+--macro include('haxe', false)
+--macro include('haxe.crypto')
+--macro include('haxe.ds')
+--macro include('haxe.format')
+--macro include('haxe.http')
+--macro include('haxe.io')
+--macro include('haxe.iterators')
+--macro include('haxe.rtti')
+--macro include('haxe.xml')
+--macro include('haxe.zip')
+--macro include('php', false)
+--macro include('php.db')
+--macro include('php.net')
+--macro include('php.reflection')
+--macro include('sys', false)
+--macro include('sys.db')
+--macro include('sys.io')
+--macro include('sys.net')
+--macro include('sys.ssl')
 --main Main
 --php .
