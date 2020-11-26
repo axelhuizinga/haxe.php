@@ -8,7 +8,7 @@
 	<title>Haxe Standard Library for PHP</title>
 	<paths>
 		<cache>../var/phpdoc</cache>
-		<output>../doc/api</output>
+		<output>../docs/api</output>
 	</paths>
 	<version number="1.5.0">
 		<api>

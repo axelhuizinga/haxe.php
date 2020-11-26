@@ -1,7 +1,7 @@
 # Haxe Standard Library for PHP
 ![Haxe](https://badgen.net/badge/haxe/%3E%3D4.1.0/green) ![Runtime](https://badgen.net/packagist/php/cedx/haxe) ![Release](https://badgen.net/packagist/v/cedx/haxe) ![License](https://badgen.net/packagist/license/cedx/haxe) ![Downloads](https://badgen.net/packagist/dt/cedx/haxe)
 
-Provides a subset of the [Haxe](https://haxe.org) standard library as a reusable [PHP](https://www.php.net) package.
+Provides the [Haxe](https://haxe.org) standard library as a reusable [PHP](https://www.php.net) package.
 
 ## Documentation
 - [User guide](https://docs.belin.io/haxe.php)
