@@ -1,5 +1,10 @@
 # Changelog
 
+## Version [1.6.0](https://git.belin.io/cedx/haxe.php/compare/v1.5.0...v1.6.0)
+- Added the classes from the [`tink_semver` package](https://lib.haxe.org/p/tink_semver).
+- Removed the classes from the [`datetime` package](https://lib.haxe.org/p/datetime).
+- Removed the classes from the [`thenshim` package](https://lib.haxe.org/p/thenshim).
+
 ## Version [1.5.0](https://git.belin.io/cedx/haxe.php/compare/v1.4.0...v1.5.0)
 - Added the classes from the [`haxe.crypto` package](https://api.haxe.org/haxe/crypto).
 - Added the classes from the [`haxe.rtti` package](https://api.haxe.org/haxe/rtti).
