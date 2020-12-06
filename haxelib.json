@@ -14,5 +14,5 @@
 	"releasenote": "Added the classes from the `haxe.crypto`, `haxe.rtti`, `haxe.xml`, `haxe.zip` and `sys.db` packages.",
 	"tags": ["haxe", "php", "standard-library"],
 	"url": "https://docs.belin.io/haxe.php",
-	"version": "1.5.0"
+	"version": "1.6.0"
 }
