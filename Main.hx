@@ -3,16 +3,20 @@ import tink.cli.*;
 import tink.http.*;
 import tink.semver.*;
 
+using thenshim.PromiseTools;
 using tink.CoreApi;
 
 /** The main class. **/
 @:keep class Main {
 
+	// "thenshim" package.
+	final promise: thenshim.Promise<Any> = null;
+
 	// "tink_semver" package.
-	var version: Version = null;
+	final version: Version = null;
 
 	// "tink_url" package.
-	var url: Url = null;
+	final url: Url = null;
 
 	/** Creates a new program. **/
 	public function new() {}

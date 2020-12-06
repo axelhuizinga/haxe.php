@@ -3,6 +3,7 @@
 --define analyzer-optimize
 --define php-lib=src
 --define real-position
+--library thenshim:1.1.1
 --library tink_cli:0.5.1
 --library tink_core:1.27.1
 --library tink_http:0.9.1
