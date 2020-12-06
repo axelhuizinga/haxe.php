@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.6.1](https://git.belin.io/cedx/haxe.php/compare/v1.6.0...v1.6.1)
+- Restored the classes from the [`thenshim` package](https://lib.haxe.org/p/thenshim).
+
 ## Version [1.6.0](https://git.belin.io/cedx/haxe.php/compare/v1.5.0...v1.6.0)
 - Added the classes from the [`tink_http` package](https://lib.haxe.org/p/tink_http).
 - Removed the classes from the [`datetime` package](https://lib.haxe.org/p/datetime).
