@@ -1,16 +1,12 @@
-import datetime.*;
 import tink.*;
 import tink.cli.*;
+import tink.http.*;
 import tink.semver.*;
 
-using thenshim.PromiseTools;
 using tink.CoreApi;
 
 /** The main class. **/
 @:keep class Main {
-
-	// "thenshim" package.
-	var promise: thenshim.Promise<Any> = null;
 
 	// "tink_semver" package.
 	var version: Version = null;
@@ -23,12 +19,13 @@ using tink.CoreApi;
 
 	/** Application entry point. **/
 	static function main(): Void {
-		// "datetime" package.
-		DateTime.now();
-		Timezone.local();
+		final program = new Main();
 
 		// "tink_cli" package.
-		Cli.process(Sys.args(), new Main()).handle(Cli.exit);
+		Cli.process(Sys.args(), program).handle(Cli.exit);
+
+		// "tink_http" package.
+		Client.fetch(program.url).all().next(response -> response.body.toString());
 	}
 
 	/** A dummy "tink_cli" command. **/
