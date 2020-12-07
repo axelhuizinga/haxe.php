@@ -26,7 +26,6 @@
 		"ext-json": "*",
 		"ext-pcre": "*",
 		"ext-reflection": "*",
-		"ext-sockets": "*",
 		"ext-spl": "*"
 	},
 	"scripts": {
