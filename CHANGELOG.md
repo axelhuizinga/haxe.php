@@ -1,7 +1,10 @@
 # Changelog
 
+## Version [1.6.3](https://git.belin.io/cedx/haxe.php/compare/v1.6.2...v1.6.3)
+- Fixed the [Composer](https://getcomposer.org) requirements for PHP extensions.
+
 ## Version [1.6.2](https://git.belin.io/cedx/haxe.php/compare/v1.6.1...v1.6.2)
-- Improved the compatibility with [PHP](https://www.php.net) 8.0.
+- Improved the compatibility with PHP 8.0.
 
 ## Version [1.6.1](https://git.belin.io/cedx/haxe.php/compare/v1.6.0...v1.6.1)
 - Restored the classes from the [`thenshim` package](https://lib.haxe.org/p/thenshim).
