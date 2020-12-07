@@ -41,7 +41,7 @@ class TypedError {
 
 	/**
 	 * @param mixed $v
-	 *
+	 * 
 	 * @return TypedError
 	 */
 	public static function asError ($v) {
@@ -56,7 +56,7 @@ class TypedError {
 	 * @param \Closure $f
 	 * @param \Closure $report
 	 * @param object $pos
-	 *
+	 * 
 	 * @return Outcome
 	 */
 	public static function catchExceptions ($f, $report = null, $pos = null) {
@@ -74,7 +74,7 @@ class TypedError {
 	 * @param int $code
 	 * @param string $message
 	 * @param object $pos
-	 *
+	 * 
 	 * @return \Closure
 	 */
 	public static function reporter ($code = null, $message = "", $pos = null) {
@@ -85,7 +85,7 @@ class TypedError {
 
 	/**
 	 * @param mixed $any
-	 *
+	 * 
 	 * @return mixed
 	 */
 	public static function rethrow ($any) {
@@ -98,7 +98,7 @@ class TypedError {
 	/**
 	 * @param \Closure $f
 	 * @param \Closure $cleanup
-	 *
+	 * 
 	 * @return mixed
 	 */
 	public static function tryFinally ($f, $cleanup) {
@@ -122,7 +122,7 @@ class TypedError {
 	 * @param string $message
 	 * @param mixed $data
 	 * @param object $pos
-	 *
+	 * 
 	 * @return TypedError
 	 */
 	public static function typed ($code = null, $message = "", $data = null, $pos = null) {
@@ -136,7 +136,7 @@ class TypedError {
 	 * @param string $message
 	 * @param mixed $data
 	 * @param object $pos
-	 *
+	 * 
 	 * @return TypedError
 	 */
 	public static function withData ($code = null, $message = "", $data = null, $pos = null) {
@@ -147,7 +147,7 @@ class TypedError {
 	 * @param int $code
 	 * @param string $message
 	 * @param object $pos
-	 *
+	 * 
 	 * @return void
 	 */
 	public function __construct ($code = 500, $message = "", $pos = null) {
