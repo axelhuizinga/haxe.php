@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.7.0](https://git.belin.io/cedx/haxe.php/compare/v1.6.3...v1.7.0)
+- Added the classes from the [`asys` package](https://lib.haxe.org/p/asys).
+
 ## Version [1.6.3](https://git.belin.io/cedx/haxe.php/compare/v1.6.2...v1.6.3)
 - Fixed the [Composer](https://getcomposer.org) requirements for PHP extensions.
 
