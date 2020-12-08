@@ -1,3 +1,7 @@
+import asys.*;
+import asys.io.*;
+import asys.net.*;
+import asys.ssl.*;
 import tink.*;
 import tink.cli.*;
 import tink.http.*;
@@ -8,6 +12,11 @@ using tink.CoreApi;
 
 /** The main class. **/
 @:keep class Main {
+
+	// "asys" package.
+	final netSocket: asys.net.Socket = null;
+	final process: Process = null;
+	final sslSocket: asys.ssl.Socket = null;
 
 	// "thenshim" package.
 	final promise: thenshim.Promise<Any> = null;
@@ -24,6 +33,11 @@ using tink.CoreApi;
 	/** Application entry point. **/
 	static function main(): Void {
 		final program = new Main();
+
+		// "asys" package.
+		File.getBytes("haxelib.json").next(bytes -> Noise);
+		FileSystem.stat("haxelib.json").next(stat -> Noise);
+		Host.localhost();
 
 		// "tink_cli" package.
 		Cli.process(Sys.args(), program).handle(Cli.exit);
