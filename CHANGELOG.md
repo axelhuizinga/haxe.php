@@ -1,5 +1,8 @@
 # Changelog
 
+## Version [1.8.0](https://git.belin.io/cedx/haxe.php/compare/v1.7.0...v1.8.0)
+- Added the classes from the [`tink_querystring` package](https://lib.haxe.org/p/tink_querystring).
+
 ## Version [1.7.0](https://git.belin.io/cedx/haxe.php/compare/v1.6.3...v1.7.0)
 - Added the classes from the [`asys` package](https://lib.haxe.org/p/asys).
 
