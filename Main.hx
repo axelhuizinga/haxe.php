@@ -1,7 +1,6 @@
 import asys.*;
 import asys.io.*;
 import asys.net.*;
-import asys.ssl.*;
 import tink.*;
 import tink.cli.*;
 import tink.http.*;
@@ -44,6 +43,10 @@ using tink.CoreApi;
 
 		// "tink_http" package.
 		Client.fetch(program.url).all().next(response -> response.body.toString());
+
+		// "tink_querystring" package.
+		QueryString.build({foo: "bar", baz: "qux"});
+		QueryString.parse("foo=bar&baz=qux");
 	}
 
 	/** A dummy "tink_cli" command. **/
