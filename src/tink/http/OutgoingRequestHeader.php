@@ -16,7 +16,7 @@ class OutgoingRequestHeader extends RequestHeader {
 	 * 
 	 * @return void
 	 */
-	public function __construct ($method, $url, $protocol = null, $fields) {
+	public function __construct ($method, $url, $protocol = null, $fields = null) {
 		parent::__construct($method, $url, $protocol, $fields);
 	}
 

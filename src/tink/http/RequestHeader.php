@@ -29,7 +29,7 @@ class RequestHeader extends Header {
 	 * 
 	 * @return void
 	 */
-	public function __construct ($method, $url, $protocol = "HTTP/1.1", $fields) {
+	public function __construct ($method, $url, $protocol = "HTTP/1.1", $fields = null) {
 		if ($protocol === null) {
 			$protocol = "HTTP/1.1";
 		}
