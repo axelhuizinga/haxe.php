@@ -1,5 +1,9 @@
 # Changelog
 
+## Version [1.9.0](https://git.belin.io/cedx/haxe.php/compare/v1.8.1...v1.9.0)
+- Removed the classes from the [`thenshim` package](https://lib.haxe.org/p/thenshim).
+- Upgraded the class library to [Haxe](https://haxe.org) 4.1.5.
+
 ## Version [1.8.1](https://git.belin.io/cedx/haxe.php/compare/v1.8.0...v1.8.1)
 - Improved the compatibility with PHP 8.0.
 
