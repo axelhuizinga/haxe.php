@@ -1,4 +1,4 @@
 # See also
-- [API reference](https://api.belin.io/haxe.php)
+- [API reference](https://cedx.github.io/haxe.php/api)
 - [Packagist package](https://packagist.org/packages/cedx/haxe)
-- [Submit an issue](https://git.belin.io/cedx/haxe.php/issues)
+- [Submit an issue](https://github.com/cedx/haxe.php/issues)

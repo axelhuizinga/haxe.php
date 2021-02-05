@@ -1,6 +1,6 @@
 {
 	"description": "Provides the Haxe standard library as a reusable package.",
-	"homepage": "https://docs.belin.io/haxe.php",
+	"homepage": "https://cedx.github.io/haxe.php",
 	"license": "MIT",
 	"name": "cedx/haxe",
 	"type": "library",
@@ -36,7 +36,7 @@
 		"version": "pwsh tool/version.ps1"
 	},
 	"support": {
-		"docs": "https://api.belin.io/haxe.php",
-		"issues": "https://git.belin.io/cedx/haxe.php/issues"
+		"docs": "https://cedx.github.io/haxe.php/api",
+		"issues": "https://github.com/cedx/haxe.php/issues"
 	}
 }

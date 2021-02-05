@@ -4,13 +4,13 @@
 > Provides the [Haxe](https://haxe.org) standard library as a reusable [PHP](https://www.php.net) package.
 
 ## Documentation
-- [User guide](https://docs.belin.io/haxe.php)
-- [API reference](https://api.belin.io/haxe.php)
+- [User guide](https://cedx.github.io/haxe.php)
+- [API reference](https://cedx.github.io/haxe.php/api)
 
 ## Development
-- [Git repository](https://git.belin.io/cedx/haxe.php)
+- [Git repository](https://github.com/cedx/haxe.php)
 - [Packagist package](https://packagist.org/packages/cedx/haxe)
-- [Submit an issue](https://git.belin.io/cedx/haxe.php/issues)
+- [Submit an issue](https://github.com/cedx/haxe.php/issues)
 
 ## License
-[Haxe Standard Library for PHP](https://docs.belin.io/haxe.php) is distributed under the MIT License.
+[Haxe Standard Library for PHP](https://cedx.github.io/haxe.php) is distributed under the MIT License.
