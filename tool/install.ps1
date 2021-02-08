@@ -6,4 +6,4 @@ haxelib newrepo
 haxelib install all --always
 haxelib set tink_core 1.27.1 --always
 
-composer install --no-interaction
+composer update --no-interaction
