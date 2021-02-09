@@ -2,19 +2,18 @@
 	"classPath": "src/",
 	"contributors": ["cedx"],
 	"dependencies": {
-		"asys": "0.4.0",
-		"thenshim": "1.1.1",
-		"tink_cli": "0.5.1",
-		"tink_core": "1.27.1",
-		"tink_http": "0.9.1",
-		"tink_querystring": "0.6.0",
-		"tink_semver": "0.1.0",
-		"tink_url": "0.4.2"
+		"asys": "",
+		"tink_cli": "",
+		"tink_core": "",
+		"tink_http": "",
+		"tink_querystring": "",
+		"tink_semver": "",
+		"tink_url": ""
 	},
 	"description": "Provides the Haxe standard library as a reusable package.",
 	"license": "MIT",
 	"name": "haxe.php",
-	"releasenote": "Added the classes from the `haxe.crypto`, `haxe.rtti`, `haxe.xml`, `haxe.zip` and `sys.db` packages.",
+	"releasenote": "Upgraded the class library to Haxe 4.2.0.",
 	"tags": ["haxe", "php", "standard-library"],
 	"url": "https://cedx.github.io/haxe.php",
 	"version": "1.9.0"

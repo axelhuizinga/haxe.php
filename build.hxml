@@ -3,14 +3,13 @@
 --define analyzer-optimize
 --define php-lib=src
 --define real-position
---library asys:0.4.0
---library thenshim:1.1.1
---library tink_cli:0.5.1
---library tink_core:1.27.1
---library tink_http:0.9.1
---library tink_querystring:0.6.0
---library tink_semver:0.1.0
---library tink_url:0.4.2
+--library asys
+--library tink_cli
+--library tink_core
+--library tink_http
+--library tink_querystring
+--library tink_semver
+--library tink_url
 --macro include('', false)
 --macro include('haxe', false)
 --macro include('haxe.crypto')

@@ -6,7 +6,6 @@ import tink.cli.*;
 import tink.http.*;
 import tink.semver.*;
 
-using thenshim.PromiseTools;
 using tink.CoreApi;
 
 /** The main class. **/
@@ -16,9 +15,6 @@ using tink.CoreApi;
 	final netSocket: asys.net.Socket = null;
 	final process: Process = null;
 	final sslSocket: asys.ssl.Socket = null;
-
-	// "thenshim" package.
-	final promise: thenshim.Promise<Any> = null;
 
 	// "tink_semver" package.
 	final version: Version = null;
