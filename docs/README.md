@@ -3,7 +3,7 @@
 
 Provides the [Haxe](https://haxe.org) standard library as a reusable [PHP](https://www.php.net) package.
 
-!> WARNING: this package is **abandoned** and no longer maintained.
+!> WARNING: this package is **abandoned** and no longer maintained.  
 Consider using the [helder.std](https://packagist.org/packages/helder/std) package as an alternative.
 
 ## Quick start
