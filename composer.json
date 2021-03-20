@@ -1,4 +1,5 @@
 {
+	"abandoned": "helder/std",
 	"description": "Provides the Haxe standard library as a reusable package.",
 	"homepage": "https://cedx.github.io/haxe.php",
 	"license": "MIT",
